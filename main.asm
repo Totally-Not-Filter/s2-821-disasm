@@ -27350,8 +27350,17 @@ Snd_Driver:
 	padding off
 	!org (Snd_Driver+Size_of_Snd_driver_guess) ; don't worry; I know what I'm doing
 Snd_Driver_End:
-;-------------------------------------------------------------------------------
-		cnop	$00000000, $000ED000, $00000000
+; ---------------------------------------------------------------------------
+; Filler (free space)
+; ---------------------------------------------------------------------------
+	; the DAC data has to line up with the end of the bank.
+
+	; actually it only has to fit within one bank,but we'll line it up to the end anyway
+	; because the padding gives the sound driver some room to grow
+	cnop -Size_of_DAC_samples,$8000
+; ---------------------------------------------------------------------------
+; DAC samples
+; ---------------------------------------------------------------------------
 DACSamples_Start:
 DAC_Sample01:						   ; Offset_0x0ED000
 		binclude	"data\sounds\DAC_00.bin"
@@ -27374,6 +27383,14 @@ DAC_Sample06_End:
 DAC_Sample07:						   ; Offset_0x0EFA3C
 		binclude	"data\sounds\DAC_06.bin"
 DAC_Sample07_End:
+DACSamples_End:
+
+	if DACSamples_End - DACSamples_Start > $8000
+		fatal "DAC samples must fit within $8000 bytes,but you have $\{DACSamples_End-DACSamples_Start } bytes of DAC samples."
+	endif
+	if DACSamples_End - DACSamples_Start > Size_of_DAC_samples
+		fatal "Size_of_DAC_samples = $\{Size_of_DAC_samples},but you have $\{DACSamples_End-DACSamples_Start} bytes of DAC samples."
+	endif
 
 ; ---------------------------------------------------------------------------
 ; Music pointers
@@ -27384,7 +27401,7 @@ DATA.pointer label *
 	rom_ptr_z80	DATA
     endm
 ;-------------------------------------------------------------------------------
-MusicPoint1:
+MusicPoint1:	startBank
 		music_ptr	Mus_Invinc		; $97
 		music_ptr	Mus_ExtraLife	; $98
 		music_ptr	Mus_Title		; $99
@@ -27412,14 +27429,32 @@ Mus_Emerald:							   ; Offset_0x0F0900
 Mus_HPZ:					   ; Offset_0x0F09CE
 Mus_HPZ_Dup:
 		binclude	"data\sounds\hpz_90.snd"
-;-------------------------------------------------------------------------------
-		cnop	$00000000, $000F1E8C, $00000000
-;-------------------------------------------------------------------------------
+
+	finishBank
+; ----------------------------------------------------------------------------------
+; Filler (free space)
+; ----------------------------------------------------------------------------------
+	; the PCM data has to line up with the end of the bank.
+	cnop -Size_of_SEGA_sound,$8000
+; -------------------------------------------------------------------------------
+; Sega Intro Sound
+; 8-bit unsigned raw audio at 16Khz
+; -------------------------------------------------------------------------------
 Sega_Snd:							   ; Offset_0x0F1E8C
 		binclude	"data\sounds\sega.snd"
 Sega_Snd_End:
-;-------------------------------------------------------------------------------
-MusicPoint2:
+
+	if Sega_Snd_End - Sega_Snd > $8000
+		fatal "Sega sound must fit within $8000 bytes,but you have a $\{Sega_Snd_End-Sega_Snd} byte Sega sound."
+	endif
+	if Sega_Snd_End - Sega_Snd > Size_of_SEGA_sound
+		fatal "Size_of_SEGA_sound = $\{Size_of_SEGA_sound},but you have a $\{Sega_Snd_End-Sega_Snd} byte Sega sound."
+	endif
+
+; ------------------------------------------------------------------------------
+; Music pointers
+; ------------------------------------------------------------------------------
+MusicPoint2:	startBank
 		music_ptr	Mus_OOZ		; $88
 		music_ptr	Mus_GHZ		; $82
 		music_ptr	Mus_MTZ		; $85
@@ -27484,8 +27519,8 @@ Mus_SuperSonic:							   ; Offset_0x0FE1C3
 		binclude	"data\sounds\super_96.snd"
 Mus_HTZ:						   ; Offset_0x0FE4B6
 		binclude	"data\sounds\htz_86.snd"
-;-------------------------------------------------------------------------------
-		cnop	$00000000, $000FEE00, $00000000
+
+		cnop	0,$FEE00
 ;-------------------------------------------------------------------------------
 Sfx_A0_Ptr equ (Sfx_A0&$FFFF)|$8000
 Sfx_A1_Ptr equ (Sfx_A1&$FFFF)|$8000
@@ -27785,9 +27820,13 @@ Sfx_E8:								   ; Offset_0x0FFD84
 		binclude	"data\sounds\sfx_E8.snd"
 Sfx_E9:								   ; Offset_0x0FFDAE
 		binclude	"data\sounds\sfx_E9.snd"
-;-------------------------------------------------------------------------------
-		cnop	$00000000, $000FFFFE, $00000000
-		dc.w	$0000
+
+	finishBank
+
+	if PaddingOptimization=0
+		cnop	-1,2<<lastbit(*-1)
+		even
+	endif
 ;===============================================================================
 ; Rotina para carregar o driver de som
 ; <<<-
