@@ -294,7 +294,7 @@ ClearSomeRAMLoop:							   ; Offset_0x00034E
 		move.b	D0, (Hardware_Id).w
 		move.l	#"init", (Init_Flag).w
 AlreadyInit:						   ; Offset_0x00036A
-		lea	(M68K_RAM_Start&$00FFFFFF), A6		 ; $00FF0000
+		lea	(M68K_RAM_Start&$FFFFFF), A6		 ; $00FF0000
 		moveq	#$00, D7
 		move.w	#$3F7F, D6
 ClearRemainingRAMLoop:						   ; Offset_0x000376
@@ -1048,7 +1048,7 @@ Offset_0x00129A:
 ; ->>>
 ;===============================================================================
 Sound_Driver_Input:							   ; Offset_0x0012AC
-		lea	(Sound_Buffer_Id&$00FFFFFF).l, A0		 ; $00FFFFE0
+		lea	(Sound_Buffer_Id&$FFFFFF).l, A0		 ; $00FFFFE0
 		lea	($00A01B80), A1
 		cmpi.b	#$80, $0008(A1)
 		bne.s	Offset_0x0012E0
@@ -4414,7 +4414,7 @@ Offset_0x004106:
 		bsr.w	Offset_0x004198
 		dbf	D1, Offset_0x004106
 		lea	($00FE0000), A1
-		lea	(M68K_RAM_Start&$00FFFFFF), A2		 ; $00FF0000
+		lea	(M68K_RAM_Start&$FFFFFF), A2		 ; $00FF0000
 		move.w	#$003F, D1
 Offset_0x004122:
 		move.w	#$0000, (A2)+
@@ -9123,7 +9123,7 @@ Offset_0x007A22:
 		bsr.w	Offset_0x007AB4
 		dbf	D1, Offset_0x007A22
 		lea	($00FE0000), A1
-		lea	(M68K_RAM_Start&$00FFFFFF), A2		 ; $00FF0000
+		lea	(M68K_RAM_Start&$FFFFFF), A2		 ; $00FF0000
 		move.w	#$003F, D1
 Offset_0x007A3E:
 		move.w	#$0000, (A2)+

@@ -17,7 +17,7 @@ Offset_0x0151D8:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Open_Close_Platform_Mappings, Obj_Map(A0) ; Offset_0x0152AE, $0004
                 move.w  #$E3B0, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -61,8 +61,8 @@ Offset_0x015264:
                 move.b  Obj_Width(A0), D1                                ; $0019
                 moveq   #$11, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Platform_Object                        ; Offset_0x00F82C
-                bra     Jmp_00_To_MarkObjGone                  ; Offset_0x015314
+                bsr.w   Platform_Object                        ; Offset_0x00F82C
+                bra.w   Jmp_00_To_MarkObjGone                  ; Offset_0x015314
 Offset_0x01527E:
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x015296

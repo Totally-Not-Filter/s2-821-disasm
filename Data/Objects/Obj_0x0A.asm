@@ -35,7 +35,7 @@ Offset_0x012586:
                 addq.b  #$08, Obj_Routine(A0)                            ; $0024
                 andi.w  #$007F, D0
                 move.b  D0, Obj_Control_Var_07(A0)                       ; $0033
-                bra     Offset_0x012832
+                bra.w   Offset_0x012832
 Offset_0x0125B4:
                 move.b  D0, Obj_Ani_Number(A0)                           ; $001C
                 move.w  Obj_X(A0), Obj_Control_Var_04(A0)         ; $0008, $0030
@@ -103,7 +103,7 @@ Offset_0x012660:
 Offset_0x01267E:
                 lea     (Bubbles_Animate_Data), A1             ; Offset_0x012A5E
                 jsr     (AnimateSprite)                        ; Offset_0x00D372
-                bsr     Load_Oxygen_Numbers_Dynamic_PLC        ; Offset_0x0127EC
+                bsr.w   Load_Oxygen_Numbers_Dynamic_PLC        ; Offset_0x0127EC
                 tst.b   Obj_Flags(A0)                                    ; $0001
                 bpl.s   Offset_0x01269A
                 jmp     (DisplaySprite)                        ; Offset_0x00D322
@@ -194,13 +194,13 @@ Offset_0x012830:
 Offset_0x012832:
                 move.l  Obj_Control_Var_10(A0), A2                       ; $003C
                 tst.w   Obj_Control_Var_00(A0)                           ; $002C
-                bne     Offset_0x012922
+                bne.w   Offset_0x012922
                 cmpi.b  #$06, Obj_Routine(A2)                            ; $0024
-                bcc     Offset_0x012A2E
+                bcc.w   Offset_0x012A2E
                 btst    #$06, Obj_Status(A2)                             ; $0022
-                beq     Offset_0x012A2E
+                beq.w   Offset_0x012A2E
                 subq.w  #$01, Obj_Control_Var_0C(A0)                     ; $0038
-                bpl     Offset_0x012946
+                bpl.w   Offset_0x012946
                 move.w  #$003B, Obj_Control_Var_0C(A0)                   ; $0038
                 move.w  #$0001, Obj_Control_Var_0A(A0)                   ; $0036
                 jsr     (PseudoRandomNumber).l                   ; Offset_0x00325C
@@ -230,7 +230,7 @@ Offset_0x0128B2:
                 jsr     (Play_Sfx).l                             ; Offset_0x001512
 Offset_0x0128BC:
                 subq.b  #$01, Obj_Subtype(A2)                            ; $0028
-                bcc     Offset_0x012944
+                bcc.w   Offset_0x012944
                 move.b  #$81, Obj_Timer(A2)                              ; $002A
                 move.w  #$00B2, D0
                 jsr     (Play_Sfx).l                             ; Offset_0x001512
@@ -238,10 +238,10 @@ Offset_0x0128BC:
                 move.w  #$0001, Obj_Control_Var_0A(A0)                   ; $0036
                 move.w  #$0078, Obj_Control_Var_00(A0)                   ; $002C
                 move.l  A2, A1
-                bsr     Resume_Music                           ; Offset_0x012A30
+                bsr.w   Resume_Music                           ; Offset_0x012A30
                 move.l  A0, -(A7)
                 move.l  A2, A0
-                bsr     Sonic_ResetOnFloor                     ; Offset_0x010A46
+                bsr.w   Sonic_ResetOnFloor                     ; Offset_0x010A46
                 move.b  #$17, Obj_Ani_Number(A0)                         ; $001C
                 bset    #$01, Obj_Status(A0)                             ; $0022
                 bset    #$07, Obj_Art_VRAM(A0)                           ; $0002
@@ -267,15 +267,15 @@ Offset_0x012944:
                 bra.s   Offset_0x012956
 Offset_0x012946:
                 tst.w   Obj_Control_Var_0A(A0)                           ; $0036
-                beq     Offset_0x012A2E
+                beq.w   Offset_0x012A2E
                 subq.w  #$01, Obj_Control_Var_0E(A0)                     ; $003A
-                bpl     Offset_0x012A2E
+                bpl.w   Offset_0x012A2E
 Offset_0x012956:
                 jsr     (PseudoRandomNumber).l                   ; Offset_0x00325C
                 andi.w  #$000F, D0
                 move.w  D0, Obj_Control_Var_0E(A0)                       ; $003A
                 jsr     (SingleObjectLoad)                     ; Offset_0x00E6FE
-                bne     Offset_0x012A2E
+                bne.w   Offset_0x012A2E
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.w  Obj_X(A2), Obj_X(A1)                      ; $0008, $0008
                 moveq   #$06, D0
