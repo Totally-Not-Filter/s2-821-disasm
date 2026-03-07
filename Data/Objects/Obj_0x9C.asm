@@ -13,21 +13,21 @@ Offset_0x02906E:
                 dc.w    Offset_0x029076-Offset_0x02906E        
 ;-------------------------------------------------------------------------------
 Offset_0x029072:
-                bra     Object_Settings                        ; Offset_0x027EA4 
+                bra.w   Object_Settings                        ; Offset_0x027EA4 
 ;-------------------------------------------------------------------------------
 Offset_0x029076:
                 move.w  Obj_Timer(A0), A1                                ; $002A
                 move.b  Obj_Control_Var_06(A0), D0                       ; $0032
                 cmp.b   (A1), D0
-                bne     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bne.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
                 move.l  Obj_X(A1), Obj_X(A0)                      ; $0008, $0008
                 move.l  Obj_Y(A1), Obj_Y(A0)                      ; $000C, $000C
                 move.l  Obj_Control_Var_02(A0), A1                       ; $002E
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 ;-------------------------------------------------------------------------------
 Load_Enemy_Boost_Sub_Obj_0x9C:                                 ; Offset_0x02909C
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x0290CE
                 _move.b #$9C, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Map_Id(A1)                             ; $001A
@@ -41,7 +41,7 @@ Offset_0x0290CE:
                 rts
 ;-------------------------------------------------------------------------------
 Load_Turtloid_Weapon:                                          ; Offset_0x0290D0
-                bsr     Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
+                bsr.w   Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
                 bne.s   Offset_0x02910E
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Map_Id(A1)                             ; $001A

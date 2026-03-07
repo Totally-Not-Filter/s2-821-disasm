@@ -21,14 +21,14 @@ Offset_0x019854:
                 beq.s   Offset_0x019870
                 bclr    #$07, $02(A2, D0)
                 bset    #$00, $02(A2, D0)
-                bne     Jmp_08_To_DeleteObject                 ; Offset_0x019AEC
+                bne.w   Jmp_08_To_DeleteObject                 ; Offset_0x019AEC
 Offset_0x019870:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$0F, Obj_Height_2(A0)                           ; $0016
                 move.b  #$0F, Obj_Width_2(A0)                            ; $0017
                 move.l  #Spring_Ball_Mappings, Obj_Map(A0) ; Offset_0x019A7A, $0004
                 move.w  #$6354, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_08_To_ModifySpriteAttr_2P          ; Offset_0x019AFE
+                bsr.w   Jmp_08_To_ModifySpriteAttr_2P          ; Offset_0x019AFE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.w  Obj_X(A0), Obj_Control_Var_08(A0)         ; $0008, $0034
@@ -37,7 +37,7 @@ Offset_0x019870:
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
                 move.w  #$0000, Obj_Inertia(A0)                          ; $0014
                 move.b  #$01, Obj_Ani_Time_2(A0)                         ; $001F
-                bsr     Jmp_01_To_SingleObjectLoad             ; Offset_0x019AF2
+                bsr.w   Jmp_01_To_SingleObjectLoad             ; Offset_0x019AF2
                 bne.s   Offset_0x01990E
                 _move.b #$46, 0(A1)                                 ; $0000
                 addq.b  #$06, Obj_Routine(A1)                            ; $0024
@@ -74,12 +74,12 @@ Offset_0x01992C:
                 beq.s   Offset_0x019958
                 neg.w   Obj_Inertia(A0)                                  ; $0014
 Offset_0x019958:
-                bsr     Offset_0x019A18
-                bra     Jmp_08_To_MarkObjGone                  ; Offset_0x019AF8     
+                bsr.w   Offset_0x019A18
+                bra.w   Jmp_08_To_MarkObjGone                  ; Offset_0x019AF8     
 ;------------------------------------------------------------------------------- 
 Offset_0x019960:
                 move.w  Obj_X(A0), -(A7)                                 ; $0008
-                bsr     Jmp_05_To_SpeedToPos                   ; Offset_0x019B16
+                bsr.w   Jmp_05_To_SpeedToPos                   ; Offset_0x019B16
                 btst    #$01, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x0199B4
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
@@ -117,7 +117,7 @@ Offset_0x0199CC:
                 move.w  (A7)+, D4
                 bsr     Jmp_02_To_SolidObject                  ; Offset_0x019B04
                 bsr.w   Offset_0x019A18
-                bra     Jmp_08_To_MarkObjGone                  ; Offset_0x019AF8
+                bra.w   Jmp_08_To_MarkObjGone                  ; Offset_0x019AF8
 Offset_0x0199EC:
                 move.w  (A7)+, D4
                 lea     ($FFFFFC00).w, A2
@@ -126,7 +126,7 @@ Offset_0x0199EC:
                 beq.s   Offset_0x019A00
                 bclr    #$07, $02(A2, D0)
 Offset_0x019A00:
-                bra     Jmp_08_To_DeleteObject                 ; Offset_0x019AEC   
+                bra.w   Jmp_08_To_DeleteObject                 ; Offset_0x019AEC   
 ;------------------------------------------------------------------------------- 
 Offset_0x019A04:
                 tst.b   Obj_Control_Var_04(A0)                           ; $0030
@@ -135,7 +135,7 @@ Offset_0x019A04:
                 bne.s   Offset_0x019A14
                 clr.b   Obj_Control_Var_04(A0)                           ; $0030
 Offset_0x019A14:
-                bra     Jmp_08_To_MarkObjGone                  ; Offset_0x019AF8
+                bra.w   Jmp_08_To_MarkObjGone                  ; Offset_0x019AF8
 Offset_0x019A18:
                 tst.b   Obj_Map_Id(A0)                                   ; $001A
                 beq.s   Offset_0x019A26

@@ -13,15 +13,15 @@ Offset_0x02A402:
                 dc.w    Offset_0x02A41C-Offset_0x02A402      
 ;-------------------------------------------------------------------------------
 Offset_0x02A406:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.w  #$FFE0, Obj_Speed(A0)                            ; $0010
                 lea     Enemy_Boost_Animate_Data(PC), A1       ; Offset_0x02913A
                 move.l  A1, Obj_Control_Var_02(A0)                       ; $002E
-                bra     Load_Enemy_Boost_Sub_Obj_0x9C          ; Offset_0x02909C 
+                bra.w   Load_Enemy_Boost_Sub_Obj_0x9C          ; Offset_0x02909C 
 ;-------------------------------------------------------------------------------
 Offset_0x02A41C:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------
 Obj_0xAC_Ptr:                                                  ; Offset_0x02A424
                 dc.l    Balkiry_Mappings                       ; Offset_0x02A42E

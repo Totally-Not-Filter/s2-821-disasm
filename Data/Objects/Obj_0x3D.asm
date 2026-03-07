@@ -23,7 +23,7 @@ Offset_0x019C0E:
                 move.w  #$63FF, Obj_Art_VRAM(A0)                         ; $0002
                 move.b  #$02, Obj_Map_Id(A0)                             ; $001A
 Offset_0x019C32:
-                bsr     Jmp_0A_To_ModifySpriteAttr_2P          ; Offset_0x01A022
+                bsr.w   Jmp_0A_To_ModifySpriteAttr_2P          ; Offset_0x01A022
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 bset    #$07, Obj_Status(A0)                             ; $0022
@@ -38,12 +38,12 @@ Offset_0x019C4E:
                 move.w  #$0010, D2
                 move.w  #$0011, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_04_To_SolidObject                  ; Offset_0x01A02E
+                bsr.w   Jmp_04_To_SolidObject                  ; Offset_0x01A02E
                 move.b  Obj_Status(A0), D0                               ; $0022
                 andi.b  #$18, D0
                 bne.s   Offset_0x019C88
 Offset_0x019C84:
-                bra     Jmp_0A_To_MarkObjGone                  ; Offset_0x01A010
+                bra.w   Jmp_0A_To_MarkObjGone                  ; Offset_0x01A010
 Offset_0x019C88:
                 cmpi.b  #$18, D0
                 bne.s   Offset_0x019CBE
@@ -87,15 +87,15 @@ Offset_0x019CFC:
                 rts
 Offset_0x019D10:
                 andi.b  #$10, D0
-                beq     Offset_0x019C84
+                beq.w   Offset_0x019C84
                 cmpi.b  #$02, Obj_Control_Var_07(A0)                     ; $0033
-                bne     Offset_0x019C84
+                bne.w   Offset_0x019C84
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 move.w  Obj_Control_Var_0A(A0), D1                       ; $0036
                 bsr.s   Offset_0x019CE0
 Offset_0x019D2C:
                 andi.b  #$E7, Obj_Status(A0)                             ; $0022
-                bsr     Jmp_06_To_SingleObjectLoad_2           ; Offset_0x01A016
+                bsr.w   Jmp_06_To_SingleObjectLoad_2           ; Offset_0x01A016
                 bne.s   Offset_0x019D50
                 moveq   #$00, D0
                 move.w  #$000A, D1
@@ -109,14 +109,14 @@ Offset_0x019D50:
                 addq.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 moveq   #$0F, D1
                 move.w  #$0018, D2
-                bsr     Jmp_01_To_Smash_Object                 ; Offset_0x01A028      
+                bsr.w   Jmp_01_To_Smash_Object                 ; Offset_0x01A028      
 ;-------------------------------------------------------------------------------  
 Offset_0x019D64:
-                bsr     Jmp_06_To_SpeedToPos                   ; Offset_0x01A034
+                bsr.w   Jmp_06_To_SpeedToPos                   ; Offset_0x01A034
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Jmp_09_To_DeleteObject                 ; Offset_0x01A00A
-                bra     Jmp_05_To_DisplaySprite                ; Offset_0x01A004      
+                bpl.w   Jmp_09_To_DeleteObject                 ; Offset_0x01A00A
+                bra.w   Jmp_05_To_DisplaySprite                ; Offset_0x01A004      
 ;-------------------------------------------------------------------------------  
 Offset_0x019D7A:
                 lea     (Player_One).w, A1                           ; $FFFFB000
@@ -127,7 +127,7 @@ Offset_0x019D7A:
                 bsr.s   Offset_0x019D9C
                 move.b  Obj_Control_Var_00(A0), D0                       ; $002C
                 add.b   Obj_Control_Var_0A(A0), D0                       ; $0036
-                beq     Jmp_02_To_MarkObjGone_3                ; Offset_0x01A01C
+                beq.w   Jmp_02_To_MarkObjGone_3                ; Offset_0x01A01C
                 rts
 Offset_0x019D9C:
                 moveq   #$00, D0
@@ -144,7 +144,7 @@ Offset_0x019DAC:
                 sub.w   Obj_X(A0), D0                                    ; $0008
                 addi.w  #$0010, D0
                 cmpi.w  #$0020, D0
-                bcc     Offset_0x019E4C
+                bcc.w   Offset_0x019E4C
                 move.w  Obj_Y(A1), D1                                    ; $000C
                 sub.w   Obj_Y(A0), D1                                    ; $000C
                 tst.b   Obj_Subtype(A0)                                  ; $0028

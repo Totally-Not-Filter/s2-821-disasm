@@ -11,7 +11,7 @@
                 jmp     Offset_0x01F2A4(PC, D1)
 Offset_0x01F29C:
                 move.w  #$0280, D0
-                bra     Jmp_02_To_DisplaySprite_Param          ; Offset_0x01F500
+                bra.w   Jmp_02_To_DisplaySprite_Param          ; Offset_0x01F500
 ;------------------------------------------------------------------------------- 
 Offset_0x01F2A4:
                 dc.w    Offset_0x01F2AA-Offset_0x01F2A4
@@ -22,7 +22,7 @@ Offset_0x01F2AA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #NGHz_Swing_Platforms_Mappings, Obj_Map(A0) ; Offset_0x008FB8, $0004
                 move.w  #$0000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_24_To_ModifySpriteAttr_2P          ; Offset_0x01F51E
+                bsr.w   Jmp_24_To_ModifySpriteAttr_2P          ; Offset_0x01F51E
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$20, Obj_Width(A0)                              ; $0019
@@ -39,7 +39,7 @@ Offset_0x01F2AA:
                 ror.b   #$02, D0
                 andi.b  #$C0, D0
                 move.b  D0, Obj_Angle(A0)                                ; $0026
-                bsr     Jmp_10_To_SingleObjectLoad_2           ; Offset_0x01F518
+                bsr.w   Jmp_10_To_SingleObjectLoad_2           ; Offset_0x01F518
                 bne.s   Offset_0x01F364
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.l  Obj_Map(A0), Obj_Map(A1)                  ; $0004, $0004
@@ -66,7 +66,7 @@ Offset_0x01F338:
 Offset_0x01F364:
                 bra.s   Offset_0x01F3A8
 Offset_0x01F366:
-                bsr     Jmp_10_To_SingleObjectLoad_2           ; Offset_0x01F518
+                bsr.w   Jmp_10_To_SingleObjectLoad_2           ; Offset_0x01F518
                 bne.s   Offset_0x01F3A6
                 addq.b  #$04, Obj_Routine(A1)                            ; $0024
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
@@ -93,7 +93,7 @@ Offset_0x01F3A8:
                 move.l  Obj_Control_Var_08(A0), A1                       ; $0034
                 lea     Obj_Speed(A1), A2                                ; $0010
                 move.b  Obj_Angle(A0), D0                                ; $0026
-                bsr     Jmp_05_To_CalcSine                     ; Offset_0x01F524
+                bsr.w   Jmp_05_To_CalcSine                     ; Offset_0x01F524
                 swap    D0
                 swap    D1
                 asr.l   #$04, D0
@@ -111,7 +111,7 @@ Offset_0x01F3A8:
                 add.l   D0, D4
                 add.l   D1, D5
                 moveq   #$01, D6
-                bsr     Offset_0x01F4B6
+                bsr.w   Offset_0x01F4B6
                 swap    D4
                 swap    D5
                 add.w   D2, D4
@@ -120,7 +120,7 @@ Offset_0x01F3A8:
                 move.w  D4, Obj_Y(A0)                                    ; $000C
                 move.b  Obj_Angle(A0), D0                                ; $0026
                 addi.b  #$55, D0
-                bsr     Jmp_05_To_CalcSine                     ; Offset_0x01F524
+                bsr.w   Jmp_05_To_CalcSine                     ; Offset_0x01F524
                 swap    D0
                 swap    D1
                 asr.l   #$04, D0
@@ -128,7 +128,7 @@ Offset_0x01F3A8:
                 move.l  D0, D4
                 move.l  D1, D5
                 moveq   #$02, D6
-                bsr     Offset_0x01F4B6
+                bsr.w   Offset_0x01F4B6
                 swap    D4
                 swap    D5
                 add.w   D2, D4
@@ -138,7 +138,7 @@ Offset_0x01F3A8:
                 move.w  D4, Obj_Y(A1)                                    ; $000C
                 move.b  Obj_Angle(A0), D0                                ; $0026
                 subi.b  #$55, D0
-                bsr     Jmp_05_To_CalcSine                     ; Offset_0x01F524
+                bsr.w   Jmp_05_To_CalcSine                     ; Offset_0x01F524
                 swap    D0
                 swap    D1
                 asr.l   #$04, D0
@@ -160,7 +160,7 @@ Offset_0x01F3A8:
                 move.w  #$0008, D2
                 move.w  #$0009, D3
                 move.w  (A7)+, D4
-                bsr     Jmp_02_To_Platform_Object              ; Offset_0x01F52A
+                bsr.w   Jmp_02_To_Platform_Object              ; Offset_0x01F52A
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 beq.s   Offset_0x01F492
                 bra.w   Jmp_12_To_DisplaySprite                ; Offset_0x01F506

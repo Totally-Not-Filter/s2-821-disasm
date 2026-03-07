@@ -8,7 +8,7 @@
                 move.w  Offset_0x01E2BE(PC, D0), D1
                 jsr     Offset_0x01E2BE(PC, D1)
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     Jmp_05_To_MarkObjGone_2                ; Offset_0x01E476
+                bra.w   Jmp_05_To_MarkObjGone_2                ; Offset_0x01E476
 ;-------------------------------------------------------------------------------
 Offset_0x01E2BE:
                 dc.w    Offset_0x01E2C4-Offset_0x01E2BE
@@ -30,7 +30,7 @@ Offset_0x01E2D8:
                 bra.s   Offset_0x01E2F0          
 ;------------------------------------------------------------------------------- 
 Offset_0x01E2E2:
-                bsr     Jmp_0D_To_SingleObjectLoad_2           ; Offset_0x01E464
+                bsr.w   Jmp_0D_To_SingleObjectLoad_2           ; Offset_0x01E464
                 bne.w   Offset_0x01E348
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
 ;------------------------------------------------------------------------------- 
@@ -38,7 +38,7 @@ Offset_0x01E2F0:
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.l  #CPz_Block_Mappings, Obj_Map(A1) ; Offset_0x01CDA2, $0004
                 move.w  #$6418, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_02_To_ModifySpriteAttr_2P_A1       ; Offset_0x01E46A
+                bsr.w   Jmp_02_To_ModifySpriteAttr_2P_A1       ; Offset_0x01E46A
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$03, Obj_Priority(A1)                           ; $0018
                 move.b  #$10, Obj_Width(A1)                              ; $0019
@@ -74,7 +74,7 @@ Offset_0x01E35C:
                 move.w  #$0010, D2
                 move.w  #$0011, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_12_To_SolidObject                  ; Offset_0x01E470
+                bsr.w   Jmp_12_To_SolidObject                  ; Offset_0x01E470
                 swap    D6
                 or.b    D6, Obj_Control_Var_02(A2)                       ; $002E
                 rts                 

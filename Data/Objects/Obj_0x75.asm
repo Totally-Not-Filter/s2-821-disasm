@@ -11,7 +11,7 @@
                 jmp     Offset_0x01DCC4(PC, D1)
 Offset_0x01DCBC:
                 move.w  #$0280, D0
-                bra     Jmp_00_To_DisplaySprite_Param          ; Offset_0x01DE9C
+                bra.w   Jmp_00_To_DisplaySprite_Param          ; Offset_0x01DE9C
 ;-------------------------------------------------------------------------------
 Offset_0x01DCC4:
                 dc.w    Offset_0x01DCCA-Offset_0x01DCC4
@@ -22,7 +22,7 @@ Offset_0x01DCCA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Spikeball_Chain_Mappings, Obj_Map(A0) ; Offset_0x01DE66, $0004
                 move.w  #$2000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_1B_To_ModifySpriteAttr_2P          ; Offset_0x01DEC0
+                bsr.w   Jmp_1B_To_ModifySpriteAttr_2P          ; Offset_0x01DEC0
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$05, Obj_Priority(A0)                           ; $0018
                 move.b  #$10, Obj_Width(A0)                              ; $0019
@@ -47,7 +47,7 @@ Offset_0x01DCCA:
                 rts
 Offset_0x01DD3A:
                 move.b  #$9A, Obj_Col_Flags(A0)                          ; $0020
-                bsr     Jmp_0C_To_SingleObjectLoad_2           ; Offset_0x01DEBA
+                bsr.w   Jmp_0C_To_SingleObjectLoad_2           ; Offset_0x01DEBA
                 bne.s   Offset_0x01DDA6
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.l  Obj_Map(A0), Obj_Map(A1)                  ; $0004, $0004
@@ -78,7 +78,7 @@ Offset_0x01DDA6:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
                 add.w   D0, Obj_Angle(A0)                                ; $0026
                 move.b  Obj_Angle(A0), D0                                ; $0026
-                bsr     Jmp_03_To_CalcSine                     ; Offset_0x01DEC6
+                bsr.w   Jmp_03_To_CalcSine                     ; Offset_0x01DEC6
                 move.w  Obj_Control_Var_06(A0), D2                       ; $0032
                 move.w  Obj_Control_Var_04(A0), D3                       ; $0030
                 moveq   #$00, D6

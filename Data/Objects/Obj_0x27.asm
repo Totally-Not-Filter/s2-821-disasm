@@ -15,7 +15,7 @@ Offset_0x016182:
 ;-------------------------------------------------------------------------------  
 Offset_0x016188:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
                 bne.s   Offset_0x0161AA
                 _move.b #$28, 0(A1)                                 ; $0000
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
@@ -26,7 +26,7 @@ Offset_0x0161AA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Object_Hit_Mappings, Obj_Map(A0) ; Offset_0x01620C, $0004
                 move.w  #$05A4, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
+                bsr.w   Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
                 move.b  #$00, Obj_Col_Flags(A0)                          ; $0020
@@ -42,9 +42,9 @@ Offset_0x0161EE:
                 move.b  #$07, Obj_Ani_Time(A0)                           ; $001E
                 addq.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 cmpi.b  #$05, Obj_Map_Id(A0)                             ; $001A
-                beq     Jmp_02_To_DeleteObject                 ; Offset_0x016396
+                beq.w   Jmp_02_To_DeleteObject                 ; Offset_0x016396
 Offset_0x016208:
-                bra     Jmp_02_To_DisplaySprite                ; Offset_0x016390    
+                bra.w   Jmp_02_To_DisplaySprite                ; Offset_0x016390    
 ;-------------------------------------------------------------------------------            
 Object_Hit_Mappings:                                           ; Offset_0x01620C
                 dc.w    Offset_0x016216-Object_Hit_Mappings

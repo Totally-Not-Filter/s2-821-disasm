@@ -29,8 +29,8 @@ Offset_0x00ABFA:
                 bra.s   Offset_0x00AC0A      
 ;-------------------------------------------------------------------------------
 Offset_0x00AC02:
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
-                bne     Offset_0x00AC92
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
+                bne.w   Offset_0x00AC92
 Offset_0x00AC0A:
                 _move.b #$37, 0(A1)                                 ; $0000
                 addq.b  #$02, Obj_Routine(A1)                            ; $0024
@@ -40,7 +40,7 @@ Offset_0x00AC0A:
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C
                 move.l  #Rings_Mappings, Obj_Map(A1)    ; Offset_0x00AEA0, $0004
                 move.w  #$26BC, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$03, Obj_Priority(A1)                           ; $0018
                 move.b  #$47, Obj_Col_Flags(A1)                          ; $0020
@@ -49,7 +49,7 @@ Offset_0x00AC0A:
                 tst.w   D4
                 bmi.s   Offset_0x00AC82
                 move.w  D4, D0
-                bsr     CalcSine                               ; Offset_0x003282
+                bsr.w   CalcSine                               ; Offset_0x003282
                 move.w  D4, D2
                 lsr.w   #$08, D2
                 asl.w   D2, D0
@@ -76,7 +76,7 @@ Offset_0x00AC92:
 ;-------------------------------------------------------------------------------
 Offset_0x00ACAE:
                 move.b  (Object_Frame_Buffer+$0007).w, Obj_Map_Id(A0) ; $FFFFFEA7; $001A
-                bsr     SpeedToPos                             ; Offset_0x00D1DA
+                bsr.w   SpeedToPos                             ; Offset_0x00D1DA
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
                 bmi.s   Offset_0x00ACE8
                 move.b  ($FFFFFE0F).w, D0
@@ -98,21 +98,21 @@ Offset_0x00ACE8:
                 addi.w  #$00E0, D0
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
                 bcs.s   Offset_0x00AD22
-                bra     DisplaySprite                          ; Offset_0x00D322  
+                bra.w   DisplaySprite                          ; Offset_0x00D322  
 ;-------------------------------------------------------------------------------
 Offset_0x00AD00:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$00, Obj_Col_Flags(A0)                          ; $0020
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
-                bsr     Add_Rings                              ; Offset_0x00AB92   
+                bsr.w   Add_Rings                              ; Offset_0x00AB92   
 ;-------------------------------------------------------------------------------
 Offset_0x00AD14:
                 lea     (Rings_Animate_Data), A1               ; Offset_0x00AE98
-                bsr     AnimateSprite                          ; Offset_0x00D372
-                bra     DisplaySprite                          ; Offset_0x00D322 
+                bsr.w   AnimateSprite                          ; Offset_0x00D372
+                bra.w   DisplaySprite                          ; Offset_0x00D322 
 ;-------------------------------------------------------------------------------
 Offset_0x00AD22:
-                bra     DeleteObject                           ; Offset_0x00D314 
+                bra.w   DeleteObject                           ; Offset_0x00D314 
 ;===============================================================================
 ; Objeto 0x37 - Perdendo anéis após sofrer algum dano
 ; <<<- 

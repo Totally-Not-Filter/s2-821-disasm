@@ -18,7 +18,7 @@ Offset_0x02A7DE:
                 move.w  #$00F0, Obj_Sub_Y(A0)                            ; $000A
                 move.l  #S1_Credits_Mappings, Obj_Map(A0) ; Offset_0x02A852, $0004
                 move.w  #$05A0, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_30_To_ModifySpriteAttr_2P          ; Offset_0x02AEE0
+                bsr.w   Jmp_30_To_ModifySpriteAttr_2P          ; Offset_0x02AEE0
                 move.w  ($FFFFFFF4).w, D0
                 move.b  D0, Obj_Map_Id(A0)                               ; $001A
                 move.b  #$00, Obj_Flags(A0)                              ; $0001
@@ -26,7 +26,7 @@ Offset_0x02A7DE:
                 cmpi.b  #gm_TitleScreen, (Game_Mode).w          ; $04, $FFFFF600
                 bne.s   Offset_0x02A84C
                 move.w  #$0300, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_30_To_ModifySpriteAttr_2P          ; Offset_0x02AEE0
+                bsr.w   Jmp_30_To_ModifySpriteAttr_2P          ; Offset_0x02AEE0
                 move.b  #$0A, Obj_Map_Id(A0)                             ; $001A
                 tst.b   ($FFFFFFD3).w
                 beq.s   Offset_0x02A84C

@@ -21,7 +21,7 @@ Offset_0x027B96:
                 bra.s   Offset_0x027BA4     
 ;-------------------------------------------------------------------------------
 Offset_0x027B9E:
-                bsr     Jmp_0F_To_SingleObjectLoad             ; Offset_0x027E92
+                bsr.w   Jmp_0F_To_SingleObjectLoad             ; Offset_0x027E92
                 bne.s   Offset_0x027BFE   
 ;-------------------------------------------------------------------------------
 Offset_0x027BA4:
@@ -66,8 +66,8 @@ Offset_0x027C08:
                 move.b  #$06, Obj_Col_Flags(A0)                          ; $0020
 Offset_0x027C46:
                 bsr.w   Offset_0x027C54
-                bsr     Offset_0x027CD4
-                bra     Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C  
+                bsr.w   Offset_0x027CD4
+                bra.w   Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C  
 ;-------------------------------------------------------------------------------
 ; Offset_0x027C52:
                 rts  
@@ -132,7 +132,7 @@ Offset_0x027D10:
                 rts 
 ;-------------------------------------------------------------------------------
 Offset_0x027D1E:
-                bsr     Jmp_0D_To_ObjectFall                   ; Offset_0x027E9E
+                bsr.w   Jmp_0D_To_ObjectFall                   ; Offset_0x027E9E
                 subi.w  #$0030, Obj_Speed_Y(A0)                          ; $0012
                 cmpi.w  #$0080, Obj_Speed_Y(A0)                          ; $0012
                 blt.s   Offset_0x027D36
@@ -144,8 +144,8 @@ Offset_0x027D36:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
 Offset_0x027D48:
                 lea     (Mz_Boss_Animate_Data), A1             ; Offset_0x027D88
-                bsr     Jmp_16_To_AnimateSprite                ; Offset_0x027E98
-                bra     Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C   
+                bsr.w   Jmp_16_To_AnimateSprite                ; Offset_0x027E98
+                bra.w   Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C   
 ;-------------------------------------------------------------------------------
 Offset_0x027D56:
                 bsr.w   Offset_0x027D6E
@@ -155,7 +155,7 @@ Offset_0x027D56:
                 neg.w   D0
 Offset_0x027D66:
                 add.w   D0, Obj_X(A0)                                    ; $0008
-                bra     Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C
+                bra.w   Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C
 Offset_0x027D6E:
                 move.w  (Player_One_Position_X).w, D0                ; $FFFFB008
                 sub.w   Obj_X(A0), D0                                    ; $0008

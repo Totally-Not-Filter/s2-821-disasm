@@ -16,7 +16,7 @@ Offset_0x01487E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Red_Ball_Bumper_Mappings, Obj_Map(A0) ; Offset_0x014994, $0004
                 move.w  #$439A, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
@@ -24,7 +24,7 @@ Offset_0x01487E:
 ;------------------------------------------------------------------------------- 
 Offset_0x0148AC:
                 move.b  Obj_Col_Prop(A0), D0                             ; $0021
-                beq     Offset_0x014978
+                beq.w   Offset_0x014978
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 bclr    #$00, Obj_Col_Prop(A0)                           ; $0021
                 beq.s   Offset_0x0148C2
@@ -36,7 +36,7 @@ Offset_0x0148C2:
                 bsr.s   Offset_0x0148D8
 Offset_0x0148D0:
                 clr.b   Obj_Col_Prop(A0)                                 ; $0021
-                bra     Offset_0x014978
+                bra.w   Offset_0x014978
 Offset_0x0148D8:
                 move.w  Obj_X(A0), D1                                    ; $0008
                 move.w  Obj_Y(A0), D2                                    ; $000C
@@ -70,7 +70,7 @@ Offset_0x0148D8:
 Offset_0x014950:
                 moveq   #$01, D0
                 jsr     (AddPoints)                            ; Offset_0x02D2D4
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
                 bne.s   Offset_0x014976
                 _move.b #$29, 0(A1)                                 ; $0000
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
@@ -80,8 +80,8 @@ Offset_0x014976:
                 rts
 Offset_0x014978:
                 lea     (Red_Ball_Bumper_Animate_Data), A1     ; Offset_0x014986
-                bsr     AnimateSprite                          ; Offset_0x00D372
-                bra     MarkObjGone                            ; Offset_0x00D200   
+                bsr.w   AnimateSprite                          ; Offset_0x00D372
+                bra.w   MarkObjGone                            ; Offset_0x00D200   
 ;-------------------------------------------------------------------------------
 Red_Ball_Bumper_Animate_Data:                                  ; Offset_0x014986
                 dc.w    Offset_0x01498A-Red_Ball_Bumper_Animate_Data

@@ -19,7 +19,7 @@ Offset_0x013564:
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
                 move.b  #$18, Obj_Width(A0)                              ; $0019
                 move.w  #$05F2, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 btst    #$07, ($FFFFB002).w
                 beq.s   Offset_0x01359A
                 bset    #$07, Obj_Art_VRAM(A0)                           ; $0002  

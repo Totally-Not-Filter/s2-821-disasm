@@ -23,7 +23,7 @@ Offset_0x017E50:
                 move.b  #$08, Obj_Width_2(A0)                            ; $0017
                 move.l  #Lava_Bubble_Mappings, Obj_Map(A0) ; Offset_0x018090, $0004
                 move.w  #$8416, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_05_To_ModifySpriteAttr_2P          ; Offset_0x018130
+                bsr.w   Jmp_05_To_ModifySpriteAttr_2P          ; Offset_0x018130
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.b  #$08, Obj_Width(A0)                              ; $0019
@@ -43,16 +43,16 @@ Offset_0x017E50:
 ;-------------------------------------------------------------------------------
 Offset_0x017EB2:
                 lea     (Fireball_Animate_Data), A1            ; Offset_0x018072
-                bsr     Jmp_00_To_AnimateSprite                ; Offset_0x01812A
-                bra     Jmp_05_To_MarkObjGone                  ; Offset_0x01811E     
+                bsr.w   Jmp_00_To_AnimateSprite                ; Offset_0x01812A
+                bra.w   Jmp_05_To_MarkObjGone                  ; Offset_0x01811E     
 ;-------------------------------------------------------------------------------
 Offset_0x017EC0:
                 cmpi.b  #$05, Obj_Ani_Time(A0)                           ; $001E
                 bne.s   Offset_0x017EF0
-                bsr     Jmp_03_To_SingleObjectLoad_2           ; Offset_0x018124
+                bsr.w   Jmp_03_To_SingleObjectLoad_2           ; Offset_0x018124
                 bne.s   Offset_0x017EE2
                 bsr.s   Offset_0x017EFE
-                bsr     Jmp_03_To_SingleObjectLoad_2           ; Offset_0x018124
+                bsr.w   Jmp_03_To_SingleObjectLoad_2           ; Offset_0x018124
                 bne.s   Offset_0x017EE2
                 bsr.s   Offset_0x017EFE
                 neg.w   Obj_Speed(A1)                                    ; $0010
@@ -63,8 +63,8 @@ Offset_0x017EE2:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
 Offset_0x017EF0:
                 lea     (Fireball_Animate_Data), A1            ; Offset_0x018072
-                bsr     Jmp_00_To_AnimateSprite                ; Offset_0x01812A
-                bra     Jmp_05_To_MarkObjGone                  ; Offset_0x01811E
+                bsr.w   Jmp_00_To_AnimateSprite                ; Offset_0x01812A
+                bra.w   Jmp_05_To_MarkObjGone                  ; Offset_0x01811E
 Offset_0x017EFE:
                 _move.b #$20, 0(A1)                                 ; $0000
                 move.b  #$08, Obj_Routine(A1)                            ; $0024
@@ -91,8 +91,8 @@ Offset_0x017F5A:
                 move.w  #$0001, Obj_Ani_Number(A0)                       ; $001C
 Offset_0x017F72:
                 lea     (Fireball_Animate_Data), A1            ; Offset_0x018072
-                bsr     Jmp_00_To_AnimateSprite                ; Offset_0x01812A
-                bra     Jmp_05_To_MarkObjGone                  ; Offset_0x01811E   
+                bsr.w   Jmp_00_To_AnimateSprite                ; Offset_0x01812A
+                bra.w   Jmp_05_To_MarkObjGone                  ; Offset_0x01811E   
 ;-------------------------------------------------------------------------------
 Offset_0x017F80:
                 subq.b  #$01, Obj_Ani_Time(A0)                           ; $001E
@@ -101,19 +101,19 @@ Offset_0x017F80:
                 addq.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 andi.b  #$01, Obj_Map_Id(A0)                             ; $001A
 Offset_0x017F96:
-                bsr     Jmp_03_To_SpeedToPos                   ; Offset_0x018136
+                bsr.w   Jmp_03_To_SpeedToPos                   ; Offset_0x018136
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
                 move.w  (Sonic_Level_Limits_Max_Y).w, D0             ; $FFFFEECE
                 addi.w  #$00E0, D0
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
                 bcc.s   Offset_0x017FB2
-                bra     Jmp_05_To_DeleteObject                 ; Offset_0x018118
+                bra.w   Jmp_05_To_DeleteObject                 ; Offset_0x018118
 Offset_0x017FB2:
                 bclr    #$01, Obj_Flags(A0)                              ; $0001
                 tst.w   Obj_Speed_Y(A0)                                  ; $0012
                 bmi.s   Offset_0x01800A
                 bset    #$01, Obj_Flags(A0)                              ; $0001
-                bsr     ObjHitFloor                            ; Offset_0x014204
+                bsr.w   ObjHitFloor                            ; Offset_0x014204
                 tst.w   D1
                 bpl.s   Offset_0x01800A
                 add.w   D1, Obj_Y(A0)                                    ; $000C
@@ -123,12 +123,12 @@ Offset_0x017FB2:
                 move.w  #$0000, Obj_Speed_Y(A0)                          ; $0012
                 move.l  #Fireball_Mappings, Obj_Map(A0) ; Offset_0x0180D0, $0004
                 move.w  #$839E, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_05_To_ModifySpriteAttr_2P          ; Offset_0x018130
+                bsr.w   Jmp_05_To_ModifySpriteAttr_2P          ; Offset_0x018130
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
                 move.w  #$0009, Obj_Control_Var_06(A0)                   ; $0032
                 move.b  #$03, Obj_Control_Var_0A(A0)                     ; $0036
 Offset_0x01800A:
-                bra     Jmp_05_To_MarkObjGone                  ; Offset_0x01811E   
+                bra.w   Jmp_05_To_MarkObjGone                  ; Offset_0x01811E   
 ;-------------------------------------------------------------------------------
 Offset_0x01800E:
                 subq.w  #$01, Obj_Control_Var_06(A0)                     ; $0032
@@ -136,7 +136,7 @@ Offset_0x01800E:
                 move.w  #$007F, Obj_Control_Var_06(A0)                   ; $0032
                 subq.b  #$01, Obj_Control_Var_0A(A0)                     ; $0036
                 bmi.s   Offset_0x018060
-                bsr     Jmp_03_To_SingleObjectLoad_2           ; Offset_0x018124
+                bsr.w   Jmp_03_To_SingleObjectLoad_2           ; Offset_0x018124
                 bne.s   Offset_0x018060
                 moveq   #$00, D0
                 move.w  #$000F, D1
@@ -153,16 +153,16 @@ Offset_0x01802C:
 Offset_0x018050:
                 add.w   D0, Obj_X(A1)                                    ; $0008
                 move.l  A1, -(A7)
-                bsr     Fire_FindFloor                         ; Offset_0x01423A
+                bsr.w   Fire_FindFloor                         ; Offset_0x01423A
                 move.l  (A7)+, A1
                 add.w   D1, Obj_Y(A1)                                    ; $000C
 Offset_0x018060:
                 lea     (Fireball_Animate_Data), A1            ; Offset_0x018072
-                bsr     Jmp_00_To_AnimateSprite                ; Offset_0x01812A
-                bra     Jmp_05_To_MarkObjGone                  ; Offset_0x01811E   
+                bsr.w   Jmp_00_To_AnimateSprite                ; Offset_0x01812A
+                bra.w   Jmp_05_To_MarkObjGone                  ; Offset_0x01811E   
 ;-------------------------------------------------------------------------------
 Offset_0x01806E:
-                bra     Jmp_05_To_DeleteObject                 ; Offset_0x018118     
+                bra.w   Jmp_05_To_DeleteObject                 ; Offset_0x018118     
 ;-------------------------------------------------------------------------------
 Fireball_Animate_Data:                                         ; Offset_0x018072
                 dc.w    Offset_0x018078-Fireball_Animate_Data

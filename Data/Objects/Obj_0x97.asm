@@ -16,7 +16,7 @@ Offset_0x0289DA:
                 dc.w    Offset_0x028AF0-Offset_0x0289DA         
 ;------------------------------------------------------------------------------- 
 Offset_0x0289E4:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.b  #$08, Obj_Width(A0)                              ; $0019
                 moveq   #$28, D0
                 btst    #$00, Obj_Flags(A0)                              ; $0001
@@ -47,10 +47,10 @@ Offset_0x028A4A:
                 dc.b    $1E, $18, $12, $0C, $06, $00 
 ;-------------------------------------------------------------------------------
 Offset_0x028A50:
-                bsr     Offset_0x028B08
+                bsr.w   Offset_0x028B08
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x028A5E
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x028A5E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$FEE0, Obj_Speed(A0)                            ; $0010
@@ -60,7 +60,7 @@ Offset_0x028A5E:
                 neg.w   D0
                 lsr.w   #$01, D0
                 move.b  Offset_0x028A4A(PC, D0), Obj_Timer(A0)           ; $002A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------  
 Offset_0x028A84:
                 bsr.w   Offset_0x028B08
@@ -68,16 +68,16 @@ Offset_0x028A84:
                 add.w   D0, Obj_Speed(A0)                                ; $0010
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x028A9C
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x028A9C:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bsr     Offset_0x027F78
+                bsr.w   Offset_0x027F78
                 move.b  #$20, Obj_Timer(A0)                              ; $002A
                 move.w  Obj_Control_Var_02(A0), D0                       ; $002E
                 lsr.w   #$01, D0
                 move.b  Offset_0x028ABA(PC, D0), Obj_Player_Status(A0)   ; $002B
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------  
 Offset_0x028ABA:
                 dc.b    $24, $20, $1C, $1A       
@@ -95,18 +95,18 @@ Offset_0x028AD4:
                 move.b  D0, Obj_Control_Var_0D(A0)                       ; $0039
                 andi.b  #$03, D0
                 bne.s   Offset_0x028AEC
-                bsr     Offset_0x028B86
-                bsr     Offset_0x028C00
+                bsr.w   Offset_0x028B86
+                bsr.w   Offset_0x028C00
 Offset_0x028AEC:
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------  
 Offset_0x028AF0:
                 move.w  (Sonic_Level_Limits_Max_Y).w, D0             ; $FFFFEECE
                 addi.w  #$00E0, D0
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
-                bcc     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
-                bsr     Jmp_0E_To_ObjectFall                   ; Offset_0x02A7BE
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bcc.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bsr.w   Jmp_0E_To_ObjectFall                   ; Offset_0x02A7BE
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x028B08:
                 move.w  Obj_Control_Var_06(A0), A1                       ; $0032
                 cmpi.b  #$97, (A1)
@@ -122,7 +122,7 @@ Offset_0x028B24:
 ;-------------------------------------------------------------------------------
 Rexon_Load_Weapon:                                             ; Offset_0x028B2E
                 move.b  #$7F, Obj_Timer(A0)                              ; $002A
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x028B84
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$03, Obj_Map_Id(A1)                             ; $001A
@@ -166,12 +166,12 @@ Load_Rexon_Head_Obj                                            ; Offset_0x028BA8
                 beq.s   Offset_0x028BBE
                 bset    #$00, Obj_Flags(A0)                              ; $0001
 Offset_0x028BBE:
-                bsr     Offset_0x027F78
+                bsr.w   Offset_0x027F78
                 lea     Obj_Control_Var_00(A0), A2                       ; $002C
                 moveq   #$00, D1
                 moveq   #$04, D6
 Offset_0x028BCA:
-                bsr     Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
+                bsr.w   Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
                 bne.s   Offset_0x028BFE
                 _move.b #$97, 0(A1)                                 ; $0000
                 move.b  Obj_Flags(A0), Obj_Flags(A1)              ; $0001, $0001

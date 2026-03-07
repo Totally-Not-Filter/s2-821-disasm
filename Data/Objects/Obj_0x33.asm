@@ -27,7 +27,7 @@ Offset_0x018938:
                 beq.s   Offset_0x018978
                 move.b  #$04, Obj_Routine_2(A0)                          ; $0025
 Offset_0x018978:
-                bsr     Jmp_04_To_SingleObjectLoad_2           ; Offset_0x018C62
+                bsr.w   Jmp_04_To_SingleObjectLoad_2           ; Offset_0x018C62
                 bne.s   Offset_0x0189C0
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -54,8 +54,8 @@ Offset_0x0189C0:
                 moveq   #$08, D2
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_01_To_SolidObject                  ; Offset_0x018C68
-                bra     Jmp_07_To_MarkObjGone                  ; Offset_0x018C5C             
+                bsr.w   Jmp_01_To_SolidObject                  ; Offset_0x018C68
+                bra.w   Jmp_07_To_MarkObjGone                  ; Offset_0x018C5C             
 ;-------------------------------------------------------------------------------  
 Offset_0x0189EC:
                 dc.w    Offset_0x0189F6-Offset_0x0189EC

@@ -33,7 +33,7 @@ Offset_0x009FCA:
                 move.b  (A1), Obj_Map_Id(A0)                             ; $001A
                 move.l  (A1)+, Obj_Map(A0)                               ; $0004
                 move.w  (A1)+, Obj_Art_VRAM(A0)                          ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  (A1)+, Obj_Width(A0)                             ; $0019
                 move.b  (A1)+, Obj_Priority(A0)                          ; $0018
@@ -44,8 +44,8 @@ Offset_0x009FCA:
 ;-------------------------------------------------------------------------------  
 Offset_0x00A00C:
                 lea     (Mz_Hpz_Misc_Animate_Data), A1         ; Offset_0x00A01A
-                bsr     AnimateSprite                          ; Offset_0x00D372
-                bra     MarkObjGone                            ; Offset_0x00D200  
+                bsr.w   AnimateSprite                          ; Offset_0x00D372
+                bra.w   MarkObjGone                            ; Offset_0x00D200  
 ;-------------------------------------------------------------------------------
 Mz_Hpz_Misc_Animate_Data:                                      ; Offset_0x00A01A
                 dc.w    Offset_0x00A022-Mz_Hpz_Misc_Animate_Data

@@ -39,38 +39,38 @@ Offset_0x0223E2:
 ;-------------------------------------------------------------------------------  
 Offset_0x022440:
                 lea     Aquis_Animate_Data(PC), A1             ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
                 move.w  #$039C, (Water_Level).w                      ; $FFFFF646
                 moveq   #$00, D0
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
                 move.w  Offset_0x022460(PC, D0), D1
                 jsr     Offset_0x022460(PC, D1)
-                bra     Jmp_21_To_MarkObjGone                  ; Offset_0x02261E    
+                bra.w   Jmp_21_To_MarkObjGone                  ; Offset_0x02261E    
 ;-------------------------------------------------------------------------------  
 Offset_0x022460:
                 dc.w    Offset_0x022478-Offset_0x022460
                 dc.w    Offset_0x02248E-Offset_0x022460  
 ;-------------------------------------------------------------------------------     
 Offset_0x022464:
-                bsr     Offset_0x0221A0
-                bsr     Jmp_13_To_SpeedToPos                   ; Offset_0x022630
+                bsr.w   Offset_0x0221A0
+                bsr.w   Jmp_13_To_SpeedToPos                   ; Offset_0x022630
                 lea     Aquis_Animate_Data(PC), A1             ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
-                bra     Jmp_21_To_MarkObjGone                  ; Offset_0x02261E   
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bra.w   Jmp_21_To_MarkObjGone                  ; Offset_0x02261E   
 ;-------------------------------------------------------------------------------  
 Offset_0x022478:
-                bsr     Jmp_13_To_SpeedToPos                   ; Offset_0x022630
-                bsr     Offset_0x022182
+                bsr.w   Jmp_13_To_SpeedToPos                   ; Offset_0x022630
+                bsr.w   Offset_0x022182
                 bsr.w   Offset_0x0224CA
                 bsr.w   Offset_0x0225AC
-                bsr     Offset_0x02251C
+                bsr.w   Offset_0x02251C
                 rts          
 ;-------------------------------------------------------------------------------  
 Offset_0x02248E:
-                bsr     Jmp_13_To_SpeedToPos                   ; Offset_0x022630
-                bsr     Offset_0x022182
+                bsr.w   Jmp_13_To_SpeedToPos                   ; Offset_0x022630
+                bsr.w   Offset_0x022182
                 bsr.w   Offset_0x0224CA
-                bsr     Offset_0x0225AC
+                bsr.w   Offset_0x0225AC
                 bsr.w   Offset_0x0224A4
                 rts
 Offset_0x0224A4:
@@ -78,7 +78,7 @@ Offset_0x0224A4:
                 beq.s   Offset_0x0224B8
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
                 cmpi.w  #$0012, D0
-                beq     Offset_0x022542
+                beq.w   Offset_0x022542
                 rts
 Offset_0x0224B8:
                 subq.b  #$02, Obj_Routine_2(A0)                          ; $0025
@@ -127,7 +127,7 @@ Offset_0x02251C:
 Offset_0x022540:
                 rts
 Offset_0x022542:
-                bsr     Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
+                bsr.w   Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
                 bne.s   Offset_0x0225AA
                 _move.b #$51, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024

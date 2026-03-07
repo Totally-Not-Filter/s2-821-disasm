@@ -16,7 +16,7 @@ Offset_0x0160D0:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Metal_Structure_Mappings, Obj_Map(A0) ; Offset_0x016128, $0004
                 move.w  #$C373, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
+                bsr.w   Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$07, Obj_Priority(A0)                           ; $0018  
 ;------------------------------------------------------------------------------- 
@@ -37,7 +37,7 @@ Offset_0x0160F2:
                 neg.w   D1
                 addi.w  #$0100, D1
                 move.w  D1, Obj_Sub_Y(A0)                                ; $000A
-                bra     Jmp_02_To_DisplaySprite                ; Offset_0x016390
+                bra.w   Jmp_02_To_DisplaySprite                ; Offset_0x016390
 Offset_0x016126:
                 rts                               
 ;-------------------------------------------------------------------------------

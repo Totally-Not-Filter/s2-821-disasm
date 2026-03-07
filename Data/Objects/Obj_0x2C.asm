@@ -33,10 +33,10 @@ Offset_0x01AF06:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_0C_To_DeleteObject                 ; Offset_0x01B112
+                bhi.w   Jmp_0C_To_DeleteObject                 ; Offset_0x01B112
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
                 beq.s   Offset_0x01AF24
-                bsr     Jmp_08_To_DisplaySprite                ; Offset_0x01B10C
+                bsr.w   Jmp_08_To_DisplaySprite                ; Offset_0x01B10C
 Offset_0x01AF24:
                 move.b  Obj_Col_Prop(A0), D0                             ; $0021
                 beq.s   Offset_0x01AF80
@@ -88,13 +88,13 @@ Offset_0x01AFA2:
                 lea     (Offset_0x01B044), A3
                 moveq   #$03, D6
 Offset_0x01AFAA:
-                bsr     Jmp_03_To_SingleObjectLoad             ; Offset_0x01B118
-                bne     Offset_0x01B036
+                bsr.w   Jmp_03_To_SingleObjectLoad             ; Offset_0x01B118
+                bne.w   Offset_0x01B036
                 _move.b #$2C, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
                 move.w  Obj_X(A2), Obj_X(A1)                      ; $0008, $0008
                 move.w  Obj_Y(A2), Obj_Y(A1)                      ; $000C, $000C
-                bsr     Jmp_00_To_PseudoRandomNumber           ; Offset_0x01B11E
+                bsr.w   Jmp_00_To_PseudoRandomNumber           ; Offset_0x01B11E
                 andi.w  #$000F, D0
                 subq.w  #$08, D0
                 add.w   D0, Obj_X(A1)                                    ; $0008

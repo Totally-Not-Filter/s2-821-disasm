@@ -31,7 +31,7 @@ Offset_0x0163DE:
                 tst.b   Obj_Subtype(A0)                                  ; $0028
                 bpl.s   Offset_0x0163F6
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bra     Offset_0x0166E6      
+                bra.w   Offset_0x0166E6      
 ;------------------------------------------------------------------------------- 
 Offset_0x0163F6:
                 lea     (Player_One).w, A1                           ; $FFFFB000
@@ -41,9 +41,9 @@ Offset_0x0163F6:
                 addq.b  #$01, D6
 Offset_0x016404:
                 btst    D6, Obj_Status(A0)                               ; $0022
-                bne     Offset_0x01649E
+                bne.w   Offset_0x01649E
                 btst    #$01, Obj_Status(A1)                             ; $0022
-                bne     Offset_0x01649C
+                bne.w   Offset_0x01649C
                 btst    #$03, Obj_Status(A1)                             ; $0022
                 bne.s   Offset_0x01645E
                 move.w  Obj_X(A1), D0                                    ; $0008
@@ -66,7 +66,7 @@ Offset_0x016446:
                 subi.w  #$0010, D1
                 cmpi.w  #$0030, D1
                 bcc.s   Offset_0x01649C
-                bsr     Player_On_Spiral                       ; Offset_0x00F99A
+                bsr.w   Player_On_Spiral                       ; Offset_0x00F99A
                 rts
 Offset_0x01645E:
                 move.w  Obj_X(A1), D0                                    ; $0008
@@ -89,7 +89,7 @@ Offset_0x016486:
                 subi.w  #$0010, D1
                 cmpi.w  #$0030, D1
                 bcc.s   Offset_0x01649C
-                bsr     Player_On_Spiral                       ; Offset_0x00F99A
+                bsr.w   Player_On_Spiral                       ; Offset_0x00F99A
 Offset_0x01649C:
                 rts
 Offset_0x01649E:
@@ -227,7 +227,7 @@ Offset_0x0166FC:
                 addq.w  #$03, D2
                 move.w  D2, Obj_Y(A1)                                    ; $000C
                 move.b  #$01, Obj_Player_Flip_Flag(A1)                   ; $0029
-                bsr     Player_On_Spiral                       ; Offset_0x00F99A
+                bsr.w   Player_On_Spiral                       ; Offset_0x00F99A
                 move.w  #$0001, Obj_Ani_Number(A1)                       ; $001C
                 move.b  #$00, (A2)
                 tst.w   Obj_Inertia(A1)                                  ; $0014

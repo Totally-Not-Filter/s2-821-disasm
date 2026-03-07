@@ -27,7 +27,7 @@ Offset_0x00BC78:
                 move.w  #$00F0, Obj_Sub_Y(A0)                            ; $000A
                 move.l  #Time_Over_Game_Over_Mappings, Obj_Map(A0) ; Offset_0x00C42E, $0004
                 move.w  #$855E, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$00, Obj_Flags(A0)                              ; $0001
                 move.b  #$00, Obj_Priority(A0)                           ; $0018    
 ;------------------------------------------------------------------------------- 
@@ -39,7 +39,7 @@ Offset_0x00BC9C:
                 neg.w   D1
 Offset_0x00BCAA:
                 add.w   D1, Obj_X(A0)                                    ; $0008
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00BCB2:
                 move.w  #$02D0, Obj_Ani_Time(A0)                         ; $001E
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
@@ -54,7 +54,7 @@ Offset_0x00BCBE:
                 tst.w   Obj_Ani_Time(A0)                                 ; $001E
                 beq.s   Offset_0x00BCDE
                 subq.w  #$01, Obj_Ani_Time(A0)                           ; $001E
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00BCDE:
                 tst.b   ($FFFFFE1A).w
                 bne.s   Offset_0x00BCF8
@@ -67,7 +67,7 @@ Offset_0x00BCF8:
                 clr.l   ($FFFFFE38).w
                 move.w  #$0001, ($FFFFFE02).w
 Offset_0x00BD02:
-                bra     DisplaySprite                          ; Offset_0x00D322     
+                bra.w   DisplaySprite                          ; Offset_0x00D322     
 ;===============================================================================
 ; Objeto 0x39 - Objeto de controle de Game Over / Time Over
 ; <<<-

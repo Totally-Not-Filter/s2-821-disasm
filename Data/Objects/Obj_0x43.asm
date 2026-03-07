@@ -24,7 +24,7 @@ Offset_0x018C84:
 Offset_0x018C96:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$C30C, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_07_To_ModifySpriteAttr_2P          ; Offset_0x018E4A
+                bsr.w   Jmp_07_To_ModifySpriteAttr_2P          ; Offset_0x018E4A
                 moveq   #$00, D1
                 move.b  Obj_Subtype(A0), D1                              ; $0028
                 lea     Offset_0x018C84(PC, D1), A2
@@ -33,7 +33,7 @@ Offset_0x018C96:
                 bra.s   Offset_0x018CD8       
 ;-------------------------------------------------------------------------------
 Offset_0x018CB4:
-                bsr     Jmp_05_To_SingleObjectLoad_2           ; Offset_0x018E44
+                bsr.w   Jmp_05_To_SingleObjectLoad_2           ; Offset_0x018E44
                 bne.s   Offset_0x018D04
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024

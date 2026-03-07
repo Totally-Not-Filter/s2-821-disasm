@@ -20,7 +20,7 @@ Offset_0x0149E6:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Sonic_Underwater_Mappings, Obj_Map(A0) ; Offset_0x014CFC, $0004
                 move.w  #$855B, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$84, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
@@ -31,7 +31,7 @@ Offset_0x0149E6:
                 move.b  D0, Obj_Control_Var_06(A0)                       ; $0032
                 move.b  D0, Obj_Control_Var_07(A0)                       ; $0033
                 move.b  #$06, Obj_Ani_Number(A0)                         ; $001C
-                bra     Offset_0x014AE4
+                bra.w   Offset_0x014AE4
 Offset_0x014A2E:
                 move.b  D0, Obj_Ani_Number(A0)                           ; $001C
                 move.w  Obj_X(A0), Obj_Control_Var_04(A0)         ; $0008, $0030
@@ -64,11 +64,11 @@ Offset_0x014A7A:
                 move.w  D0, Obj_X(A0)                                    ; $0008
                 tst.b   Obj_Control_Var_02(A0)                           ; $002E
                 beq.s   Offset_0x014AAC
-                bsr     Offset_0x014C26
+                bsr.w   Offset_0x014C26
                 cmpi.b  #$06, Obj_Routine(A0)                            ; $0024
                 beq.s   Offset_0x014AC2
 Offset_0x014AAC:
-                bsr     SpeedToPos                             ; Offset_0x00D1DA
+                bsr.w   SpeedToPos                             ; Offset_0x00D1DA
                 tst.b   Obj_Flags(A0)                                    ; $0001
                 bpl.s   Offset_0x014ABC
                 jmp     (DisplaySprite)                        ; Offset_0x00D322
@@ -85,18 +85,18 @@ Offset_0x014ADA:
                 jmp     (DeleteObject)                         ; Offset_0x00D314  
 ;-------------------------------------------------------------------------------
 Offset_0x014AE0:
-                bra     DeleteObject                           ; Offset_0x00D314  
+                bra.w   DeleteObject                           ; Offset_0x00D314  
 ;-------------------------------------------------------------------------------
 Offset_0x014AE4:
                 tst.w   Obj_Control_Var_0A(A0)                           ; $0036
                 bne.s   Offset_0x014B46
                 move.w  (Water_Level).w, D0                          ; $FFFFF646
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
-                bcc     Offset_0x014BF2
+                bcc.w   Offset_0x014BF2
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Offset_0x014BF2
+                bpl.w   Offset_0x014BF2
                 subq.w  #$01, Obj_Control_Var_0C(A0)                     ; $0038
-                bpl     Offset_0x014BE6
+                bpl.w   Offset_0x014BE6
                 move.w  #$0001, Obj_Control_Var_0A(A0)                   ; $0036
 Offset_0x014B0C:
                 jsr     (PseudoRandomNumber).l                   ; Offset_0x00325C
@@ -117,12 +117,12 @@ Offset_0x014B44:
                 bra.s   Offset_0x014B4E
 Offset_0x014B46:
                 subq.w  #$01, Obj_Control_Var_0C(A0)                     ; $0038
-                bpl     Offset_0x014BE6
+                bpl.w   Offset_0x014BE6
 Offset_0x014B4E:
                 jsr     (PseudoRandomNumber).l                   ; Offset_0x00325C
                 andi.w  #$001F, D0
                 move.w  D0, Obj_Control_Var_0C(A0)                       ; $0038
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
                 bne.s   Offset_0x014BCA
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
@@ -165,10 +165,10 @@ Offset_0x014BF2:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     DeleteObject                           ; Offset_0x00D314
+                bhi.w   DeleteObject                           ; Offset_0x00D314
                 move.w  (Water_Level).w, D0                          ; $FFFFF646
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
-                bcs     DisplaySprite                          ; Offset_0x00D322
+                bcs.w   DisplaySprite                          ; Offset_0x00D322
                 rts            
 ;------------------------------------------------------------------------------- 
 Offset_0x014C14:
@@ -181,12 +181,12 @@ Offset_0x014C26:
                 lea     (Player_Two).w, A1                           ; $FFFFB040
 Offset_0x014C30:
                 tst.b   Obj_Timer(A1)                                    ; $002A
-                bmi     Offset_0x014CD0
+                bmi.w   Offset_0x014CD0
                 move.w  Obj_X(A1), D0                                    ; $0008
                 move.w  Obj_X(A0), D1                                    ; $0008
                 subi.w  #$0010, D1
                 cmp.w   D0, D1
-                bcc     Offset_0x014CD0
+                bcc.w   Offset_0x014CD0
                 addi.w  #$0020, D1
                 cmp.w   D0, D1
                 bcs.s   Offset_0x014CD0
@@ -197,7 +197,7 @@ Offset_0x014C30:
                 addi.w  #$0010, D1
                 cmp.w   D0, D1
                 bcs.s   Offset_0x014CD0
-                bsr     Resume_Music                           ; Offset_0x012A30
+                bsr.w   Resume_Music                           ; Offset_0x012A30
                 move.w  #$00AD, D0
                 jsr     (Play_Sfx).l                             ; Offset_0x001512
                 clr.w   Obj_Speed(A1)                                    ; $0010

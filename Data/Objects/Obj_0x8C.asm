@@ -15,7 +15,7 @@ Offset_0x027F92:
                 dc.w    Offset_0x028056-Offset_0x027F92   
 ;-------------------------------------------------------------------------------
 Offset_0x027F9A:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.b  #$10, Obj_Timer(A0)                              ; $002A
                 move.b  #$06, Obj_Player_Status(A0)                      ; $002B
                 rts     
@@ -24,8 +24,8 @@ Offset_0x027FAC:
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x027FC0
                 lea     (Whisp_Animate_Data), A1               ; Offset_0x028072
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x027FC0:
                 subq.b  #$01, Obj_Player_Status(A0)                      ; $002B
                 bpl.s   Offset_0x027FE0
@@ -42,7 +42,7 @@ Offset_0x027FE0:
 Offset_0x027FF0:
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x02803A
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 bclr    #$00, Obj_Status(A0)                             ; $0022
                 tst.w   D0
                 beq.s   Offset_0x02800A
@@ -54,11 +54,11 @@ Offset_0x02800A:
                 add.w   D2, Obj_Speed_Y(A0)                              ; $0012
                 move.w  #$0200, D0
                 move.w  D0, D1
-                bsr     Offset_0x027F3E
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Offset_0x027F3E
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Whisp_Animate_Data), A1               ; Offset_0x028072
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;------------------------------------------------------------------------------- 
 Offset_0x028036:
                 dc.w    $FFF0, $0010          
@@ -66,16 +66,16 @@ Offset_0x028036:
 Offset_0x02803A:
                 subq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$10, Obj_Timer(A0)                              ; $002A
-                bsr     Offset_0x027F78
+                bsr.w   Offset_0x027F78
                 lea     (Whisp_Animate_Data), A1               ; Offset_0x028072
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------
 Offset_0x028056:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Whisp_Animate_Data), A1               ; Offset_0x028072
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------
 Obj_0x8C_Ptr:                                                  ; Offset_0x028068
                 dc.l    Whisp_Mappings                         ; Offset_0x028078

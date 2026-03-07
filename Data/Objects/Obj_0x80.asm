@@ -16,7 +16,7 @@ Offset_0x01EA42:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Vines_Mappings, Obj_Map(A0)    ; Offset_0x01EC14, $0004
                 move.w  #$641E, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_21_To_ModifySpriteAttr_2P          ; Offset_0x01ED86
+                bsr.w   Jmp_21_To_ModifySpriteAttr_2P          ; Offset_0x01ED86
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -105,11 +105,11 @@ Offset_0x01EB50:
                 lea     $00(A3, D0), A3
                 bclr    #$00, (A3)
 Offset_0x01EB76:
-                bra     Offset_0x01EC12
+                bra.w   Offset_0x01EC12
 Offset_0x01EB7A:
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C
                 addi.w  #$0094, Obj_Y(A1)                                ; $000C
-                bra     Offset_0x01EC12
+                bra.w   Offset_0x01EC12
 Offset_0x01EB8A:
                 tst.b   $0002(A2) 
                 beq.s   Offset_0x01EB98

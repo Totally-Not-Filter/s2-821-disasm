@@ -31,7 +31,7 @@ Offset_0x027AA2:
                 move.w  Obj_X(A0), Obj_Speed(A0)                  ; $0008, $0010
                 move.w  Obj_Y(A0), Obj_Speed_Y(A0)                ; $000C, $0012
                 move.b  #$00, Obj_Ani_Boss_Frame(A0)                     ; $0015
-                bsr     Jmp_0F_To_SingleObjectLoad             ; Offset_0x027E92
+                bsr.w   Jmp_0F_To_SingleObjectLoad             ; Offset_0x027E92
                 bne.s   Offset_0x027B1C
                 move.b  #$53, (A1)
                 move.l  A0, Obj_Control_Var_08(A1)                       ; $0034
@@ -56,16 +56,16 @@ Offset_0x027B44:
                 dc.w    Obj_0x53_Mz_Boss_Balls_Robotniks-Offset_0x027B44 ; Offset_0x027B80   
 ;-------------------------------------------------------------------------------  
 Offset_0x027B48:
-                bsr     Boss_Move                              ; Offset_0x0245FA
-                bsr     Offset_0x024580
+                bsr.w   Boss_Move                              ; Offset_0x0245FA
+                bsr.w   Offset_0x024580
                 cmpi.b  #$1F, Obj_Inertia(A0)                            ; $0014
                 bne.s   Offset_0x027B5C
                 st      Obj_Control_Var_0C(A0)                           ; $0038
 Offset_0x027B5C:
                 lea     (Mz_Boss_Animate_Data), A1             ; Offset_0x027D88
-                bsr     Boss_AnimateSprite                     ; Offset_0x026312
+                bsr.w   Boss_AnimateSprite                     ; Offset_0x026312
                 bsr.w   Offset_0x027B6E
-                bra     Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C
+                bra.w   Jmp_1E_To_DisplaySprite                ; Offset_0x027E8C
 Offset_0x027B6E:
                 move.w  Obj_X(A0), D0                                    ; $0008
                 move.w  Obj_Y(A0), D1                                    ; $000C

@@ -16,7 +16,7 @@ Offset_0x00B2E0:
 Offset_0x00B2E6:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$0680, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$24, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.b  #$08, Obj_Width(A0)                              ; $0019
@@ -33,11 +33,11 @@ Offset_0x00B2E6:
 ;-------------------------------------------------------------------------------  
 Offset_0x00B32A:
                 bsr.s   Offset_0x00B330
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00B330:
                 tst.w   Obj_Speed_Y(A0)                                  ; $0012
                 bpl.w   Offset_0x00B344
-                bsr     SpeedToPos                             ; Offset_0x00D1DA
+                bsr.w   SpeedToPos                             ; Offset_0x00D1DA
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
                 rts
 Offset_0x00B344:
@@ -140,8 +140,8 @@ Monitor_Question_Mark:                                         ; Offset_0x00B43C
 ;-------------------------------------------------------------------------------
 Offset_0x00B492:
                 subq.w  #$01, Obj_Ani_Time(A0)                           ; $001E
-                bmi     DeleteObject                           ; Offset_0x00D314
-                bra     DisplaySprite                          ; Offset_0x00D322  
+                bmi.w   DeleteObject                           ; Offset_0x00D314
+                bra.w   DisplaySprite                          ; Offset_0x00D322  
 ;===============================================================================
 ; Objeto 0x2E - Conteúdo dos monitores
 ; <<<-

@@ -12,9 +12,9 @@
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
                 bhi.s   Offset_0x01CDEC
-                bra     Jmp_0C_To_DisplaySprite                ; Offset_0x01D11C
+                bra.w   Jmp_0C_To_DisplaySprite                ; Offset_0x01D11C
 Offset_0x01CDEC:
-                bra     Jmp_0F_To_DeleteObject                 ; Offset_0x01D122
+                bra.w   Jmp_0F_To_DeleteObject                 ; Offset_0x01D122
 ;-------------------------------------------------------------------------------
 Offset_0x01CDF0:
                 dc.w    Offset_0x01CDF4-Offset_0x01CDF0
@@ -22,14 +22,14 @@ Offset_0x01CDF0:
 ;-------------------------------------------------------------------------------
 Offset_0x01CDF4:
                 move.b  Obj_Subtype(A0), D0                              ; $0028
-                bmi     Offset_0x01CEA6
+                bmi.w   Offset_0x01CEA6
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Mz_Moving_Platforms_Mappings, Obj_Map(A0) ; Offset_0x01D106, $0004
                 move.w  #$63F9, Obj_Art_VRAM(A0)                         ; $0002
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
-                bsr     Jmp_17_To_ModifySpriteAttr_2P          ; Offset_0x01D12E
+                bsr.w   Jmp_17_To_ModifySpriteAttr_2P          ; Offset_0x01D12E
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
                 moveq   #$00, D0
                 move.b  Obj_Subtype(A0), D0                              ; $0028
@@ -67,7 +67,7 @@ Offset_0x01CE86:
                 move.w  $02(A2, D1), D0
                 add.w   Obj_Control_Var_06(A0), D0                       ; $0032
                 move.w  D0, Obj_Control_Var_0A(A0)                       ; $0036
-                bsr     Offset_0x01CF6E
+                bsr.w   Offset_0x01CF6E
                 bra.w   Offset_0x01CEFC
 Offset_0x01CEA6:
                 andi.w  #$007F, D0
@@ -81,7 +81,7 @@ Offset_0x01CEA6:
                 bra.s   Offset_0x01CECA                               
 ;-------------------------------------------------------------------------------
 Offset_0x01CEC4:
-                bsr     Jmp_05_To_SingleObjectLoad             ; Offset_0x01D128
+                bsr.w   Jmp_05_To_SingleObjectLoad             ; Offset_0x01D128
                 bne.s   Offset_0x01CEF4      
 Offset_0x01CECA:                                      
 ;-------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ Offset_0x01CEFC:
                 move.b  Obj_Width(A0), D1                                ; $0019
                 moveq   #$08, D3
                 move.w  (A7)+, D4
-                bra     Jmp_00_To_Platform_Object              ; Offset_0x01D134
+                bra.w   Jmp_00_To_Platform_Object              ; Offset_0x01D134
 Offset_0x01CF12:
                 move.w  Obj_X(A0), D0                                    ; $0008
                 cmp.w   Obj_Control_Var_08(A0), D0                       ; $0034
@@ -139,7 +139,7 @@ Offset_0x01CF44:
                 move.w  D0, Obj_Control_Var_0A(A0)                       ; $0036
                 bsr.w   Offset_0x01CF6E
 Offset_0x01CF68:
-                bsr     Jmp_0B_To_SpeedToPos                   ; Offset_0x01D13A
+                bsr.w   Jmp_0B_To_SpeedToPos                   ; Offset_0x01D13A
                 rts
 Offset_0x01CF6E:
                 moveq   #$00, D0

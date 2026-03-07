@@ -9,10 +9,10 @@
                 jsr     Offset_0x01BF24(PC, D1)
                 move.b  Obj_Control_Var_00(A0), D0                       ; $002C
                 add.b   Obj_Control_Var_0A(A0), D0                       ; $0036
-                beq     Jmp_03_To_MarkObjGone_3                ; Offset_0x01C32C
+                beq.w   Jmp_03_To_MarkObjGone_3                ; Offset_0x01C32C
                 lea     (Teleport_Animate_Data), A1            ; Offset_0x01C2CE
-                bsr     Jmp_03_To_AnimateSprite                ; Offset_0x01C326
-                bra     Jmp_0B_To_DisplaySprite                ; Offset_0x01C320
+                bsr.w   Jmp_03_To_AnimateSprite                ; Offset_0x01C326
+                bra.w   Jmp_0B_To_DisplaySprite                ; Offset_0x01C320
 ;-------------------------------------------------------------------------------     
 Offset_0x01BF24:
                 dc.w    Offset_0x01BF28-Offset_0x01BF24
@@ -45,7 +45,7 @@ Offset_0x01BF6A:
 ;-------------------------------------------------------------------------------  
 Offset_0x01BF70:
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
-                bne     Offset_0x01BFFE
+                bne.w   Offset_0x01BFFE
                 move.w  Obj_X(A1), D0                                    ; $0008
                 sub.w   Obj_X(A0), D0                                    ; $0008
                 addq.w  #$03, D0
@@ -115,7 +115,7 @@ Offset_0x01C052:
                 move.w  (A2)+, D4
                 move.w  (A2)+, D5
                 move.w  #$1000, D2
-                bra     Offset_0x01C114
+                bra.w   Offset_0x01C114
 Offset_0x01C068:
                 move.l  Obj_X(A1), D2                                    ; $0008
                 move.l  Obj_Y(A1), D3                                    ; $000C

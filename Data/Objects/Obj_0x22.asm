@@ -19,7 +19,7 @@ Offset_0x01A464:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Arrow_Shooter_Mappings, Obj_Map(A0) ; Offset_0x01A5BC, $0004
                 move.w  #$0417, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_0C_To_ModifySpriteAttr_2P          ; Offset_0x01A638
+                bsr.w   Jmp_0C_To_ModifySpriteAttr_2P          ; Offset_0x01A638
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.b  #$10, Obj_Width(A0)                              ; $0019
@@ -43,8 +43,8 @@ Offset_0x01A4BA:
                 move.b  D2, Obj_Ani_Number(A0)                           ; $001C
 Offset_0x01A4BE:
                 lea     (Arrow_Shooter_Animate_Data), A1       ; Offset_0x01A5A6
-                bsr     Jmp_01_To_AnimateSprite                ; Offset_0x01A632
-                bra     Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C
+                bsr.w   Jmp_01_To_AnimateSprite                ; Offset_0x01A632
+                bra.w   Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C
 Offset_0x01A4CC:
                 move.w  Obj_X(A0), D0                                    ; $0008
                 sub.w   Obj_X(A1), D0                                    ; $0008
@@ -58,7 +58,7 @@ Offset_0x01A4E0:
                 rts  
 ;------------------------------------------------------------------------------- 
 Offset_0x01A4E2:
-                bsr     Jmp_02_To_SingleObjectLoad             ; Offset_0x01A626
+                bsr.w   Jmp_02_To_SingleObjectLoad             ; Offset_0x01A626
                 bne.s   Offset_0x01A520
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 addq.b  #$06, Obj_Routine(A1)                            ; $0024
@@ -73,8 +73,8 @@ Offset_0x01A4E2:
 Offset_0x01A520:
                 subq.b  #$02, Obj_Routine(A0)                            ; $0024
                 lea     (Arrow_Shooter_Animate_Data), A1       ; Offset_0x01A5A6
-                bsr     Jmp_01_To_AnimateSprite                ; Offset_0x01A632
-                bra     Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C  
+                bsr.w   Jmp_01_To_AnimateSprite                ; Offset_0x01A632
+                bra.w   Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C  
 ;------------------------------------------------------------------------------- 
 Offset_0x01A532:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
@@ -93,22 +93,22 @@ Offset_0x01A56C:
                 jsr     (Play_Sfx).l                             ; Offset_0x001512   
 ;------------------------------------------------------------------------------- 
 Offset_0x01A576:
-                bsr     Jmp_07_To_SpeedToPos                   ; Offset_0x01A63E
+                bsr.w   Jmp_07_To_SpeedToPos                   ; Offset_0x01A63E
                 btst    #$00, Obj_Status(A0)                             ; $0022
                 bne.s   Offset_0x01A596
                 moveq   #-$08, D3
-                bsr     Object_HitWall_Left                    ; Offset_0x014490
+                bsr.w   Object_HitWall_Left                    ; Offset_0x014490
                 tst.w   D1
                 bmi.w   Offset_0x01A592
-                bra     Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C
+                bra.w   Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C
 Offset_0x01A592:
-                bra     Jmp_0A_To_DeleteObject                 ; Offset_0x01A620
+                bra.w   Jmp_0A_To_DeleteObject                 ; Offset_0x01A620
 Offset_0x01A596:
                 moveq   #$08, D3
-                bsr     Object_HitWall_Right                   ; Offset_0x01430A
+                bsr.w   Object_HitWall_Right                   ; Offset_0x01430A
                 tst.w   D1
                 bmi.w   Offset_0x01A592
-                bra     Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C              
+                bra.w   Jmp_0C_To_MarkObjGone                  ; Offset_0x01A62C              
 ;-------------------------------------------------------------------------------  
 Arrow_Shooter_Animate_Data:                                    ; Offset_0x01A5A6
                 dc.w    Offset_0x01A5AC-Arrow_Shooter_Animate_Data

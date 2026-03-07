@@ -21,7 +21,7 @@ Offset_0x00B11C:
                 move.b  #$0E, Obj_Width_2(A0)                            ; $0017
                 move.l  #Monitors_Mappings, Obj_Map(A0) ; Offset_0x00B580, $0004
                 move.w  #$0680, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.b  #$0F, Obj_Width(A0)                              ; $0019
@@ -46,29 +46,29 @@ Offset_0x00B182:
                 moveq   #$00, D1
                 move.b  Obj_Width(A0), D1                                ; $0019
                 addi.w  #$000B, D1
-                bsr     Exit_Plaform                           ; Offset_0x00FA68
+                bsr.w   Exit_Plaform                           ; Offset_0x00FA68
                 btst    #$03, Obj_Status(A1)                             ; $0022
                 bne.w   Offset_0x00B1AC
                 clr.b   Obj_Routine_2(A0)                                ; $0025
-                bra     Offset_0x00B266
+                bra.w   Offset_0x00B266
 Offset_0x00B1AC:
                 move.w  #$0010, D3
                 move.w  Obj_X(A0), D2                                    ; $0008
-                bsr     Player_On_Platform                     ; Offset_0x00F78C
-                bra     Offset_0x00B266
+                bsr.w   Player_On_Platform                     ; Offset_0x00F78C
+                bra.w   Offset_0x00B266
 Offset_0x00B1BC:
-                bsr     ObjectFall                             ; Offset_0x00D1AE
+                bsr.w   ObjectFall                             ; Offset_0x00D1AE
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 tst.w   D1
-                bpl     Offset_0x00B266
+                bpl.w   Offset_0x00B266
                 add.w   D1, Obj_Y(A0)                                    ; $000C
                 clr.w   Obj_Speed_Y(A0)                                  ; $0012
                 clr.b   Obj_Routine_2(A0)                                ; $0025
-                bra     Offset_0x00B266
+                bra.w   Offset_0x00B266
 Offset_0x00B1DC:
                 move.w  #$001A, D1
                 move.w  #$000F, D2
-                bsr     Offset_0x00B49E
+                bsr.w   Offset_0x00B49E
                 beq.w   Offset_0x00B24C
                 tst.w   Obj_Speed_Y(A1)                                  ; $0012
                 bmi.s   Offset_0x00B1FA
@@ -78,7 +78,7 @@ Offset_0x00B1FA:
                 tst.w   D1
                 bpl.s   Offset_0x00B210
                 sub.w   D3, Obj_Y(A1)                                    ; $000C
-                bsr     Player_On_Spiral                       ; Offset_0x00F99A
+                bsr.w   Player_On_Spiral                       ; Offset_0x00F99A
                 move.b  #$02, Obj_Routine_2(A0)                          ; $0025
                 bra.w   Offset_0x00B266
 Offset_0x00B210:
@@ -111,22 +111,22 @@ Offset_0x00B25A:
 ;-------------------------------------------------------------------------------  
 Offset_0x00B266:
                 lea     (Monitors_Animate_Data), A1            ; Offset_0x00B518
-                bsr     AnimateSprite                          ; Offset_0x00D372  
+                bsr.w   AnimateSprite                          ; Offset_0x00D372  
 ;-------------------------------------------------------------------------------  
 Offset_0x00B270:
-                bra     MarkObjGone                            ; Offset_0x00D200   
+                bra.w   MarkObjGone                            ; Offset_0x00D200   
 ;-------------------------------------------------------------------------------  
 Offset_0x00B274:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$00, Obj_Col_Flags(A0)                          ; $0020
-                bsr     SingleObjectLoad_2                     ; Offset_0x00E714
+                bsr.w   SingleObjectLoad_2                     ; Offset_0x00E714
                 bne.s   Offset_0x00B29C
                 _move.b #$2E, 0(A1)                                 ; $0000
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C
                 move.b  Obj_Ani_Number(A0), Obj_Ani_Number(A1)    ; $001C, $001C
 Offset_0x00B29C:
-                bsr     SingleObjectLoad_2                     ; Offset_0x00E714
+                bsr.w   SingleObjectLoad_2                     ; Offset_0x00E714
                 bne.s   Offset_0x00B2B8
                 _move.b #$27, 0(A1)                                 ; $0000
                 addq.b  #$02, Obj_Routine(A1)                            ; $0024
@@ -138,7 +138,7 @@ Offset_0x00B2B8:
                 move.b  Obj_Respaw_Ref(A0), D0                           ; $0023
                 bset    #$00, $02(A2, D0)
                 move.b  #$0A, Obj_Ani_Number(A0)                         ; $001C
-                bra     DisplaySprite                          ; Offset_0x00D322       
+                bra.w   DisplaySprite                          ; Offset_0x00D322       
 ;===============================================================================
 ; Objeto 0x26 - Monitores
 ; <<<-

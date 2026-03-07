@@ -7,7 +7,7 @@
                 move.b  Obj_Routine(A0), D0                              ; $0024
                 move.w  Offset_0x0242A6(PC, D0), D1
                 jsr     Offset_0x0242A6(PC, D1)
-                bra     Jmp_24_To_MarkObjGone                  ; Offset_0x02437C
+                bra.w   Jmp_24_To_MarkObjGone                  ; Offset_0x02437C
 ;------------------------------------------------------------------------------- 
 Offset_0x0242A6:
                 dc.w    Offset_0x0242AA-Offset_0x0242A6
@@ -17,7 +17,7 @@ Offset_0x0242AA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Masher_Mappings, Obj_Map(A0)   ; Offset_0x024342, $0004
                 move.w  #$0414, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_2C_To_ModifySpriteAttr_2P          ; Offset_0x024388
+                bsr.w   Jmp_2C_To_ModifySpriteAttr_2P          ; Offset_0x024388
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$09, Obj_Col_Flags(A0)                          ; $0020
@@ -27,8 +27,8 @@ Offset_0x0242AA:
 ;------------------------------------------------------------------------------- 
 Offset_0x0242E4:
                 lea     (Masher_Animate_Data), A1              ; Offset_0x024330
-                bsr     Jmp_13_To_AnimateSprite                ; Offset_0x024382
-                bsr     Jmp_17_To_SpeedToPos                   ; Offset_0x02438E
+                bsr.w   Jmp_13_To_AnimateSprite                ; Offset_0x024382
+                bsr.w   Jmp_17_To_SpeedToPos                   ; Offset_0x02438E
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
                 cmp.w   Obj_Y(A0), D0                                    ; $000C

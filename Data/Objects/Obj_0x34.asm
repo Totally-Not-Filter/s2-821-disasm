@@ -38,7 +38,7 @@ Title_Cards_MakeSprite:                                        ; Offset_0x00BA52
                 move.b  D0, Obj_Map_Id(A1)                               ; $001A
                 move.l  #Title_Cards_Mappings, Obj_Map(A1) ; Offset_0x00C176, $0004
                 move.w  #$8580, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$78, Obj_Width(A1)                              ; $0019
                 move.b  #$00, Obj_Flags(A1)                              ; $0001
                 move.b  #$00, Obj_Priority(A1)                           ; $0018
@@ -63,7 +63,7 @@ Offset_0x00BA9C:
                 rts                     
 ;-------------------------------------------------------------------------------
 ; Offset_0x00BAAA:
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00BAAE:
                 rts     
 ;-------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ Offset_0x00BAB0:
                 rts                                                            
 ;-------------------------------------------------------------------------------  
 ; Offset_0x00BABC:
-                bra     DisplaySprite                          ; Offset_0x00D322 
+                bra.w   DisplaySprite                          ; Offset_0x00D322 
 ;------------------------------------------------------------------------------- 
 Offset_0x00BAC0:
                 tst.b   Obj_Flags(A0)                                    ; $0001
@@ -94,7 +94,7 @@ Offset_0x00BAD6:
                 rts                                  
 ;-------------------------------------------------------------------------------     
 ; Offset_0x00BAE8:
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00BAEC:
                 rts
 Offset_0x00BAEE:
@@ -107,7 +107,7 @@ Offset_0x00BAEE:
                 move.b  Flickies_Select_Array(PC, D0), D0      ; Offset_0x00BB12
                 jsr     (LoadPLC).l                              ; Offset_0x001794
 Offset_0x00BB0E:
-                bra     DeleteObject                           ; Offset_0x00D314 
+                bra.w   DeleteObject                           ; Offset_0x00D314 
 ;-------------------------------------------------------------------------------  
 Flickies_Select_Array:                                         ; Offset_0x00BB12
                 dc.b    $32, $32, $32, $32, $34, $34, $34, $34

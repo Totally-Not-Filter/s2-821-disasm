@@ -7,7 +7,7 @@
                 move.b  Obj_Routine(A0), D0                              ; $0024
                 move.w  Offset_0x00CC62(PC, D0), D1
                 jsr     Offset_0x00CC62(PC, D1)
-                bra     MarkObjGone                            ; Offset_0x00D200  
+                bra.w   MarkObjGone                            ; Offset_0x00D200  
 ;-------------------------------------------------------------------------------  
 Offset_0x00CC62:
                 dc.w    Offset_0x00CC68-Offset_0x00CC62
@@ -18,7 +18,7 @@ Offset_0x00CC68:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #S1_Breakable_Wall_Mappings, Obj_Map(A0) ; Offset_0x00CDD8, $0004
                 move.w  #$4590, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -30,7 +30,7 @@ Offset_0x00CC96:
                 move.w  #$0020, D2
                 move.w  #$0020, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     SolidObject                            ; Offset_0x00F344
+                bsr.w   SolidObject                            ; Offset_0x00F344
                 btst    #$05, Obj_Status(A0)                             ; $0022
                 bne.s   Offset_0x00CCBA
 Offset_0x00CCB8:
@@ -60,11 +60,11 @@ Offset_0x00CCFA:
                 bsr.s   Smash_Object                           ; Offset_0x00CD24       
 ;-------------------------------------------------------------------------------  
 Offset_0x00CD0E:
-                bsr     SpeedToPos                             ; Offset_0x00D1DA
+                bsr.w   SpeedToPos                             ; Offset_0x00D1DA
                 addi.w  #$0070, Obj_Speed_Y(A0)                          ; $0012
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     DeleteObject                           ; Offset_0x00D314
-                bra     DisplaySprite                          ; Offset_0x00D322  
+                bpl.w   DeleteObject                           ; Offset_0x00D314
+                bra.w   DisplaySprite                          ; Offset_0x00D322  
 ;-------------------------------------------------------------------------------                
 Smash_Object:                                                  ; Offset_0x00CD24
                 moveq   #$00, D0
@@ -81,7 +81,7 @@ Smash_Object:                                                  ; Offset_0x00CD24
                 bra.s   Offset_0x00CD52             
 ;-------------------------------------------------------------------------------   
 Offset_0x00CD4A:
-                bsr     SingleObjectLoad_2                     ; Offset_0x00E714
+                bsr.w   SingleObjectLoad_2                     ; Offset_0x00E714
                 bne.s   Offset_0x00CD8E
                 addq.w  #$08, A3      
 ;-------------------------------------------------------------------------------

@@ -18,7 +18,7 @@ Offset_0x01C63A:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Screw_Nut_Mappings, Obj_Map(A0) ; Offset_0x01C7C6, $0004
                 move.w  #$2500, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_14_To_ModifySpriteAttr_2P          ; Offset_0x01C83C
+                bsr.w   Jmp_14_To_ModifySpriteAttr_2P          ; Offset_0x01C83C
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$20, Obj_Width(A0)                              ; $0019
                 move.b  #$0B, Obj_Height_2(A0)                           ; $0016
@@ -45,8 +45,8 @@ Offset_0x01C694:
                 move.w  #$000C, D2
                 move.w  #$000D, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_09_To_SolidObject                  ; Offset_0x01C842
-                bra     Jmp_12_To_MarkObjGone                  ; Offset_0x01C830
+                bsr.w   Jmp_09_To_SolidObject                  ; Offset_0x01C842
+                bra.w   Jmp_12_To_MarkObjGone                  ; Offset_0x01C830
 Offset_0x01C6B2:
                 btst    D6, Obj_Status(A0)                               ; $0022
                 bne.s   Offset_0x01C6BA
@@ -137,9 +137,9 @@ Offset_0x01C774:
                 rts   
 ;-------------------------------------------------------------------------------  
 Offset_0x01C79C:
-                bsr     Jmp_09_To_SpeedToPos                   ; Offset_0x01C848
+                bsr.w   Jmp_09_To_SpeedToPos                   ; Offset_0x01C848
                 addi.w  #$0038, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_00_To_ObjHitFloor                  ; Offset_0x01C836
+                bsr.w   Jmp_00_To_ObjHitFloor                  ; Offset_0x01C836
                 tst.w   D1
                 bpl.w   Offset_0x01C7C2
                 add.w   D1, Obj_Y(A0)                                    ; $000C
@@ -147,7 +147,7 @@ Offset_0x01C79C:
                 clr.w   Obj_Speed_Y(A0)                                  ; $0012
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
 Offset_0x01C7C2:
-                bra     Offset_0x01C694                   
+                bra.w   Offset_0x01C694                   
 ;-------------------------------------------------------------------------------
 Screw_Nut_Mappings:                                            ; Offset_0x01C7C6
                 dc.w    Offset_0x01C7CE-Screw_Nut_Mappings

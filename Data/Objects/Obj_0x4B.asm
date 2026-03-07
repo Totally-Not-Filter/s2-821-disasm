@@ -15,15 +15,15 @@ Offset_0x023F86:
                 dc.w    Offset_0x023F8E-Offset_0x023F86   
 ;-------------------------------------------------------------------------------
 Offset_0x023F8E:
-                bsr     Jmp_16_To_SpeedToPos                   ; Offset_0x02428C
+                bsr.w   Jmp_16_To_SpeedToPos                   ; Offset_0x02428C
                 lea     (Buzzer_AnimateData), A1               ; Offset_0x0241CE
-                bsr     Jmp_12_To_AnimateSprite                ; Offset_0x024274
-                bra     Jmp_01_To_MarkObjGone_4                ; Offset_0x024280   
+                bsr.w   Jmp_12_To_AnimateSprite                ; Offset_0x024274
+                bra.w   Jmp_01_To_MarkObjGone_4                ; Offset_0x024280   
 ;-------------------------------------------------------------------------------
 Offset_0x023FA0:
                 move.l  Obj_Timer(A0), A1                                ; $002A
                 tst.b   (A1)
-                beq     Jmp_1D_To_DeleteObject                 ; Offset_0x024268
+                beq.w   Jmp_1D_To_DeleteObject                 ; Offset_0x024268
                 tst.w   Obj_Control_Var_04(A1)                           ; $0030
                 bmi.s   Offset_0x023FB2
                 rts
@@ -33,13 +33,13 @@ Offset_0x023FB2:
                 move.b  Obj_Status(A1), Obj_Status(A0)            ; $0022, $0022
                 move.b  Obj_Flags(A1), Obj_Flags(A0)              ; $0001, $0001
                 lea     (Buzzer_AnimateData), A1               ; Offset_0x0241CE
-                bsr     Jmp_12_To_AnimateSprite                ; Offset_0x024274
-                bra     Jmp_01_To_MarkObjGone_4                ; Offset_0x024280   
+                bsr.w   Jmp_12_To_AnimateSprite                ; Offset_0x024274
+                bra.w   Jmp_01_To_MarkObjGone_4                ; Offset_0x024280   
 ;-------------------------------------------------------------------------------
 Offset_0x023FD8:
                 move.l  #Buzzer_Mappings, Obj_Map(A0)   ; Offset_0x0241EA, $0004
                 move.w  #$03D2, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_2B_To_ModifySpriteAttr_2P          ; Offset_0x024286
+                bsr.w   Jmp_2B_To_ModifySpriteAttr_2P          ; Offset_0x024286
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$0A, Obj_Col_Flags(A0)                          ; $0020
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -48,13 +48,13 @@ Offset_0x023FD8:
                 move.b  #$18, Obj_Width_2(A0)                            ; $0017
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bsr     Jmp_13_To_SingleObjectLoad_2           ; Offset_0x02426E
+                bsr.w   Jmp_13_To_SingleObjectLoad_2           ; Offset_0x02426E
                 bne.s   Offset_0x024082
                 _move.b #$4B, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
                 move.l  #Buzzer_Mappings, Obj_Map(A1)   ; Offset_0x0241EA, $0004
                 move.w  #$03D2, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_06_To_ModifySpriteAttr_2P_A1       ; Offset_0x02427A
+                bsr.w   Jmp_06_To_ModifySpriteAttr_2P_A1       ; Offset_0x02427A
                 move.b  #$04, Obj_Priority(A1)                           ; $0018
                 move.b  #$10, Obj_Width(A1)                              ; $0019
                 move.b  Obj_Status(A0), Obj_Status(A1)            ; $0022, $0022
@@ -77,8 +77,8 @@ Offset_0x024084:
                 move.w  Offset_0x0240A0(PC, D0), D1
                 jsr     Offset_0x0240A0(PC, D1)
                 lea     (Buzzer_AnimateData), A1               ; Offset_0x0241CE
-                bsr     Jmp_12_To_AnimateSprite                ; Offset_0x024274
-                bra     Jmp_01_To_MarkObjGone_4                ; Offset_0x024280          
+                bsr.w   Jmp_12_To_AnimateSprite                ; Offset_0x024274
+                bra.w   Jmp_01_To_MarkObjGone_4                ; Offset_0x024280          
 ;-------------------------------------------------------------------------------
 Offset_0x0240A0:
                 dc.w    Offset_0x0240A4-Offset_0x0240A0
@@ -93,7 +93,7 @@ Offset_0x0240A4:
                 tst.w   D0
                 bpl.s   Offset_0x0240C8
                 subq.w  #$01, Obj_Control_Var_02(A0)                     ; $002E
-                bgt     Jmp_16_To_SpeedToPos                   ; Offset_0x02428C
+                bgt.w   Jmp_16_To_SpeedToPos                   ; Offset_0x02428C
                 move.w  #$001E, Obj_Control_Var_04(A0)                   ; $0030
 Offset_0x0240C8:
                 rts
@@ -151,7 +151,7 @@ Offset_0x02414E:
                 move.b  #$06, Obj_Routine(A1)                            ; $0024
                 move.l  #Buzzer_Mappings, Obj_Map(A1)   ; Offset_0x0241EA, $0004
                 move.w  #$03D2, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_06_To_ModifySpriteAttr_2P_A1       ; Offset_0x02427A
+                bsr.w   Jmp_06_To_ModifySpriteAttr_2P_A1       ; Offset_0x02427A
                 move.b  #$04, Obj_Priority(A1)                           ; $0018
                 move.b  #$98, Obj_Col_Flags(A1)                          ; $0020
                 move.b  #$10, Obj_Width(A1)                              ; $0019

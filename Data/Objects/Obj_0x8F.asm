@@ -14,19 +14,19 @@ Offset_0x0281AC:
                 dc.w    Offset_0x02822C-Offset_0x0281AC     
 ;-------------------------------------------------------------------------------
 Offset_0x0281B2:
-                bra     Object_Settings                        ; Offset_0x027EA4  
+                bra.w   Object_Settings                        ; Offset_0x027EA4  
 ;-------------------------------------------------------------------------------
 Offset_0x0281B6:
                 move.w  Obj_Timer(A0), A1                                ; $002A
                 tst.b   Obj_Player_Status(A1)                            ; $002B
                 bne.s   Offset_0x0281C4
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x0281C4:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  Obj_Control_Var_00(A0), D0                       ; $002C
                 move.b  Offset_0x0281DC(PC, D0), Obj_Speed(A0)           ; $0010
                 move.b  Offset_0x0281DC+$01(PC, D0), Obj_Speed_Y(A0)     ; $0012
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------
 Offset_0x0281DC:
                 dc.b    $01, $FE, $01, $FF, $FF, $FE, $FF, $FF         

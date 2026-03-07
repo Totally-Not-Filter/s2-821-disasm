@@ -16,7 +16,7 @@ Offset_0x019B2E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Switch_Mappings, Obj_Map(A0)   ; Offset_0x019BBE, $0004
                 move.w  #$0424, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_09_To_ModifySpriteAttr_2P          ; Offset_0x019BEA
+                bsr.w   Jmp_09_To_ModifySpriteAttr_2P          ; Offset_0x019BEA
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018

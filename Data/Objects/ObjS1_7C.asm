@@ -17,7 +17,7 @@ Offset_0x00ADFE:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Big_Ring_Flash_Mappings, Obj_Map(A0) ; Offset_0x00B004, $0004
                 move.w  #$2462, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$00, Obj_Priority(A0)                           ; $0018
                 move.b  #$20, Obj_Width(A0)                              ; $0019
@@ -29,8 +29,8 @@ Offset_0x00AE2C:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     DeleteObject                           ; Offset_0x00D314
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bhi.w   DeleteObject                           ; Offset_0x00D314
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00AE46:
                 subq.b  #$01, Obj_Ani_Time(A0)                           ; $001E
                 bpl.s   Offset_0x00AE84
@@ -55,7 +55,7 @@ Offset_0x00AE86:
                 rts                 
 ;-------------------------------------------------------------------------------
 Offset_0x00AE94:
-                bra     DeleteObject                           ; Offset_0x00D314 
+                bra.w   DeleteObject                           ; Offset_0x00D314 
 ;===============================================================================
 ; Objeto 0x7C - Flash do Anel gigante usado para acesso ao Estágio Especial,
 ; <<<-          não usado, Left over do Sonic 1

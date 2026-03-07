@@ -18,7 +18,7 @@ Offset_0x028708:
 Offset_0x028712:
                 move.l  #Sol_Mappings, Obj_Map(A0)      ; Offset_0x0288E2, $0004
                 move.w  #$0000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_2F_To_ModifySpriteAttr_2P          ; Offset_0x02A7B2
+                bsr.w   Jmp_2F_To_ModifySpriteAttr_2P          ; Offset_0x02A7B2
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$0B, Obj_Col_Flags(A0)                          ; $0020
@@ -30,7 +30,7 @@ Offset_0x028712:
                 addq.w  #$01, A2
                 moveq   #$03, D1
 Offset_0x02874E:
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x0287AA
                 addq.b  #$01, (A3)
                 move.w  A1, D5
@@ -86,25 +86,25 @@ Offset_0x0287F6:
                 bne.s   Offset_0x028808
                 move.b  #$01, Obj_Ani_Number(A0)                         ; $001C
 Offset_0x028808:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Sol_Animate_Data), A1                 ; Offset_0x0288CE
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
                 andi.b  #$03, Obj_Map_Id(A0)                             ; $001A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------
 Offset_0x028820:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Sol_Animate_Data_01), A1              ; Offset_0x0288DC
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
                 andi.b  #$03, Obj_Map_Id(A0)                             ; $001A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 ;-------------------------------------------------------------------------------
 Offset_0x028838:
                 lea     (Sol_Animate_Data_01), A1              ; Offset_0x0288DC
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
                 move.l  Obj_Control_Var_10(A0), A1                       ; $003C
                 _cmpi.b #$95, 0(A1)                                 ; $0000
-                bne     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bne.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
                 cmpi.b  #$02, Obj_Map_Id(A1)                             ; $001A
                 bne.s   Offset_0x02888A
                 cmpi.b  #$40, Obj_Angle(A0)                              ; $0026
@@ -120,7 +120,7 @@ Offset_0x028874:
                 beq.s   Offset_0x028886
                 neg.w   Obj_Speed(A0)                                    ; $0010
 Offset_0x028886:
-                bra     Jmp_1F_To_DisplaySprite                ; Offset_0x02A78E
+                bra.w   Jmp_1F_To_DisplaySprite                ; Offset_0x02A78E
 Offset_0x02888A:
                 move.b  Obj_Angle(A0), D0                                ; $0026
                 jsr     (CalcSine).l                             ; Offset_0x003282
@@ -132,15 +132,15 @@ Offset_0x02888A:
                 move.w  D0, Obj_Y(A0)                                    ; $000C
                 move.b  Obj_Control_Var_0A(A1), D0                       ; $0036
                 add.b   D0, Obj_Angle(A0)                                ; $0026
-                bra     Jmp_1F_To_DisplaySprite                ; Offset_0x02A78E  
+                bra.w   Jmp_1F_To_DisplaySprite                ; Offset_0x02A78E  
 ;-------------------------------------------------------------------------------
 Offset_0x0288B4:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bpl.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
                 lea     (Sol_Animate_Data_01), A1              ; Offset_0x0288DC
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_1F_To_DisplaySprite                ; Offset_0x02A78E   
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_1F_To_DisplaySprite                ; Offset_0x02A78E   
 ;-------------------------------------------------------------------------------      
 Sol_Animate_Data:                                              ; Offset_0x0288CE
                 dc.w    Offset_0x0288D2-Sol_Animate_Data

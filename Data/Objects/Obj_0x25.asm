@@ -30,7 +30,7 @@ Offset_0x00AAD0:
 ;------------------------------------------------------------------------------- 
 Offset_0x00AADE:
                 swap    D1
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
                 bne.s   Offset_0x00AB3E
 Offset_0x00AAE6:
                 _move.b #$25, 0(A1)                                 ; $0000
@@ -40,7 +40,7 @@ Offset_0x00AAE6:
                 move.w  D3, Obj_Y(A1)                                    ; $000C
                 move.l  #Rings_Mappings, Obj_Map(A1)    ; Offset_0x00AEA0, $0004
                 move.w  #$26BC, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$02, Obj_Priority(A1)                           ; $0018
                 move.b  #$47, Obj_Col_Flags(A1)                          ; $0020
@@ -60,7 +60,7 @@ Offset_0x00AB3E:
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
                 bhi.s   Offset_0x00AB8E
-                bra     DisplaySprite                          ; Offset_0x00D322    
+                bra.w   DisplaySprite                          ; Offset_0x00D322    
 ;------------------------------------------------------------------------------- 
 Offset_0x00AB5A:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
@@ -75,11 +75,11 @@ Offset_0x00AB5A:
 ;------------------------------------------------------------------------------- 
 Offset_0x00AB80:
                 lea     (Rings_Animate_Data), A1               ; Offset_0x00AE98
-                bsr     AnimateSprite                          ; Offset_0x00D372
-                bra     DisplaySprite                          ; Offset_0x00D322  
+                bsr.w   AnimateSprite                          ; Offset_0x00D372
+                bra.w   DisplaySprite                          ; Offset_0x00D322  
 ;------------------------------------------------------------------------------- 
 Offset_0x00AB8E:
-                bra     DeleteObject                           ; Offset_0x00D314
+                bra.w   DeleteObject                           ; Offset_0x00D314
 ;===============================================================================
 ; Objeto 0x25 - Anéis - Este objeto não é usado pelos anéis normais nas fases
 ; <<<-

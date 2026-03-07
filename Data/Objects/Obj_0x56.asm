@@ -26,9 +26,9 @@ Offset_0x020110:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  Obj_X(A0), Obj_Control_Var_04(A0)         ; $0008, $0030
                 move.w  Obj_Y(A0), Obj_Control_Var_0C(A0)         ; $000C, $0038
-                bsr     Jmp_27_To_ModifySpriteAttr_2P          ; Offset_0x02050E
+                bsr.w   Jmp_27_To_ModifySpriteAttr_2P          ; Offset_0x02050E
                 jsr     (SingleObjectLoad_2)                   ; Offset_0x00E714
-                bne     Offset_0x020200
+                bne.w   Offset_0x020200
                 _move.b #$56, 0(A1)                                 ; $0000
                 move.l  A0, Obj_Control_Var_08(A1)                       ; $0034
                 move.l  A1, Obj_Control_Var_08(A0)                       ; $0034
@@ -42,7 +42,7 @@ Offset_0x020110:
                 addq.b  #$04, Obj_Routine(A1)                            ; $0024
                 move.b  #$01, Obj_Ani_Number(A1)                         ; $001C
                 move.b  Obj_Flags(A0), Obj_Flags(A1)              ; $0001, $0001
-                bsr     Jmp_03_To_ModifySpriteAttr_2P_A1       ; Offset_0x020508
+                bsr.w   Jmp_03_To_ModifySpriteAttr_2P_A1       ; Offset_0x020508
                 tst.b   Obj_Subtype(A0)                                  ; $0028
                 bmi.s   Offset_0x020200
                 jsr     (SingleObjectLoad_2)                   ; Offset_0x00E714
@@ -51,7 +51,7 @@ Offset_0x020110:
                 move.l  A0, Obj_Control_Var_08(A1)                       ; $0034
                 move.l  #GHz_Boss_Mappings, Obj_Map(A1) ; Offset_0x0203E8, $0004
                 move.w  #$04D0, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_03_To_ModifySpriteAttr_2P_A1       ; Offset_0x020508
+                bsr.w   Jmp_03_To_ModifySpriteAttr_2P_A1       ; Offset_0x020508
                 move.b  #$01, Obj_Ani_Time(A0)                           ; $001E
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$20, Obj_Width(A1)                              ; $0019
@@ -125,7 +125,7 @@ Offset_0x0202C8:
                 move.b  D0, Obj_Timer(A0)                                ; $002A
 Offset_0x0202D2:
                 cmpi.b  #$FF, Obj_Map_Id(A0)                             ; $001A
-                bne     Jmp_13_To_DisplaySprite                ; Offset_0x0204FC
+                bne.w   Jmp_13_To_DisplaySprite                ; Offset_0x0204FC
                 rts
 Offset_0x0202DE:
                 move.l  Obj_Control_Var_08(A0), A1                       ; $0034
@@ -136,7 +136,7 @@ Offset_0x0202EC:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #GHz_Boss_Mappings_01, Obj_Map(A0) ; Offset_0x020400, $0004
                 move.w  #$04D8, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_27_To_ModifySpriteAttr_2P          ; Offset_0x02050E
+                bsr.w   Jmp_27_To_ModifySpriteAttr_2P          ; Offset_0x02050E
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
                 move.b  #$05, Obj_Ani_Time(A0)                           ; $001E
                 move.l  Obj_Control_Var_08(A0), A1                       ; $0034
@@ -155,13 +155,13 @@ Offset_0x02032C:
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
                 move.l  Obj_Control_Var_08(A0), A1                       ; $0034
                 move.b  (A1), D0
-                beq     Jmp_14_To_DeleteObject                 ; Offset_0x020502
+                beq.w   Jmp_14_To_DeleteObject                 ; Offset_0x020502
                 move.w  Obj_X(A1), Obj_X(A0)                      ; $0008, $0008
                 move.w  Obj_Y(A1), Obj_Y(A0)                      ; $000C, $000C
                 addi.w  #$0004, Obj_Y(A0)                                ; $000C
                 subi.w  #$0028, Obj_X(A0)                                ; $0008
 Offset_0x02036E:
-                bra     Jmp_13_To_DisplaySprite                ; Offset_0x0204FC     
+                bra.w   Jmp_13_To_DisplaySprite                ; Offset_0x0204FC     
 ;===============================================================================
 ; Objeto 0x56 - Robotnik na Green Hill
 ; ->>>

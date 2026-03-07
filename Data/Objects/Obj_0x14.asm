@@ -8,7 +8,7 @@
                 move.w  Offset_0x01681E(PC, D0), D1
                 jsr     Offset_0x01681E(PC, D1)
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     Jmp_00_To_MarkObjGone_2                ; Offset_0x016C86
+                bra.w   Jmp_00_To_MarkObjGone_2                ; Offset_0x016C86
 ;-------------------------------------------------------------------------------  
 Offset_0x01681E:
                 dc.w    Offset_0x01682A-Offset_0x01681E
@@ -22,14 +22,14 @@ Offset_0x01682A:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Seesaw_Mappings, Obj_Map(A0)   ; Offset_0x016BD0, $0004
                 move.w  #$03C6, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_01_To_ModifySpriteAttr_2P          ; Offset_0x016C7A
+                bsr.w   Jmp_01_To_ModifySpriteAttr_2P          ; Offset_0x016C7A
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$30, Obj_Width(A0)                              ; $0019
                 move.w  Obj_X(A0), Obj_Control_Var_04(A0)         ; $0008, $0030
                 tst.b   Obj_Subtype(A0)                                  ; $0028
                 bne.s   Offset_0x016884
-                bsr     Jmp_00_To_SingleObjectLoad_2           ; Offset_0x016C74
+                bsr.w   Jmp_00_To_SingleObjectLoad_2           ; Offset_0x016C74
                 bne.s   Offset_0x016884
                 _move.b #$14, 0(A1)                                 ; $0000
                 addq.b  #$06, Obj_Routine(A1)                            ; $0024
@@ -116,7 +116,7 @@ Offset_0x016942:
                 move.b  Obj_Width(A0), D1                                ; $0019
                 moveq   #$08, D3
                 move.w  (A7)+, D4
-                bra     Platform_Object_2                      ; Offset_0x00F87E
+                bra.w   Platform_Object_2                      ; Offset_0x00F87E
 ;------------------------------------------------------------------------------- 
 Offset_0x016954:
                 rts
@@ -141,7 +141,7 @@ Offset_0x016982:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Seesaw_Badnick_Mappings, Obj_Map(A0) ; Offset_0x016C5C, $0004
                 move.w  #$03DE, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_01_To_ModifySpriteAttr_2P          ; Offset_0x016C7A
+                bsr.w   Jmp_01_To_ModifySpriteAttr_2P          ; Offset_0x016C7A
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$8B, Obj_Col_Flags(A0)                          ; $0020
@@ -156,7 +156,7 @@ Offset_0x016982:
                 move.b  #$02, Obj_Control_Var_0E(A0)                     ; $003A   
 ;------------------------------------------------------------------------------- 
 Offset_0x0169DC:
-                bsr     Offset_0x016B46
+                bsr.w   Offset_0x016B46
                 move.l  Obj_Control_Var_10(A0), A1                       ; $003C
                 moveq   #$00, D0
                 move.b  Obj_Control_Var_0E(A0), D0                       ; $003A
@@ -207,19 +207,19 @@ Offset_0x016A54:
                 rts       
 ;------------------------------------------------------------------------------- 
 Offset_0x016A74:
-                bsr     Offset_0x016B46
+                bsr.w   Offset_0x016B46
                 tst.w   Obj_Speed_Y(A0)                                  ; $0012
                 bpl.s   Offset_0x016A96
-                bsr     Jmp_00_To_ObjectFall                   ; Offset_0x016C80
+                bsr.w   Jmp_00_To_ObjectFall                   ; Offset_0x016C80
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
                 subi.w  #$002F, D0
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
                 bgt.s   Offset_0x016A94
-                bsr     Jmp_00_To_ObjectFall                   ; Offset_0x016C80
+                bsr.w   Jmp_00_To_ObjectFall                   ; Offset_0x016C80
 Offset_0x016A94:
                 rts
 Offset_0x016A96:
-                bsr     Jmp_00_To_ObjectFall                   ; Offset_0x016C80
+                bsr.w   Jmp_00_To_ObjectFall                   ; Offset_0x016C80
                 move.l  Obj_Control_Var_10(A0), A1                       ; $003C
                 lea     (Offset_0x016B3C), A2
                 moveq   #$00, D0

@@ -9,8 +9,8 @@
                 jsr     Offset_0x01A05A(PC, D1)
                 move.b  Obj_Control_Var_00(A0), D0                       ; $002C
                 add.b   Obj_Control_Var_0A(A0), D0                       ; $0036
-                beq     Jmp_0B_To_MarkObjGone                  ; Offset_0x01A43E
-                bra     Jmp_06_To_DisplaySprite                ; Offset_0x01A438
+                beq.w   Jmp_0B_To_MarkObjGone                  ; Offset_0x01A43E
+                bra.w   Jmp_06_To_DisplaySprite                ; Offset_0x01A438
 ;-------------------------------------------------------------------------------
 Offset_0x01A05A:
                 dc.w    Offset_0x01A06E-Offset_0x01A05A
@@ -24,7 +24,7 @@ Offset_0x01A06E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Cannon_Mappings, Obj_Map(A0)   ; Offset_0x01A2B6, $0004
                 move.w  #$6368, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_0B_To_ModifySpriteAttr_2P          ; Offset_0x01A444
+                bsr.w   Jmp_0B_To_ModifySpriteAttr_2P          ; Offset_0x01A444
                 move.b  Obj_Subtype(A0), D0                              ; $0028
                 andi.w  #$000F, D0
                 btst    #$00, Obj_Status(A0)                             ; $0022
@@ -63,17 +63,17 @@ Offset_0x01A0E0:
 ;-------------------------------------------------------------------------------   
 Offset_0x01A0E8:
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
-                bne     Offset_0x01A19A
+                bne.w   Offset_0x01A19A
                 move.w  Obj_X(A1), D0                                    ; $0008
                 sub.w   Obj_X(A0), D0                                    ; $0008
                 addi.w  #$0010, D0
                 cmpi.w  #$0020, D0
-                bcc     Offset_0x01A19A
+                bcc.w   Offset_0x01A19A
                 move.w  Obj_Y(A1), D1                                    ; $000C
                 sub.w   Obj_Y(A0), D1                                    ; $000C
                 addi.w  #$0010, D1
                 cmpi.w  #$0020, D1
-                bcc     Offset_0x01A19A
+                bcc.w   Offset_0x01A19A
                 btst    #$03, Obj_Status(A1)                             ; $0022
                 beq.s   Offset_0x01A136
                 moveq   #$00, D0

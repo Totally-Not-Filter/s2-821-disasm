@@ -14,22 +14,22 @@ Offset_0x028DB0:
                 dc.w    Offset_0x028DF2-Offset_0x028DB0         
 ;-------------------------------------------------------------------------------
 Offset_0x028DB6:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.w  #$FFC0, Obj_Speed(A0)                            ; $0010
                 rts       
 ;-------------------------------------------------------------------------------
 Offset_0x028DC2:
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 tst.w   D0
                 bne.s   Offset_0x028DD4
                 cmpi.w  #$0080, D0
                 bcc.s   Offset_0x028DD4
                 bsr.w   Offset_0x028DE6
 Offset_0x028DD4:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Nebula_Animate_Data), A1              ; Offset_0x028E64
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x028DE6:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$FF40, Obj_Speed_Y(A0)                          ; $0012
@@ -38,20 +38,20 @@ Offset_0x028DE6:
 Offset_0x028DF2:
                 tst.b   Obj_Timer(A0)                                    ; $002A
                 bne.s   Offset_0x028E0A
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 addi.w  #$0008, D2
                 cmpi.w  #$0010, D2
                 bcc.s   Offset_0x028E0A
                 bsr.w   Offset_0x028E22
 Offset_0x028E0A:
                 addi.w  #$0001, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Nebula_Animate_Data), A1              ; Offset_0x028E64
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x028E22:
                 st      Obj_Timer(A0)                                    ; $002A
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x028E58
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Map_Id(A1)                             ; $001A

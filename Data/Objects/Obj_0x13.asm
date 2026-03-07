@@ -17,7 +17,7 @@ Offset_0x0154BC:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #HPz_Waterfalls_Mappings, Obj_Map(A0) ; Offset_0x015624, $0004
                 move.w  #$E315, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
@@ -44,7 +44,7 @@ Offset_0x015524:
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C
                 move.l  #HPz_Waterfalls_Mappings, Obj_Map(A1) ; Offset_0x015624, $0004
                 move.w  #$E315, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$10, Obj_Width(A1)                              ; $0019
                 move.b  #$01, Obj_Priority(A1)                           ; $0018
@@ -94,8 +94,8 @@ Offset_0x0155D4:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_01_To_DeleteObject                 ; Offset_0x0159C6
-                bra     Jmp_01_To_DisplaySprite                ; Offset_0x0159C0
+                bhi.w   Jmp_01_To_DeleteObject                 ; Offset_0x0159C6
+                bra.w   Jmp_01_To_DisplaySprite                ; Offset_0x0159C0
 Offset_0x0155EC:
                 moveq   #$13, D0
                 move.b  D0, Obj_Map_Id(A0)                               ; $001A
@@ -104,7 +104,7 @@ Offset_0x0155EC:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_01_To_DeleteObject                 ; Offset_0x0159C6
+                bhi.w   Jmp_01_To_DeleteObject                 ; Offset_0x0159C6
                 rts   
 ;-------------------------------------------------------------------------------
 Offset_0x01560C:
@@ -112,8 +112,8 @@ Offset_0x01560C:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_01_To_DeleteObject                 ; Offset_0x0159C6
-                bra     Jmp_01_To_DisplaySprite                ; Offset_0x0159C0     
+                bhi.w   Jmp_01_To_DeleteObject                 ; Offset_0x0159C6
+                bra.w   Jmp_01_To_DisplaySprite                ; Offset_0x0159C0     
 ;-------------------------------------------------------------------------------
 HPz_Waterfalls_Mappings:                                       ; Offset_0x015624
                 dc.w    Offset_0x01565E-HPz_Waterfalls_Mappings

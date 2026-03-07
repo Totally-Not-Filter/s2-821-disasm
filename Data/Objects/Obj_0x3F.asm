@@ -17,7 +17,7 @@ Offset_0x01F54C:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Vertical_Fan_Mappings, Obj_Map(A0) ; Offset_0x01F77E, $0004
                 move.w  #$6403, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_25_To_ModifySpriteAttr_2P          ; Offset_0x01F8EA
+                bsr.w   Jmp_25_To_ModifySpriteAttr_2P          ; Offset_0x01F8EA
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -25,7 +25,7 @@ Offset_0x01F54C:
                 bpl.s   Offset_0x01F58A
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Horizontal_Fan_Mappings, Obj_Map(A0) ; Offset_0x01F830, $0004
-                bra     Offset_0x01F678            
+                bra.w   Offset_0x01F678            
 ;-------------------------------------------------------------------------------
 Offset_0x01F58A:
                 btst    #$01, Obj_Subtype(A0)                            ; $0028
@@ -69,7 +69,7 @@ Offset_0x01F610:
                 add.b   Obj_Ani_Frame(A0), D0                            ; $001B
                 move.b  D0, Obj_Map_Id(A0)                               ; $001A
 Offset_0x01F618:
-                bra     Jmp_17_To_MarkObjGone                  ; Offset_0x01F8E4
+                bra.w   Jmp_17_To_MarkObjGone                  ; Offset_0x01F8E4
 Offset_0x01F61C:
                 move.w  Obj_X(A1), D0                                    ; $0008
                 sub.w   Obj_X(A0), D0                                    ; $0008
@@ -148,7 +148,7 @@ Offset_0x01F6FE:
                 add.b   Obj_Ani_Frame(A0), D0                            ; $001B
                 move.b  D0, Obj_Map_Id(A0)                               ; $001A
 Offset_0x01F706:
-                bra     Jmp_17_To_MarkObjGone                  ; Offset_0x01F8E4
+                bra.w   Jmp_17_To_MarkObjGone                  ; Offset_0x01F8E4
 Offset_0x01F70A:
                 move.w  Obj_X(A1), D0                                    ; $0008
                 sub.w   Obj_X(A0), D0                                    ; $0008

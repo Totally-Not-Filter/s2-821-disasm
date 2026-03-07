@@ -34,11 +34,11 @@ Offset_0x015F28:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_02_To_DeleteObject                 ; Offset_0x016396
+                bhi.w   Jmp_02_To_DeleteObject                 ; Offset_0x016396
 Offset_0x015F42:
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
                 beq.s   Offset_0x015F4C
-                bsr     Jmp_02_To_DisplaySprite                ; Offset_0x016390
+                bsr.w   Jmp_02_To_DisplaySprite                ; Offset_0x016390
 Offset_0x015F4C:
                 rts        
 ;-------------------------------------------------------------------------------

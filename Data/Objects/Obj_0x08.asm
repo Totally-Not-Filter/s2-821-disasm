@@ -29,7 +29,7 @@ Offset_0x0131C6:
                 move.w  #$B040, Obj_Control_Var_12(A0)                   ; $003E
                 move.w  #$9180, Obj_Control_Var_10(A0)                   ; $003C
 Offset_0x01320E:
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE  
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE  
 ;-------------------------------------------------------------------------------
 Offset_0x013212:
                 move.w  Obj_Control_Var_12(A0), A2                       ; $003E
@@ -78,14 +78,14 @@ Offset_0x013288:
 Offset_0x013290:
                 lea     (Dust_Water_Splash_AnimateData), A1    ; Offset_0x01339A
                 jsr     (AnimateSprite)                        ; Offset_0x00D372
-                bsr     Load_Dust_Water_Splash_Dynamic_PLC     ; Offset_0x013346
+                bsr.w   Load_Dust_Water_Splash_Dynamic_PLC     ; Offset_0x013346
                 jmp     (DisplaySprite)                        ; Offset_0x00D322
 Offset_0x0132A6:
                 move.b  #$00, Obj_Ani_Number(A0)                         ; $001C
                 rts   
 ;-------------------------------------------------------------------------------
 Offset_0x0132AE:
-                bra     DeleteObject                           ; Offset_0x00D314   
+                bra.w   DeleteObject                           ; Offset_0x00D314   
 ;-------------------------------------------------------------------------------
 Offset_0x0132B2:
                 move.w  Obj_Control_Var_12(A0), A2                       ; $003E
@@ -98,7 +98,7 @@ Offset_0x0132CC:
                 subq.b  #$01, Obj_Control_Var_06(A0)                     ; $0032
                 bpl.s   Offset_0x013342
                 move.b  #$03, Obj_Control_Var_06(A0)                     ; $0032
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
                 bne.s   Offset_0x013342
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.w  Obj_X(A2), Obj_X(A1)                      ; $0008, $0008

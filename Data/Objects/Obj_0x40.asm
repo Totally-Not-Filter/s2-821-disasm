@@ -7,7 +7,7 @@
                 move.b  Obj_Routine(A0), D0                              ; $0024
                 move.w  Offset_0x01B13E(PC, D0), D1
                 jsr     Offset_0x01B13E(PC, D1)
-                bra     Jmp_0E_To_MarkObjGone                  ; Offset_0x01B3D4       
+                bra.w   Jmp_0E_To_MarkObjGone                  ; Offset_0x01B3D4       
 ;------------------------------------------------------------------------------- 
 Offset_0x01B13E:
                 dc.w    Offset_0x01B148-Offset_0x01B13E
@@ -20,7 +20,7 @@ Offset_0x01B148:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Diagonal_Spring_Mappings, Obj_Map(A0) ; Offset_0x01B3AA, $0004
                 move.w  #$0440, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_0E_To_ModifySpriteAttr_2P          ; Offset_0x01B3E0
+                bsr.w   Jmp_0E_To_ModifySpriteAttr_2P          ; Offset_0x01B3E0
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$1C, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -31,7 +31,7 @@ Offset_0x01B148:
 ;-------------------------------------------------------------------------------
 Offset_0x01B184:
                 lea     (Diagonal_Spring_Animate_Data), A1     ; Offset_0x01B39E
-                bsr     Jmp_02_To_AnimateSprite                ; Offset_0x01B3DA
+                bsr.w   Jmp_02_To_AnimateSprite                ; Offset_0x01B3DA
                 move.w  #$0027, D1
                 move.w  #$0008, D2
                 move.w  Obj_X(A0), D4                                    ; $0008
@@ -43,7 +43,7 @@ Offset_0x01B1A8:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     Jmp_00_To_SolidObject_3_A1             ; Offset_0x01B3E6
+                bsr.w   Jmp_00_To_SolidObject_3_A1             ; Offset_0x01B3E6
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x01B1C0
                 bsr.s   Offset_0x01B1DA
@@ -51,7 +51,7 @@ Offset_0x01B1C0:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     Jmp_00_To_SolidObject_3_A1             ; Offset_0x01B3E6
+                bsr.w   Jmp_00_To_SolidObject_3_A1             ; Offset_0x01B3E6
                 btst    #$04, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x01B1D8
                 bsr.s   Offset_0x01B1DA

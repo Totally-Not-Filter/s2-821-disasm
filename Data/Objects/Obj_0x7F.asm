@@ -16,7 +16,7 @@ Offset_0x01E8B6:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Vines_Switch_Mappings, Obj_Map(A0) ; Offset_0x01E9EC, $0004
                 move.w  #$640E, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_20_To_ModifySpriteAttr_2P          ; Offset_0x01EA2A
+                bsr.w   Jmp_20_To_ModifySpriteAttr_2P          ; Offset_0x01EA2A
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$08, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018  
@@ -30,12 +30,12 @@ Offset_0x01E8DE:
                 addq.w  #$01, A2
                 move.w  ($FFFFF606).w, D0
                 bsr.s   Offset_0x01E8FC
-                bra     Jmp_15_To_MarkObjGone                  ; Offset_0x01EA24
+                bra.w   Jmp_15_To_MarkObjGone                  ; Offset_0x01EA24
 Offset_0x01E8FC:
                 tst.b   (A2)
                 beq.s   Offset_0x01E950
                 andi.b  #$70, D0
-                beq     Offset_0x01E9EA
+                beq.w   Offset_0x01E9EA
                 clr.b   Obj_Timer(A1)                                    ; $002A
                 clr.b   (A2)
                 move.b  #$12, Obj_Art_VRAM(A2)                           ; $0002
@@ -54,12 +54,12 @@ Offset_0x01E920:
                 beq.s   Offset_0x01E94C
                 move.b  #$01, Obj_Map_Id(A0)                             ; $001A
 Offset_0x01E94C:
-                bra     Offset_0x01E9EA
+                bra.w   Offset_0x01E9EA
 Offset_0x01E950:
                 tst.b   Obj_Art_VRAM(A2)                                 ; $0002
                 beq.s   Offset_0x01E95E
                 subq.b  #$01, Obj_Art_VRAM(A2)                           ; $0002
-                bne     Offset_0x01E9EA
+                bne.w   Offset_0x01E9EA
 Offset_0x01E95E:
                 move.w  Obj_X(A1), D0                                    ; $0008
                 sub.w   Obj_X(A0), D0                                    ; $0008

@@ -38,7 +38,7 @@ Offset_0x009202:
                 move.l  #NGHz_Platforms_Mappings, Obj_Map(A0) ; Offset_0x009582, $0004
                 move.w  #$4000, Obj_Art_VRAM(A0)                         ; $0002
 Offset_0x009242:
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.w  Obj_Y(A0), Obj_Control_Var_00(A0)         ; $000C, $002C
@@ -73,32 +73,32 @@ Offset_0x0092B4:
                 addq.b  #$04, Obj_Control_Var_0C(A0)                     ; $0038
 Offset_0x0092C0:
                 move.w  Obj_X(A0), -(A7)                                 ; $0008
-                bsr     Offset_0x00936C
-                bsr     Offset_0x009352
+                bsr.w   Offset_0x00936C
+                bsr.w   Offset_0x009352
                 moveq   #$00, D1
                 move.b  Obj_Width(A0), D1                                ; $0019
                 moveq   #$08, D3
                 move.w  (A7)+, D4
-                bsr     Platform_Object                        ; Offset_0x00F82C
+                bsr.w   Platform_Object                        ; Offset_0x00F82C
                 bra.s   Offset_0x0092E4    
 ;-------------------------------------------------------------------------------  
 Offset_0x0092DC:
-                bsr     Offset_0x00936C
+                bsr.w   Offset_0x00936C
                 bsr.w   Offset_0x009352
 Offset_0x0092E4:
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 beq.s   Offset_0x0092EE
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x0092EE:
                 move.w  Obj_Control_Var_06(A0), D0                       ; $0032
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
                 bhi.s   Offset_0x009304
-                bra     DisplaySprite                          ; Offset_0x00D322 
+                bra.w   DisplaySprite                          ; Offset_0x00D322 
 ;-------------------------------------------------------------------------------  
 Offset_0x009304:
-                bra     DeleteObject                           ; Offset_0x00D314  
+                bra.w   DeleteObject                           ; Offset_0x00D314  
 ;-------------------------------------------------------------------------------  
 Offset_0x009308:
                 move.b  Obj_Status(A0), D0                               ; $0022
@@ -124,11 +124,11 @@ Offset_0x00932A:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  (A7)+, D4
-                bsr     SolidObject                            ; Offset_0x00F344
+                bsr.w   SolidObject                            ; Offset_0x00F344
                 bra.s   Offset_0x0092E4
 Offset_0x009352:
                 move.b  Obj_Control_Var_0C(A0), D0                       ; $0038
-                bsr     CalcSine                               ; Offset_0x003282
+                bsr.w   CalcSine                               ; Offset_0x003282
                 move.w  #$0400, D1
                 muls.w  D1, D0
                 swap    D0
@@ -177,7 +177,7 @@ Offset_0x0093BA:
                 ext.w   D1
                 add.w   D1, D0
                 move.w  D0, Obj_X(A0)                                    ; $0008
-                bra     Offset_0x009522    
+                bra.w   Offset_0x009522    
 ;-------------------------------------------------------------------------------
 Offset_0x0093C6:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
@@ -207,7 +207,7 @@ Offset_0x009400:
                 ext.w   D1
                 add.w   D1, D0
                 move.w  D0, Obj_Control_Var_00(A0)                       ; $002C
-                bra     Offset_0x009522     
+                bra.w   Offset_0x009522     
 ;-------------------------------------------------------------------------------
 Offset_0x00940C:
                 tst.w   Obj_Control_Var_0E(A0)                           ; $003A

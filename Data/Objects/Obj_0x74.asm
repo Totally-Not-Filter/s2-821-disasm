@@ -16,7 +16,7 @@ Offset_0x015FCC:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Invisible_Block_Mappings, Obj_Map(A0) ; Offset_0x016052, $0004
                 move.w  #$8680, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
+                bsr.w   Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  Obj_Subtype(A0), D0                              ; $0028
                 move.b  D0, D1
@@ -30,7 +30,7 @@ Offset_0x015FCC:
                 move.b  D1, Obj_Height_2(A0)                             ; $0016    
 ;-------------------------------------------------------------------------------
 Offset_0x016008:
-                bsr     Jmp_00_To_Check_Object_On_Screen       ; Offset_0x0163A2
+                bsr.w   Jmp_00_To_Check_Object_On_Screen       ; Offset_0x0163A2
                 bne.s   Offset_0x01602A
                 moveq   #$00, D1
                 move.b  Obj_Width(A0), D1                                ; $0019
@@ -40,7 +40,7 @@ Offset_0x016008:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     SolidObject_2                          ; Offset_0x00F39E
+                bsr.w   SolidObject_2                          ; Offset_0x00F39E
 Offset_0x01602A:
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 bne.s   Offset_0x016044
@@ -48,7 +48,7 @@ Offset_0x01602A:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_02_To_DeleteObject                 ; Offset_0x016396
+                bhi.w   Jmp_02_To_DeleteObject                 ; Offset_0x016396
 Offset_0x016044:
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
                 beq.s   Offset_0x016050

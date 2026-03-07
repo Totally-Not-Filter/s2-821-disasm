@@ -13,7 +13,7 @@ Offset_0x028606:
                 dc.w    Offset_0x028634-Offset_0x028606      
 ;-------------------------------------------------------------------------------
 Offset_0x02860A:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 ori.b   #$80, Obj_Flags(A0)                              ; $0001
                 move.w  Obj_Timer(A0), A1                                ; $002A
                 move.b  Obj_Flags(A1), D0                                ; $0001
@@ -29,15 +29,15 @@ Offset_0x02862E:
 ;-------------------------------------------------------------------------------
 Offset_0x028634:
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bpl.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
                 bchg    #00, Obj_Flags(A0)                               ; $0001
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 ;-------------------------------------------------------------------------------
 Spiker_Sub: ; Usado pelo objeto 0x92 - Spiker                  ; Offset_0x02864A
                 tst.b   Obj_Player_Status(A0)                            ; $002B
                 bne.s   Offset_0x02865E
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 addi.w  #$0020, D2
                 cmpi.w  #$0040, D2
                 bcs.s   Offset_0x028662

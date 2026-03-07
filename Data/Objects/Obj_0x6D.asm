@@ -16,7 +16,7 @@ Offset_0x01C546:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Block_Harpon_Mappings, Obj_Map(A0) ; Offset_0x01C4F0, $0004
                 move.w  #$241C, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_13_To_ModifySpriteAttr_2P          ; Offset_0x01C610
+                bsr.w   Jmp_13_To_ModifySpriteAttr_2P          ; Offset_0x01C610
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -32,7 +32,7 @@ Offset_0x01C580:
                 add.w   Obj_Control_Var_06(A0), D0                       ; $0032
                 move.w  D0, Obj_Y(A0)                                    ; $000C
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     Jmp_01_To_MarkObjGone_2                ; Offset_0x01C61C
+                bra.w   Jmp_01_To_MarkObjGone_2                ; Offset_0x01C61C
 Offset_0x01C59C:
                 tst.w   Obj_Control_Var_0E(A0)                           ; $003A
                 beq.s   Offset_0x01C5A8

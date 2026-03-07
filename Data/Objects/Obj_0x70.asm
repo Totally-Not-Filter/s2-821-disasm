@@ -23,7 +23,7 @@ Offset_0x01D6BE:
                 bra.s   Offset_0x01D6E0     
 ;-------------------------------------------------------------------------------   
 Offset_0x01D6DA:
-                bsr     Jmp_0B_To_SingleObjectLoad_2           ; Offset_0x01DA14
+                bsr.w   Jmp_0B_To_SingleObjectLoad_2           ; Offset_0x01DA14
                 bne.s   Offset_0x01D73A 
 ;-------------------------------------------------------------------------------   
 Offset_0x01D6E0:
@@ -31,7 +31,7 @@ Offset_0x01D6E0:
                 addq.b  #$02, Obj_Routine(A1)                            ; $0024
                 move.l  #Rotating_Gears_Mappings, Obj_Map(A1) ; Offset_0x01D872, $0004
                 move.w  #$6378, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_01_To_ModifySpriteAttr_2P_A1       ; Offset_0x01DA1A
+                bsr.w   Jmp_01_To_ModifySpriteAttr_2P_A1       ; Offset_0x01DA1A
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$04, Obj_Priority(A1)                           ; $0018
                 move.b  #$10, Obj_Width(A1)                              ; $0019
@@ -100,7 +100,7 @@ Offset_0x01D7B6:
                 move.b  Offset_0x01D7F2+$01(PC, D0), D2
                 move.w  D2, D3
                 move.w  (A7)+, D4
-                bsr     Jmp_0D_To_SolidObject                  ; Offset_0x01DA20
+                bsr.w   Jmp_0D_To_SolidObject                  ; Offset_0x01DA20
                 move.w  Obj_Control_Var_06(A0), D0                       ; $0032
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0

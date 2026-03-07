@@ -20,7 +20,7 @@ Offset_0x01D15C:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Machine_Mappings, Obj_Map(A0)  ; Offset_0x01D2C0, $0004
                 move.w  #$6000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_18_To_ModifySpriteAttr_2P          ; Offset_0x01D348
+                bsr.w   Jmp_18_To_ModifySpriteAttr_2P          ; Offset_0x01D348
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 moveq   #$00, D0
@@ -38,9 +38,9 @@ Offset_0x01D15C:
                 bne.s   Offset_0x01D1C6
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$63F0, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_18_To_ModifySpriteAttr_2P          ; Offset_0x01D348
+                bsr.w   Jmp_18_To_ModifySpriteAttr_2P          ; Offset_0x01D348
                 move.b  #$05, Obj_Priority(A0)                           ; $0018
-                bra     Offset_0x01D250               
+                bra.w   Offset_0x01D250               
 ;-------------------------------------------------------------------------------  
 Offset_0x01D1C6:
                 move.w  Obj_X(A0), -(A7)                                 ; $0008
@@ -72,7 +72,7 @@ Offset_0x01D1F6:
                 move.b  Obj_Height_2(A0), D2                             ; $0016
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_0C_To_SolidObject                  ; Offset_0x01D34E
+                bsr.w   Jmp_0C_To_SolidObject                  ; Offset_0x01D34E
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0

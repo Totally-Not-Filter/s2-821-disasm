@@ -34,7 +34,7 @@ Offset_0x01477A:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Hidden_Bonus_Mappings, Obj_Map(A0) ; Offset_0x014842, $0004
                 move.w  #$84B6, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$00, Obj_Priority(A0)                           ; $0018
                 move.b  #$10, Obj_Width(A0)                              ; $0019

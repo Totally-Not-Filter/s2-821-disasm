@@ -37,7 +37,7 @@ Offset_0x021DC6:
                 move.w  D0, Obj_Control_Var_06(A0)                       ; $0032
                 move.w  D0, Obj_Control_Var_08(A0)                       ; $0034
                 move.w  Obj_Y(A0), Obj_Timer(A0)                  ; $000C, $002A
-                bsr     Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
+                bsr.w   Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
                 bne.s   Offset_0x021E7E
                 _move.b #$50, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -57,14 +57,14 @@ Offset_0x021DC6:
 ;------------------------------------------------------------------------------- 
 Offset_0x021E7E:
                 lea     (Aquis_Animate_Data), A1               ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
                 move.w  #$039C, (Water_Level).w                      ; $FFFFF646
                 moveq   #$00, D0
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
                 move.w  Offset_0x021EA4(PC, D0), D1
                 jsr     Offset_0x021EA4(PC, D1)
-                bsr     Offset_0x02207C
-                bra     Jmp_21_To_MarkObjGone                  ; Offset_0x02261E       
+                bsr.w   Offset_0x02207C
+                bra.w   Jmp_21_To_MarkObjGone                  ; Offset_0x02261E       
 ;------------------------------------------------------------------------------- 
 Offset_0x021EA4:
                 dc.w    Offset_0x021EEA-Offset_0x021EA4
@@ -74,38 +74,38 @@ Offset_0x021EA4:
 Offset_0x021EAA:
                 move.l  Obj_Control_Var_0A(A0), A1                       ; $0036
                 tst.b   (A1)
-                beq     Jmp_1A_To_DeleteObject                 ; Offset_0x022612
+                beq.w   Jmp_1A_To_DeleteObject                 ; Offset_0x022612
                 cmpi.b  #$50, (A1)
-                bne     Jmp_1A_To_DeleteObject                 ; Offset_0x022612
+                bne.w   Jmp_1A_To_DeleteObject                 ; Offset_0x022612
                 btst    #$07, Obj_Status(A1)                             ; $0022
-                bne     Jmp_1A_To_DeleteObject                 ; Offset_0x022612
+                bne.w   Jmp_1A_To_DeleteObject                 ; Offset_0x022612
                 lea     (Aquis_Animate_Data), A1               ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
-                bra     Jmp_17_To_DisplaySprite                ; Offset_0x02260C 
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bra.w   Jmp_17_To_DisplaySprite                ; Offset_0x02260C 
 ;-------------------------------------------------------------------------------  
 Offset_0x021ED4:
-                bsr     Offset_0x0221A0
-                bsr     Jmp_13_To_SpeedToPos                   ; Offset_0x022630
+                bsr.w   Offset_0x0221A0
+                bsr.w   Jmp_13_To_SpeedToPos                   ; Offset_0x022630
                 lea     (Aquis_Animate_Data), A1               ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
-                bra     Jmp_21_To_MarkObjGone                  ; Offset_0x02261E   
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bra.w   Jmp_21_To_MarkObjGone                  ; Offset_0x02261E   
 ;-------------------------------------------------------------------------------  
 Offset_0x021EEA:
-                bsr     Jmp_13_To_SpeedToPos                   ; Offset_0x022630
-                bsr     Offset_0x022182
-                bsr     Offset_0x022028
-                bsr     Offset_0x021FC0
+                bsr.w   Jmp_13_To_SpeedToPos                   ; Offset_0x022630
+                bsr.w   Offset_0x022182
+                bsr.w   Offset_0x022028
+                bsr.w   Offset_0x021FC0
                 rts    
 ;-------------------------------------------------------------------------------  
 Offset_0x021EFC:
-                bsr     Jmp_13_To_SpeedToPos                   ; Offset_0x022630
-                bsr     Offset_0x022182
-                bsr     Offset_0x02204A
+                bsr.w   Jmp_13_To_SpeedToPos                   ; Offset_0x022630
+                bsr.w   Offset_0x022182
+                bsr.w   Offset_0x02204A
                 rts 
 ;-------------------------------------------------------------------------------  
 Offset_0x021F0A:
-                bsr     Jmp_07_To_ObjectFall                   ; Offset_0x02262A
-                bsr     Offset_0x022182
+                bsr.w   Jmp_07_To_ObjectFall                   ; Offset_0x02262A
+                bsr.w   Offset_0x022182
                 bsr.w   Offset_0x021F1C
                 bsr.w   Offset_0x021F98
                 rts
@@ -118,7 +118,7 @@ Offset_0x021F28:
                 rts
 Offset_0x021F2A:
                 st      Obj_Control_Var_01(A0)                           ; $002D
-                bsr     Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
+                bsr.w   Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
                 bne.s   Offset_0x021F96
                 _move.b #$50, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Routine(A1)                            ; $0024
@@ -238,11 +238,11 @@ Offset_0x0220AC:
                 rts 
 ;-------------------------------------------------------------------------------  
 Offset_0x0220B6:
-                bsr     Jmp_07_To_ObjectFall                   ; Offset_0x02262A
+                bsr.w   Jmp_07_To_ObjectFall                   ; Offset_0x02262A
                 bsr.w   Offset_0x0220CC
                 lea     (Aquis_Animate_Data), A1               ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
-                bra     Jmp_21_To_MarkObjGone                  ; Offset_0x02261E
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bra.w   Jmp_21_To_MarkObjGone                  ; Offset_0x02261E
 Offset_0x0220CC:
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 tst.w   D1
@@ -254,7 +254,7 @@ Offset_0x0220CC:
                 move.w  D0, Obj_Speed_Y(A0)                              ; $0012
 Offset_0x0220E6:
                 subi.b  #$01, Obj_Col_Prop(A0)                           ; $0021
-                beq     Jmp_1A_To_DeleteObject                 ; Offset_0x022612
+                beq.w   Jmp_1A_To_DeleteObject                 ; Offset_0x022612
                 rts             
 ;-------------------------------------------------------------------------------  
 Offset_0x0220F2:
@@ -262,7 +262,7 @@ Offset_0x0220F2:
                 tst.b   Obj_Routine_2(A0)                                ; $0025
                 beq.s   Offset_0x022132
                 subi.w  #$0001, Obj_Control_Var_00(A0)                   ; $002C
-                beq     Jmp_1A_To_DeleteObject                 ; Offset_0x022612
+                beq.w   Jmp_1A_To_DeleteObject                 ; Offset_0x022612
                 move.w  (Player_One_Position_X).w, Obj_X(A0)         ; $FFFFB008; $0008
                 move.w  (Player_One_Position_Y).w, Obj_Y(A0)         ; $FFFFB00C; $000C
                 addi.w  #$000C, Obj_Y(A0)                                ; $000C
@@ -275,8 +275,8 @@ Offset_0x022132:
                 rts
 Offset_0x022134:
                 lea     (Aquis_Animate_Data), A1               ; Offset_0x022244
-                bsr     Jmp_0F_To_AnimateSprite                ; Offset_0x022624
-                bra     Jmp_17_To_DisplaySprite                ; Offset_0x02260C
+                bsr.w   Jmp_0F_To_AnimateSprite                ; Offset_0x022624
+                bra.w   Jmp_17_To_DisplaySprite                ; Offset_0x02260C
 Offset_0x022142:
                 tst.b   Obj_Routine_2(A0)                                ; $0025
                 bne.s   Offset_0x022180
@@ -304,10 +304,10 @@ Offset_0x02219E:
                 rts
 Offset_0x0221A0:
                 tst.b   Obj_Col_Prop(A0)                                 ; $0021
-                beq     Offset_0x022242
+                beq.w   Offset_0x022242
                 moveq   #$02, D3
 Offset_0x0221AA:
-                bsr     Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
+                bsr.w   Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
                 bne.s   Offset_0x02221C
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.b  #$08, Obj_Routine(A1)                            ; $0024
@@ -334,14 +334,14 @@ Offset_0x022216:
                 move.w  #$0040, Obj_Speed(A1)                            ; $0010
 Offset_0x02221C:
                 dbra    D3, Offset_0x0221AA
-                bsr     Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
+                bsr.w   Jmp_0A_To_SingleObjectLoad             ; Offset_0x022618
                 bne.s   Offset_0x02223E
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.b  #$0A, Obj_Routine(A1)                            ; $0024
                 move.l  Obj_Map(A0), Obj_Map(A1)                  ; $0004, $0004
                 move.w  #$24E0, Obj_Art_VRAM(A1)                         ; $0002
 Offset_0x02223E:
-                bra     Jmp_1A_To_DeleteObject                 ; Offset_0x022612
+                bra.w   Jmp_1A_To_DeleteObject                 ; Offset_0x022612
 Offset_0x022242:
                 rts              
 ;-------------------------------------------------------------------------------

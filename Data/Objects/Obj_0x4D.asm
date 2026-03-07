@@ -21,7 +21,7 @@ Offset_0x0228FE:
                 move.b  #$18, Obj_Width(A0)                              ; $0019
                 move.b  #$10, Obj_Height_2(A0)                           ; $0016
                 move.b  #$18, Obj_Width_2(A0)                            ; $0017
-                bsr     Jmp_09_To_ObjectFall                   ; Offset_0x022BB4
+                bsr.w   Jmp_09_To_ObjectFall                   ; Offset_0x022BB4
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 tst.w   D1
                 bpl.s   Offset_0x02294C
@@ -37,8 +37,8 @@ Offset_0x02294E:
                 move.w  Offset_0x02296A(PC, D0), D1
                 jsr     Offset_0x02296A(PC, D1)
                 lea     (Rhinobot_Animate_Data), A1            ; Offset_0x022A3A
-                bsr     Jmp_11_To_AnimateSprite                ; Offset_0x022BAE
-                bra     Jmp_22_To_MarkObjGone                  ; Offset_0x022BA8    
+                bsr.w   Jmp_11_To_AnimateSprite                ; Offset_0x022BAE
+                bra.w   Jmp_22_To_MarkObjGone                  ; Offset_0x022BA8    
 ;-------------------------------------------------------------------------------
 Offset_0x02296A:
                 dc.w    Offset_0x02296E-Offset_0x02296A
@@ -58,7 +58,7 @@ Offset_0x022990:
 ;-------------------------------------------------------------------------------
 Offset_0x022992:
                 bsr.w   Offset_0x0229DC
-                bsr     Jmp_09_To_ObjectFall                   ; Offset_0x022BB4
+                bsr.w   Jmp_09_To_ObjectFall                   ; Offset_0x022BB4
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 cmpi.w  #$FFF8, D1
                 blt.s   Offset_0x0229B8

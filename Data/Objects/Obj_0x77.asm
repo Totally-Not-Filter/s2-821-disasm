@@ -44,8 +44,8 @@ Offset_0x01E0CC:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_11_To_SolidObject                  ; Offset_0x01E2A0
-                bra     Jmp_14_To_MarkObjGone                  ; Offset_0x01E294
+                bsr.w   Jmp_11_To_SolidObject                  ; Offset_0x01E2A0
+                bra.w   Jmp_14_To_MarkObjGone                  ; Offset_0x01E294
 Offset_0x01E0F6:
                 move.b  Obj_Status(A0), D0                               ; $0022
                 andi.b  #$18, D0
@@ -63,7 +63,7 @@ Offset_0x01E112:
 Offset_0x01E122:
                 andi.b  #$E7, Obj_Status(A0)                             ; $0022
 Offset_0x01E128:
-                bra     Jmp_14_To_MarkObjGone                  ; Offset_0x01E294        
+                bra.w   Jmp_14_To_MarkObjGone                  ; Offset_0x01E294        
 ;-------------------------------------------------------------------------------    
 DHz_Bridge_Animate_Data:                                       ; Offset_0x01E12C
                 dc.w    Offset_0x01E130-DHz_Bridge_Animate_Data

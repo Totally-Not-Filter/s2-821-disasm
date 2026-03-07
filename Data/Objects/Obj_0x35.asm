@@ -16,7 +16,7 @@ Offset_0x012B84:
                 addq.b  #$02, Obj_Sub_Y(A0)                              ; $000A
                 move.l  #Invicibility_Stars_Mappings, Obj_Map(A0) ; Offset_0x01314C, $0004
                 move.w  #$04DE, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 bset    #$06, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, $000E(A0)
@@ -24,7 +24,7 @@ Offset_0x012B84:
 ;-------------------------------------------------------------------------------
 Offset_0x012BB2:
                 tst.b   (Invincibility_Flag).w                       ; $FFFFFE2D
-                beq     DeleteObject                           ; Offset_0x00D314
+                beq.w   DeleteObject                           ; Offset_0x00D314
                 lea     (Obj_Memory_Address).w, A1                   ; $FFFFB000
                 move.w  Obj_X(A1), Obj_X(A0)                      ; $0008, $0008
                 move.w  Obj_Y(A1), Obj_Y(A0)                      ; $000C, $000C
@@ -131,7 +131,7 @@ Offset_0x012CB8:
                 move.b  D0, (A2)+
                 dbra    D1, Offset_0x012CAA
                 move.w  #$0080, D0
-                bra     DisplaySprite_Param                    ; Offset_0x00D35E 
+                bra.w   DisplaySprite_Param                    ; Offset_0x00D35E 
 ;-------------------------------------------------------------------------------
 Offset_0x012CD4:
                 dc.w    $0000, $0000, $00F8, $00F0, $04F0, $04E0, $00F8, $00F0

@@ -26,7 +26,7 @@ Offset_0x01835E:
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.l  #CPz_Tunel_Obstacle_Break_Data, Obj_Control_Var_10(A0) ; Offset_0x0184C8, $003C
 Offset_0x0183A2:
-                bsr     Jmp_06_To_ModifySpriteAttr_2P          ; Offset_0x0186F4
+                bsr.w   Jmp_06_To_ModifySpriteAttr_2P          ; Offset_0x0186F4
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018 
 ;-------------------------------------------------------------------------------
@@ -40,12 +40,12 @@ Offset_0x0183B2:
                 move.w  #$0010, D2
                 move.w  #$0011, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_00_To_SolidObject                  ; Offset_0x018700
+                bsr.w   Jmp_00_To_SolidObject                  ; Offset_0x018700
                 move.b  Obj_Status(A0), D0                               ; $0022
                 andi.b  #$18, D0
                 bne.s   Offset_0x0183EC
 Offset_0x0183E8:
-                bra     Jmp_06_To_MarkObjGone                  ; Offset_0x0186EE
+                bra.w   Jmp_06_To_MarkObjGone                  ; Offset_0x0186EE
 Offset_0x0183EC:
                 cmpi.b  #$18, D0
                 bne.s   Offset_0x01841A
@@ -86,24 +86,24 @@ Offset_0x018456:
                 rts
 Offset_0x01846A:
                 andi.b  #$10, D0
-                beq     Offset_0x0183E8
+                beq.w   Offset_0x0183E8
                 cmpi.b  #$02, Obj_Control_Var_07(A0)                     ; $0033
-                bne     Offset_0x0183E8
+                bne.w   Offset_0x0183E8
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 bsr.s   Offset_0x018438
 Offset_0x018482:
                 move.w  Obj_Control_Var_0C(A0), ($FFFFF7D0).w            ; $0038
                 andi.b  #$E7, Obj_Status(A0)                             ; $0022
                 move.l  Obj_Control_Var_10(A0), A4                       ; $003C
-                bsr     Jmp_00_To_Smash_Object                 ; Offset_0x0186FA
+                bsr.w   Jmp_00_To_Smash_Object                 ; Offset_0x0186FA
                 bsr.w   Offset_0x0184D8  
 ;-------------------------------------------------------------------------------
 Offset_0x01849A:
-                bsr     Jmp_04_To_SpeedToPos                   ; Offset_0x018706
+                bsr.w   Jmp_04_To_SpeedToPos                   ; Offset_0x018706
                 addi.w  #$0018, Obj_Speed_Y(A0)                          ; $0012
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Jmp_06_To_DeleteObject                 ; Offset_0x0186E2
-                bra     Jmp_04_To_DisplaySprite                ; Offset_0x0186DC 
+                bpl.w   Jmp_06_To_DeleteObject                 ; Offset_0x0186E2
+                bra.w   Jmp_04_To_DisplaySprite                ; Offset_0x0186DC 
 ;-------------------------------------------------------------------------------
 HTz_Rock_Break_Data:                                           ; Offset_0x0184B0
                 dc.w    $FE00, $FE00, $0000, $FD80, $0200, $FE00, $FE40, $FE40
@@ -113,7 +113,7 @@ CPz_Tunel_Obstacle_Break_Data:                                 ; Offset_0x0184C8
                 dc.w    $FF00, $FE00, $0100, $FE00, $FF40, $FE40, $00C0, $FE40                                                  
 ;-------------------------------------------------------------------------------
 Offset_0x0184D8:
-                bsr     Jmp_00_To_SingleObjectLoad             ; Offset_0x0186E8
+                bsr.w   Jmp_00_To_SingleObjectLoad             ; Offset_0x0186E8
                 bne.s   Offset_0x018520
                 _move.b #$29, 0(A1)                                 ; $0000
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008

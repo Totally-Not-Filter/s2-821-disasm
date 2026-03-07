@@ -16,7 +16,7 @@ Offset_0x015432:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Master_Emerald_Mappings, Obj_Map(A0) ; Offset_0x015486, $0004
                 move.w  #$6392, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$20, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018 
@@ -26,7 +26,7 @@ Offset_0x01545A:
                 move.w  #$0010, D2
                 move.w  #$0010, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     SolidObject                            ; Offset_0x00F344
+                bsr.w   SolidObject                            ; Offset_0x00F344
                 move.w  Obj_X(A0), D0                                    ; $0008
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0

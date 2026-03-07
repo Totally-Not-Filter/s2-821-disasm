@@ -20,7 +20,7 @@ Offset_0x01B400:
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
-                bsr     Jmp_0F_To_ModifySpriteAttr_2P          ; Offset_0x01B6C8
+                bsr.w   Jmp_0F_To_ModifySpriteAttr_2P          ; Offset_0x01B6C8
                 move.b  #$07, Obj_Map_Id(A0)                             ; $001A
                 move.w  Obj_Y(A0), Obj_Control_Var_08(A0)         ; $000C, $0034
                 move.w  #$0010, Obj_Control_Var_0A(A0)                   ; $0036
@@ -34,18 +34,18 @@ Offset_0x01B440:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     Jmp_01_To_SolidObject_2_A1             ; Offset_0x01B6CE
+                bsr.w   Jmp_01_To_SolidObject_2_A1             ; Offset_0x01B6CE
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x01B46A
-                bsr     Offset_0x01B546
+                bsr.w   Offset_0x01B546
 Offset_0x01B46A:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     Jmp_01_To_SolidObject_2_A1             ; Offset_0x01B6CE
+                bsr.w   Jmp_01_To_SolidObject_2_A1             ; Offset_0x01B6CE
                 btst    #$04, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x01B484
-                bsr     Offset_0x01B546
+                bsr.w   Offset_0x01B546
 Offset_0x01B484:
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
                 bne.s   Offset_0x01B49C
@@ -88,9 +88,9 @@ Offset_0x01B4F4:
                 add.w   Obj_Control_Var_08(A0), D0                       ; $0034
                 move.w  D0, Obj_Y(A0)                                    ; $000C
 Offset_0x01B500:
-                bra     Jmp_0F_To_MarkObjGone                  ; Offset_0x01B6C2
+                bra.w   Jmp_0F_To_MarkObjGone                  ; Offset_0x01B6C2
 Offset_0x01B504:
-                bsr     Jmp_04_To_SingleObjectLoad             ; Offset_0x01B6BC
+                bsr.w   Jmp_04_To_SingleObjectLoad             ; Offset_0x01B6BC
                 bne.s   Offset_0x01B544
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 addq.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -159,9 +159,9 @@ Offset_0x01B5EC:
                 move.b  #$A6, Obj_Col_Flags(A0)                          ; $0020
 Offset_0x01B610:
                 cmpi.b  #$07, Obj_Map_Id(A0)                             ; $001A
-                beq     Jmp_0D_To_DeleteObject                 ; Offset_0x01B6B6
+                beq.w   Jmp_0D_To_DeleteObject                 ; Offset_0x01B6B6
 Offset_0x01B61A:
-                bra     Jmp_09_To_DisplaySprite                ; Offset_0x01B6B0              
+                bra.w   Jmp_09_To_DisplaySprite                ; Offset_0x01B6B0              
 ;-------------------------------------------------------------------------------
 Steam_Vent_Mappings:                                           ; Offset_0x01B61E
                 dc.w    Offset_0x01B62E-Steam_Vent_Mappings

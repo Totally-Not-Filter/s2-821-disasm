@@ -33,8 +33,8 @@ Offset_0x01FA6A:
                 jsr     Offset_0x01FA8A(PC, D1)
                 bsr.w   Offset_0x01FA90
                 lea     (Batbot_Animate_Data), A1              ; Offset_0x01FC82
-                bsr     Jmp_06_To_AnimateSprite                ; Offset_0x01FE92
-                bra     Jmp_19_To_MarkObjGone                  ; Offset_0x01FE8C   
+                bsr.w   Jmp_06_To_AnimateSprite                ; Offset_0x01FE92
+                bra.w   Jmp_19_To_MarkObjGone                  ; Offset_0x01FE8C   
 ;-------------------------------------------------------------------------------  
 Offset_0x01FA8A:
                 dc.w    Offset_0x01FBF6-Offset_0x01FA8A
@@ -65,13 +65,13 @@ Offset_0x01FAD6:
                 rts    
 ;-------------------------------------------------------------------------------
 Offset_0x01FAD8:
-                bsr     Offset_0x01FBD6
-                bsr     Offset_0x01FB78
+                bsr.w   Offset_0x01FBD6
+                bsr.w   Offset_0x01FB78
                 bsr.w   Offset_0x01FAF8
-                bsr     Jmp_0D_To_SpeedToPos                   ; Offset_0x01FE98
+                bsr.w   Jmp_0D_To_SpeedToPos                   ; Offset_0x01FE98
                 lea     (Batbot_Animate_Data), A1              ; Offset_0x01FC82
-                bsr     Jmp_06_To_AnimateSprite                ; Offset_0x01FE92
-                bra     Jmp_19_To_MarkObjGone                  ; Offset_0x01FE8C     
+                bsr.w   Jmp_06_To_AnimateSprite                ; Offset_0x01FE92
+                bra.w   Jmp_19_To_MarkObjGone                  ; Offset_0x01FE8C     
 ;-------------------------------------------------------------------------------
 ; Offset_0x01FAF6:
                 rts 
@@ -158,7 +158,7 @@ Offset_0x01FBD6:
 Offset_0x01FBF6:
                 subi.w  #$0001, Obj_Timer(A0)                            ; $002A
                 bpl.s   Offset_0x01FC2C
-                bsr     Offset_0x01FAAA
+                bsr.w   Offset_0x01FAAA
                 beq.s   Offset_0x01FC2C
                 jsr     (PseudoRandomNumber).l                   ; Offset_0x00325C
                 andi.b  #$FF, D0
@@ -179,7 +179,7 @@ Offset_0x01FC38:
                 rts 
 ;-------------------------------------------------------------------------------
 Offset_0x01FC3A:
-                bsr     Offset_0x01FB0C
+                bsr.w   Offset_0x01FB0C
                 beq.s   Offset_0x01FC80
                 subi.w  #$0001, Obj_Timer(A0)                            ; $002A
                 bne.s   Offset_0x01FC80

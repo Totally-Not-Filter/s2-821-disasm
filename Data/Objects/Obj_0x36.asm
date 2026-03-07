@@ -28,7 +28,7 @@ Offset_0x00C83E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Spikes_Mappings, Obj_Map(A0)   ; Offset_0x00CA74, $0004
                 move.w  #$2434, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  Obj_Subtype(A0), D0                              ; $0028
@@ -54,7 +54,7 @@ Offset_0x00C89C:
                 rts      
 ;------------------------------------------------------------------------------- 
 Offset_0x00C8AA:
-                bsr     Offset_0x00C9D2
+                bsr.w   Offset_0x00C9D2
                 moveq   #$00, D1
                 move.b  Obj_Width(A0), D1                                ; $0019
                 addi.w  #$000B, D1
@@ -63,7 +63,7 @@ Offset_0x00C8AA:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     SolidObject                            ; Offset_0x00F344
+                bsr.w   SolidObject                            ; Offset_0x00F344
                 move.b  Obj_Status(A0), D6                               ; $0022
                 andi.b  #$18, D6
                 beq.s   Offset_0x00C8F2
@@ -71,19 +71,19 @@ Offset_0x00C8AA:
                 andi.b  #$08, D0
                 beq.s   Offset_0x00C8E4
                 lea     (Player_One).w, A1                           ; $FFFFB000
-                bsr     Hurt_Player_A1                         ; Offset_0x00C9A4
+                bsr.w   Hurt_Player_A1                         ; Offset_0x00C9A4
 Offset_0x00C8E4:
                 andi.b  #$10, D6
                 beq.s   Offset_0x00C8F2
                 lea     (Player_Two).w, A1                           ; $FFFFB040
-                bsr     Hurt_Player_A1                         ; Offset_0x00C9A4
+                bsr.w   Hurt_Player_A1                         ; Offset_0x00C9A4
 Offset_0x00C8F2:
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     MarkObjGone_2                          ; Offset_0x00D238   
+                bra.w   MarkObjGone_2                          ; Offset_0x00D238   
 ;------------------------------------------------------------------------------- 
 Offset_0x00C8FA:
                 move.w  Obj_X(A0), -(A7)                                 ; $0008
-                bsr     Offset_0x00C9D2
+                bsr.w   Offset_0x00C9D2
                 moveq   #$00, D1
                 move.b  Obj_Width(A0), D1                                ; $0019
                 addi.w  #$000B, D1
@@ -92,7 +92,7 @@ Offset_0x00C8FA:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  (A7)+, D4
-                bsr     SolidObject                            ; Offset_0x00F344
+                bsr.w   SolidObject                            ; Offset_0x00F344
                 swap    D6
                 andi.w  #$0003, D6
                 beq.s   Offset_0x00C94E
@@ -110,7 +110,7 @@ Offset_0x00C93A:
                 bclr    #$06, Obj_Status(A0)                             ; $0022
 Offset_0x00C94E:
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     MarkObjGone_2                          ; Offset_0x00D238   
+                bra.w   MarkObjGone_2                          ; Offset_0x00D238   
 ;-------------------------------------------------------------------------------    
 Offset_0x00C956:
                 bsr.w   Offset_0x00C9D2
@@ -122,7 +122,7 @@ Offset_0x00C956:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     SolidObject                            ; Offset_0x00F344
+                bsr.w   SolidObject                            ; Offset_0x00F344
                 swap    D6
                 andi.w  #$000C, D6
                 beq.s   Offset_0x00C99C
@@ -138,7 +138,7 @@ Offset_0x00C98E:
                 bsr.w   Hurt_Player_A1                         ; Offset_0x00C9A4
 Offset_0x00C99C:
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     MarkObjGone_2                          ; Offset_0x00D238   
+                bra.w   MarkObjGone_2                          ; Offset_0x00D238   
 ;-------------------------------------------------------------------------------  
 Hurt_Player_A1:                                                ; Offset_0x00C9A4
                 tst.b   (Invincibility_Flag).w                       ; $FFFFFE2D

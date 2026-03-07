@@ -37,7 +37,7 @@ Offset_0x00BD54:
                 move.b  D0, Obj_Map_Id(A1)                               ; $001A
                 move.l  #Level_Results_Mappings, Obj_Map(A1) ; Offset_0x00C47E, $0004
                 move.w  #$8580, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$00, Obj_Flags(A1)                              ; $0001
                 lea     Obj_Size(A1), A1                                 ; $0040
                 dbra    D1, Offset_0x00BD2E           
@@ -59,14 +59,14 @@ Offset_0x00BD8C:
                 rts                 
 ;------------------------------------------------------------------------------- 
 ; Offset_0x00BD9A:
-                bra     DisplaySprite                          ; Offset_0x00D322 
+                bra.w   DisplaySprite                          ; Offset_0x00D322 
 ;------------------------------------------------------------------------------- 
 Offset_0x00BD9E:
                 rts                                                     
 ;-------------------------------------------------------------------------------  
 Offset_0x00BDA0:
                 move.b  #$0E, Obj_Routine(A0)                            ; $0024
-                bra     Offset_0x00BEB4           
+                bra.w   Offset_0x00BEB4           
 ;-------------------------------------------------------------------------------  
 Offset_0x00BDAA:
                 cmpi.b  #$0E, ($FFFFB724).w
@@ -83,10 +83,10 @@ Offset_0x00BDCE:
                 rts       
 ;-------------------------------------------------------------------------------
 ; Offset_0x00BDD0:
-                bra     DisplaySprite                          ; Offset_0x00D322 
+                bra.w   DisplaySprite                          ; Offset_0x00D322 
 ;-------------------------------------------------------------------------------  
 ; Offset_0x00BDD4:
-                bsr     DisplaySprite                          ; Offset_0x00D322
+                bsr.w   DisplaySprite                          ; Offset_0x00D322
                 move.b  #$01, ($FFFFF7D6).w
                 moveq   #$00, D0
                 tst.w   ($FFFFF7D2).w
@@ -169,12 +169,12 @@ Offset_0x00BEC4:
                 bmi.s   Offset_0x00BED8
                 cmpi.w  #$0200, D0
                 bcc.s   Offset_0x00BED8
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00BED8:
                 rts
 Offset_0x00BEDA:
                 cmpi.b  #$04, Obj_Map_Id(A0)                             ; $001A
-                bne     DeleteObject                           ; Offset_0x00D314
+                bne.w   DeleteObject                           ; Offset_0x00D314
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 clr.b   ($FFFFF7CC).w
                 move.w  #$009A, D0
@@ -183,7 +183,7 @@ Offset_0x00BEDA:
 ; Offset_0x00BEF6:
                 addq.w  #$02, (Sonic_Level_Limits_Max_X).w           ; $FFFFEECA
                 cmpi.w  #$2100, (Sonic_Level_Limits_Max_X).w         ; $FFFFEECA
-                beq     DeleteObject                           ; Offset_0x00D314
+                beq.w   DeleteObject                           ; Offset_0x00D314
                 rts                                                     
 ;-------------------------------------------------------------------------------
 Level_Results_Screen_Pos:                                      ; Offset_0x00BF06

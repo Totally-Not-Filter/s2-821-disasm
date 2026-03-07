@@ -21,7 +21,7 @@ Offset_0x021172:
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$10, Obj_Height_2(A0)                           ; $0016
                 move.b  #$08, Obj_Width_2(A0)                            ; $0017
-                bsr     Jmp_03_To_ObjectFall                   ; Offset_0x02144C
+                bsr.w   Jmp_03_To_ObjectFall                   ; Offset_0x02144C
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 tst.w   D1
                 bpl.s   Offset_0x0211C0
@@ -37,8 +37,8 @@ Offset_0x0211C2:
                 move.w  Offset_0x0211DE(PC, D0), D1
                 jsr     Offset_0x0211DE(PC, D1)
                 lea     (Crocobot_Animate_Data), A1            ; Offset_0x021276
-                bsr     Jmp_0A_To_AnimateSprite                ; Offset_0x021446
-                bra     Jmp_1D_To_MarkObjGone                  ; Offset_0x021440    
+                bsr.w   Jmp_0A_To_AnimateSprite                ; Offset_0x021446
+                bra.w   Jmp_1D_To_MarkObjGone                  ; Offset_0x021440    
 ;-------------------------------------------------------------------------------
 Offset_0x0211DE:
                 dc.w    Offset_0x0211E2-Offset_0x0211DE
@@ -58,7 +58,7 @@ Offset_0x021204:
 ;-------------------------------------------------------------------------------
 Offset_0x021206:
                 bsr.w   Offset_0x02123E
-                bsr     Jmp_10_To_SpeedToPos                   ; Offset_0x021452
+                bsr.w   Jmp_10_To_SpeedToPos                   ; Offset_0x021452
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 cmpi.w  #$FFF8, D1
                 blt.s   Offset_0x021226

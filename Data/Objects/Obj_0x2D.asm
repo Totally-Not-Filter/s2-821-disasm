@@ -35,7 +35,7 @@ Offset_0x00A288:
                 move.w  #$23F8, Obj_Art_VRAM(A0)                         ; $0002
                 move.b  #$08, Obj_Width(A0)                              ; $0019
 Offset_0x00A29C:
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.w  Obj_Y(A0), Obj_Control_Var_06(A0)         ; $000C, $0032
@@ -105,8 +105,8 @@ Offset_0x00A368:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     SolidObject                            ; Offset_0x00F344
-                bra     MarkObjGone                            ; Offset_0x00D200       
+                bsr.w   SolidObject                            ; Offset_0x00F344
+                bra.w   MarkObjGone                            ; Offset_0x00D200       
 ;-------------------------------------------------------------------------------
 Automatic_Door_Mappings:                                       ; Offset_0x00A386
                 dc.w    Offset_0x00A38E-Automatic_Door_Mappings

@@ -22,7 +22,7 @@ Offset_0x00C102:
                 moveq   #$00, D1
                 move.b  (Emerald_Count).w, D1                        ; $FFFFFE57
                 subq.b  #$01, D1
-                bcs     DeleteObject                           ; Offset_0x00D314
+                bcs.w   DeleteObject                           ; Offset_0x00D314
 Offset_0x00C116:
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.w  (A2)+, Obj_X(A1)                                 ; $0008
@@ -35,7 +35,7 @@ Offset_0x00C116:
                 addq.b  #$02, Obj_Routine(A1)                            ; $0024
                 move.l  #Emeralds_Mappings, Obj_Map(A1) ; Offset_0x00C7CC, $0004
                 move.w  #$8541, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$00, Obj_Flags(A1)                              ; $0001
                 lea     Obj_Size(A1), A1                                 ; $0040
                 dbra    D1, Offset_0x00C116
@@ -46,7 +46,7 @@ Offset_0x00C15C:
                 bne.s   Offset_0x00C172
                 move.b  Obj_Ani_Number(A0), Obj_Map_Id(A0)        ; $001A, $001C
 Offset_0x00C172:
-                bra     DisplaySprite                          ; Offset_0x00D322 
+                bra.w   DisplaySprite                          ; Offset_0x00D322 
 ;===============================================================================
 ; Objeto 0x7F - Esmeraldas na tela de pontuação e bonificação do
 ; <<<-          Estágio Especial

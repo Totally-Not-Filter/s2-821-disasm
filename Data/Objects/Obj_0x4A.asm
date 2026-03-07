@@ -19,15 +19,15 @@ Offset_0x02171A:
                 bmi.s   Offset_0x021724
                 rts
 Offset_0x021724:
-                bsr     Jmp_05_To_ObjectFall                   ; Offset_0x0219AC
+                bsr.w   Jmp_05_To_ObjectFall                   ; Offset_0x0219AC
                 lea     (Octus_AnimateData), A1                ; Offset_0x0218F6
-                bsr     Jmp_0C_To_AnimateSprite                ; Offset_0x0219A6
-                bra     Jmp_1F_To_MarkObjGone                  ; Offset_0x0219A0      
+                bsr.w   Jmp_0C_To_AnimateSprite                ; Offset_0x0219A6
+                bra.w   Jmp_1F_To_MarkObjGone                  ; Offset_0x0219A0      
 ;-------------------------------------------------------------------------------
 Offset_0x021736:
                 subq.w  #$01, Obj_Control_Var_00(A0)                     ; $002C
-                beq     Jmp_18_To_DeleteObject                 ; Offset_0x02199A
-                bra     Jmp_15_To_DisplaySprite                ; Offset_0x021994   
+                beq.w   Jmp_18_To_DeleteObject                 ; Offset_0x02199A
+                bra.w   Jmp_15_To_DisplaySprite                ; Offset_0x021994   
 ;-------------------------------------------------------------------------------
 Offset_0x021742:
                 move.l  #Octus_Mappings, Obj_Map(A0)    ; Offset_0x021908, $0004
@@ -38,7 +38,7 @@ Offset_0x021742:
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$10, Obj_Height_2(A0)                           ; $0016
                 move.b  #$08, Obj_Width_2(A0)                            ; $0017
-                bsr     Jmp_05_To_ObjectFall                   ; Offset_0x0219AC
+                bsr.w   Jmp_05_To_ObjectFall                   ; Offset_0x0219AC
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 tst.w   D1
                 bpl.s   Offset_0x0217A0
@@ -59,8 +59,8 @@ Offset_0x0217A8:
                 move.w  Offset_0x0217C4(PC, D0), D1
                 jsr     Offset_0x0217C4(PC, D1)
                 lea     (Octus_AnimateData), A1                ; Offset_0x0218F6
-                bsr     Jmp_0C_To_AnimateSprite                ; Offset_0x0219A6
-                bra     Jmp_1F_To_MarkObjGone                  ; Offset_0x0219A0     
+                bsr.w   Jmp_0C_To_AnimateSprite                ; Offset_0x0219A6
+                bra.w   Jmp_1F_To_MarkObjGone                  ; Offset_0x0219A0     
 ;-------------------------------------------------------------------------------
 Offset_0x0217C4:
                 dc.w    Offset_0x0217CC-Offset_0x0217C4
@@ -93,8 +93,8 @@ Offset_0x02180C:
 ;-------------------------------------------------------------------------------
 Offset_0x02180E:
                 subi.w  #$0001, Obj_Control_Var_00(A0)                   ; $002C
-                beq     Offset_0x0218DA
-                bpl     Offset_0x0218D8
+                beq.w   Offset_0x0218DA
+                bpl.w   Offset_0x0218D8
                 move.w  #$001E, Obj_Control_Var_00(A0)                   ; $002C
                 jsr     (SingleObjectLoad)                     ; Offset_0x00E6FE
                 bne.s   Offset_0x021874
@@ -142,7 +142,7 @@ Offset_0x0218E0:
                 neg.w   D0
 Offset_0x0218EE:
                 add.w   D0, Obj_X(A0)                                    ; $0008
-                bra     Jmp_1F_To_MarkObjGone                  ; Offset_0x0219A0            
+                bra.w   Jmp_1F_To_MarkObjGone                  ; Offset_0x0219A0            
 ;-------------------------------------------------------------------------------
 Octus_AnimateData:                                             ; Offset_0x0218F6
                 dc.w    Offset_0x0218FC-Octus_AnimateData

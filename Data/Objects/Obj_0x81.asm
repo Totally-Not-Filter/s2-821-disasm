@@ -11,7 +11,7 @@
                 jmp     Offset_0x01EDAC(PC, D1)
 Offset_0x01EDA4:
                 move.w  #$0280, D0
-                bra     Jmp_01_To_DisplaySprite_Param          ; Offset_0x01EFE8
+                bra.w   Jmp_01_To_DisplaySprite_Param          ; Offset_0x01EFE8
 ;-------------------------------------------------------------------------------
 Offset_0x01EDAC:
                 dc.w    Offset_0x01EDB2-Offset_0x01EDAC
@@ -22,7 +22,7 @@ Offset_0x01EDB2:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Vertical_Bridge_Mappings, Obj_Map(A0) ; Offset_0x01EFD6, $0004
                 move.w  #$643C, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_22_To_ModifySpriteAttr_2P          ; Offset_0x01F006
+                bsr.w   Jmp_22_To_ModifySpriteAttr_2P          ; Offset_0x01F006
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$05, Obj_Priority(A0)                           ; $0018
                 move.b  #$08, Obj_Width(A0)                              ; $0019
@@ -44,7 +44,7 @@ Offset_0x01EE10:
                 neg.w   D1
 Offset_0x01EE1E:
                 move.w  D1, Obj_Control_Var_08(A0)                       ; $0034
-                bsr     Jmp_0F_To_SingleObjectLoad_2           ; Offset_0x01F000
+                bsr.w   Jmp_0F_To_SingleObjectLoad_2           ; Offset_0x01F000
                 bne.s   Offset_0x01EE8A
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.l  Obj_Map(A0), Obj_Map(A1)                  ; $0004, $0004
@@ -125,28 +125,28 @@ Offset_0x01EF30:
                 move.w  #$0009, D3
 Offset_0x01EF3C:
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_13_To_SolidObject                  ; Offset_0x01F012
+                bsr.w   Jmp_13_To_SolidObject                  ; Offset_0x01F012
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 beq.s   Offset_0x01EF4E
-                bra     Jmp_11_To_DisplaySprite                ; Offset_0x01EFEE
+                bra.w   Jmp_11_To_DisplaySprite                ; Offset_0x01EFEE
 Offset_0x01EF4E:
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
                 bhi.w   Offset_0x01EF66
-                bra     Jmp_11_To_DisplaySprite                ; Offset_0x01EFEE
+                bra.w   Jmp_11_To_DisplaySprite                ; Offset_0x01EFEE
 Offset_0x01EF66:
                 move.l  Obj_Control_Var_10(A0), A1                       ; $003C
-                bsr     Jmp_02_To_DeleteObject_A1              ; Offset_0x01EFFA
-                bra     Jmp_12_To_DeleteObject                 ; Offset_0x01EFF4
+                bsr.w   Jmp_02_To_DeleteObject_A1              ; Offset_0x01EFFA
+                bra.w   Jmp_12_To_DeleteObject                 ; Offset_0x01EFF4
 Offset_0x01EF72:
                 tst.b   Obj_Control_Var_0A(A0)                           ; $0036
                 beq.s   Offset_0x01EFD4
                 moveq   #$00, D0
                 moveq   #$00, D1
                 move.b  Obj_Angle(A0), D0                                ; $0026
-                bsr     Jmp_04_To_CalcSine                     ; Offset_0x01F00C
+                bsr.w   Jmp_04_To_CalcSine                     ; Offset_0x01F00C
                 move.w  Obj_Control_Var_06(A0), D2                       ; $0032
                 move.w  Obj_Control_Var_04(A0), D3                       ; $0030
                 moveq   #$00, D6

@@ -17,7 +17,7 @@ Offset_0x00AD34:
 Offset_0x00AD3C:
                 move.l  #Big_Ring_Mappings, Obj_Map(A0) ; Offset_0x00AF04, $0004
                 move.w  #$2400, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$40, Obj_Width(A0)                              ; $0019
                 tst.b   Obj_Flags(A0)                                    ; $0001
@@ -39,13 +39,13 @@ Offset_0x00AD8A:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     DeleteObject                           ; Offset_0x00D314
-                bra     DisplaySprite                          ; Offset_0x00D322       
+                bhi.w   DeleteObject                           ; Offset_0x00D314
+                bra.w   DisplaySprite                          ; Offset_0x00D322       
 ;-------------------------------------------------------------------------------
 Offset_0x00ADA8:
                 subq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$00, Obj_Col_Flags(A0)                          ; $0020
-                bsr     SingleObjectLoad                       ; Offset_0x00E6FE
+                bsr.w   SingleObjectLoad                       ; Offset_0x00E6FE
                 bne.w   Offset_0x00ADDA
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C
@@ -60,7 +60,7 @@ Offset_0x00ADDA:
                 bra.s   Offset_0x00AD8A        
 ;-------------------------------------------------------------------------------
 Offset_0x00ADE6:
-                bra     DeleteObject                           ; Offset_0x00D314 
+                bra.w   DeleteObject                           ; Offset_0x00D314 
 ;===============================================================================
 ; Objeto 0x4B - Anel gigante usado para acesso ao Estágio Especial, não usado
 ; <<<-          Left over do Sonic 1

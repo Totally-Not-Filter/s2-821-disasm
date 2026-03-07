@@ -16,7 +16,7 @@ Offset_0x020E9E:
 Offset_0x020EA4:
                 move.l  #Bubble_Monster_Mappings, Obj_Map(A0) ; Offset_0x02106C, $0004
                 move.w  #$24F9, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_28_To_ModifySpriteAttr_2P          ; Offset_0x021154
+                bsr.w   Jmp_28_To_ModifySpriteAttr_2P          ; Offset_0x021154
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.b  #$14, Obj_Width(A0)                              ; $0019
@@ -45,14 +45,14 @@ Offset_0x020F12:
                 subi.w  #$0004, Obj_Y(A0)                                ; $000C
 Offset_0x020F20:
                 lea     (Bubble_Monster_Animate_Data), A1      ; Offset_0x02100C
-                bsr     Jmp_09_To_AnimateSprite                ; Offset_0x02114E
-                bra     Jmp_1C_To_MarkObjGone                  ; Offset_0x021148
+                bsr.w   Jmp_09_To_AnimateSprite                ; Offset_0x02114E
+                bra.w   Jmp_1C_To_MarkObjGone                  ; Offset_0x021148
 Offset_0x020F2E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$00, Obj_Routine_2(A0)                          ; $0025
                 move.b  #$08, Obj_Map_Id(A0)                             ; $001A
                 move.w  #$0004, Obj_Timer(A0)                            ; $002A
-                bra     Jmp_1C_To_MarkObjGone                  ; Offset_0x021148  
+                bra.w   Jmp_1C_To_MarkObjGone                  ; Offset_0x021148  
 ;------------------------------------------------------------------------------- 
 Offset_0x020F48:
                 moveq   #$00, D0
@@ -77,14 +77,14 @@ Offset_0x020F74:
                 lea     Offset_0x020F5C(PC), A2
                 lea     Offset_0x020F68(PC), A3
 Offset_0x020F80:
-                bsr     Jmp_07_To_SingleObjectLoad             ; Offset_0x021142
+                bsr.w   Jmp_07_To_SingleObjectLoad             ; Offset_0x021142
                 bne.s   Offset_0x020FEA
                 move.b  (A0), (A1)
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
                 move.b  #$02, Obj_Routine_2(A1)                          ; $0025
                 move.l  #Bubble_Monster_Mappings, Obj_Map(A1) ; Offset_0x02106C, $0004
                 move.w  #$24F9, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_28_To_ModifySpriteAttr_2P          ; Offset_0x021154
+                bsr.w   Jmp_28_To_ModifySpriteAttr_2P          ; Offset_0x021154
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$03, Obj_Priority(A1)                           ; $0018
                 move.b  #$14, Obj_Width(A1)                              ; $0019
@@ -104,15 +104,15 @@ Offset_0x020F80:
 Offset_0x020FEA:
                 move.l  (A7)+, D7
                 move.b  #$04, Obj_Routine_2(A0)                          ; $0025
-                bra     Jmp_1C_To_MarkObjGone                  ; Offset_0x021148
+                bra.w   Jmp_1C_To_MarkObjGone                  ; Offset_0x021148
 Offset_0x020FF6:
                 subi.w  #$0001, Obj_Timer(A0)                            ; $002A
-                beq     Jmp_16_To_DeleteObject                 ; Offset_0x02113C
-                bra     Jmp_1C_To_MarkObjGone                  ; Offset_0x021148 
+                beq.w   Jmp_16_To_DeleteObject                 ; Offset_0x02113C
+                bra.w   Jmp_1C_To_MarkObjGone                  ; Offset_0x021148 
 ;-------------------------------------------------------------------------------  
 Offset_0x021004:
-                bsr     Jmp_0F_To_SpeedToPos                   ; Offset_0x02115A
-                bra     Jmp_1C_To_MarkObjGone                  ; Offset_0x021148                    
+                bsr.w   Jmp_0F_To_SpeedToPos                   ; Offset_0x02115A
+                bra.w   Jmp_1C_To_MarkObjGone                  ; Offset_0x021148                    
 ;-------------------------------------------------------------------------------
 Bubble_Monster_Animate_Data:                                   ; Offset_0x02100C
                 dc.w    Offset_0x02100E-Bubble_Monster_Animate_Data

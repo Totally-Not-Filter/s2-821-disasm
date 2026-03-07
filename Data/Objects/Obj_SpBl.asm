@@ -15,7 +15,7 @@ Offset_0x01F8FE:
 Offset_0x01F902:
                 move.l  #Spinning_Ball_Mappings, Obj_Map(A0) ; Offset_0x01F9C8, $0004
                 move.w  #$04C6, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_26_To_ModifySpriteAttr_2P          ; Offset_0x01FA04
+                bsr.w   Jmp_26_To_ModifySpriteAttr_2P          ; Offset_0x01FA04
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$14, Obj_Width(A0)                              ; $0019
@@ -29,11 +29,11 @@ Offset_0x01F902:
                 rts                                                            
 ;-------------------------------------------------------------------------------
 Offset_0x01F950:
-                bsr     Jmp_01_To_ObjectFall                   ; Offset_0x01FA10
+                bsr.w   Jmp_01_To_ObjectFall                   ; Offset_0x01FA10
                 bsr.w   Offset_0x01F966
                 lea     (Spinning_Ball_Animate_Data), A1       ; Offset_0x01F9C0
-                bsr     Jmp_05_To_AnimateSprite                ; Offset_0x01F9F2
-                bra     Jmp_18_To_MarkObjGone                  ; Offset_0x01F9EC
+                bsr.w   Jmp_05_To_AnimateSprite                ; Offset_0x01F9F2
+                bra.w   Jmp_18_To_MarkObjGone                  ; Offset_0x01F9EC
 Offset_0x01F966:
                 moveq   #$00, D3
                 move.b  Obj_Width(A0), D3                                ; $0019

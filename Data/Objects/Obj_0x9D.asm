@@ -15,12 +15,12 @@ Offset_0x0291E6:
                 dc.w    Offset_0x0292B2-Offset_0x0291E6       
 ;-------------------------------------------------------------------------------
 Offset_0x0291EE:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.b  #$10, Obj_Timer(A0)                              ; $002A
                 rts  
 ;-------------------------------------------------------------------------------
 Offset_0x0291FA:
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 bclr    #$00, Obj_Flags(A0)                              ; $0001
                 bclr    #$00, Obj_Status(A0)                             ; $0022
                 tst.w   D0
@@ -37,17 +37,17 @@ Offset_0x02921A:
 Offset_0x02922E:
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x029238
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029238:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 bsr.w   Offset_0x029260
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029244:
                 move.b  #$06, Obj_Routine(A0)                            ; $0024
                 move.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 move.b  #$08, Obj_Timer(A0)                              ; $002A
                 move.b  #$20, Obj_Control_Var_02(A0)                     ; $002E
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029260:
                 move.w  Obj_Control_Var_00(A0), D0                       ; $002C
                 cmpi.w  #$000C, D0
@@ -68,21 +68,21 @@ Offset_0x029280:
 Offset_0x02928C:
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 beq.s   Offset_0x0292A4
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Coconuts_AnimateData), A1             ; Offset_0x029366
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x0292A4:
                 subq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$10, Obj_Timer(A0)                              ; $002A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0    
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0    
 ;-------------------------------------------------------------------------------
 Offset_0x0292B2:
                 moveq   #$00, D0
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
                 move.w  Offset_0x0292C4(PC, D0), D1
                 jsr     Offset_0x0292C4(PC, D1)
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------   
 Offset_0x0292C4:
                 dc.w    Offset_0x0292C8-Offset_0x0292C4
@@ -106,9 +106,9 @@ Offset_0x0292EC:
                 clr.b   Obj_Routine_2(A0)                                ; $0025
                 move.b  #$04, Obj_Routine(A0)                            ; $0024
                 move.b  #$08, Obj_Timer(A0)                              ; $002A
-                bra     Offset_0x029260
+                bra.w   Offset_0x029260
 Offset_0x029300:
-                bsr     Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
+                bsr.w   Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
                 bne.s   Offset_0x029352
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$03, Obj_Map_Id(A1)                             ; $001A

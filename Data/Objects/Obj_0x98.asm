@@ -13,39 +13,39 @@ Offset_0x028CF2:
                 dc.w    Offset_0x028CFA-Offset_0x028CF2            
 ;-------------------------------------------------------------------------------
 Offset_0x028CF6:
-                bra     Object_Settings                        ; Offset_0x027EA4 
+                bra.w   Object_Settings                        ; Offset_0x027EA4 
 ;-------------------------------------------------------------------------------
 Offset_0x028CFA:
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bpl.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
                 move.l  Obj_Timer(A0), A1                                ; $002A
                 jsr     (A1)
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------  
 Nebula_Weapon:                                                 ; Offset_0x028D0C
                 bchg    #06, Obj_Art_VRAM(A0)                            ; $0002
-                bra     Jmp_0E_To_ObjectFall                   ; Offset_0x02A7BE     
+                bra.w   Jmp_0E_To_ObjectFall                   ; Offset_0x02A7BE     
 ;-------------------------------------------------------------------------------
 Turtloid_Weapon:                                               ; Offset_0x028D16
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Turtloid_Weapon_Animate_Data), A1     ; Offset_0x02912E
-                bra     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC  
+                bra.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC  
 ;-------------------------------------------------------------------------------   
 Coconuts_Weapon:                                               ; Offset_0x028D24
                 addi.w  #$0020, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 rts             
 ;-------------------------------------------------------------------------------
 Clucker_Weapon:                                                ; Offset_0x028D30
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Clucker_Weapon_Animate_Data), A1      ; Offset_0x02A610
-                bra     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC    
+                bra.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC    
 ;-------------------------------------------------------------------------------                
 Spiny_Weapon:                                                  ; Offset_0x028D3E
                 addi.w  #$0020, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Spiny_Weapon_Animate_Data), A1        ; Offset_0x02A1DE
-                bra     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC  
+                bra.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC  
 ;-------------------------------------------------------------------------------  
 Rexon_Fireball_Map_Ptr:                                        ; Offset_0x028D52
                 dc.l    Rexon_Mappings                         ; Offset_0x028C74

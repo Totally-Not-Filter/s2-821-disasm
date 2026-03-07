@@ -13,10 +13,10 @@ Offset_0x02A34A:
                 dc.w    Offset_0x02A352-Offset_0x02A34A     
 ;-------------------------------------------------------------------------------
 Offset_0x02A34E:
-                bra     Object_Settings                        ; Offset_0x027EA4 
+                bra.w   Object_Settings                        ; Offset_0x027EA4 
 ;-------------------------------------------------------------------------------
 Offset_0x02A352:
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;------------------------------------------------------------------------------- 
 Obj_0xA7_Ptr:                                                  ; Offset_0x02A356
                 dc.l    Grabber_Mappings                       ; Offset_0x02A374

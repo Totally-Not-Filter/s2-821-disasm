@@ -22,7 +22,7 @@ Offset_0x0219C8:
                 move.b  #$10, Obj_Height_2(A0)                           ; $0016
                 move.b  #$06, Obj_Width_2(A0)                            ; $0017
                 move.b  #$0C, Obj_Col_Flags(A0)                          ; $0020
-                bsr     Jmp_06_To_ObjectFall                   ; Offset_0x021B0A
+                bsr.w   Jmp_06_To_ObjectFall                   ; Offset_0x021B0A
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 tst.w   D1
                 bpl.s   Offset_0x021A1C
@@ -39,13 +39,13 @@ Offset_0x021A1E:
                 move.w  Offset_0x021A64(PC, D0), D1
                 jsr     Offset_0x021A64(PC, D1)
                 lea     (Dinobot_Animate_Data), A1             ; Offset_0x021AC4
-                bsr     Jmp_0D_To_AnimateSprite                ; Offset_0x021B04
+                bsr.w   Jmp_0D_To_AnimateSprite                ; Offset_0x021B04
                 move.w  Obj_X(A0), D0                                    ; $0008
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
                 bhi.w   Offset_0x021A4E
-                bra     Jmp_16_To_DisplaySprite                ; Offset_0x021AF8
+                bra.w   Jmp_16_To_DisplaySprite                ; Offset_0x021AF8
 Offset_0x021A4E:
                 lea     ($FFFFFC00).w, A2
                 moveq   #$00, D0
@@ -53,7 +53,7 @@ Offset_0x021A4E:
                 beq.s   Offset_0x021A60
                 bclr    #$07, $02(A2, D0)
 Offset_0x021A60:
-                bra     Jmp_19_To_DeleteObject                 ; Offset_0x021AFE      
+                bra.w   Jmp_19_To_DeleteObject                 ; Offset_0x021AFE      
 ;------------------------------------------------------------------------------- 
 Offset_0x021A64:
                 dc.w    Offset_0x021A68-Offset_0x021A64

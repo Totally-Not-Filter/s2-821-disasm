@@ -27,7 +27,7 @@ Offset_0x016ED4:
                 bne.s   Offset_0x016EF4
                 move.w  #$62F4, Obj_Art_VRAM(A0)                         ; $0002
 Offset_0x016EF4:
-                bsr     Jmp_03_To_ModifySpriteAttr_2P          ; Offset_0x017108
+                bsr.w   Jmp_03_To_ModifySpriteAttr_2P          ; Offset_0x017108
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 moveq   #$00, D0
                 move.b  Obj_Subtype(A0), D0                              ; $0028
@@ -51,13 +51,13 @@ Offset_0x016F3C:
                 move.b  Obj_Width(A0), D1                                ; $0019
                 move.w  #$0010, D3
                 move.w  (A7)+, D4
-                bsr     Platform_Object                        ; Offset_0x00F82C
+                bsr.w   Platform_Object                        ; Offset_0x00F82C
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_04_To_DeleteObject                 ; Offset_0x017102
-                bra     Jmp_03_To_DisplaySprite                ; Offset_0x0170FC
+                bhi.w   Jmp_04_To_DeleteObject                 ; Offset_0x017102
+                bra.w   Jmp_03_To_DisplaySprite                ; Offset_0x0170FC
 Offset_0x016F6C:
                 moveq   #$00, D0
                 move.b  Obj_Subtype(A0), D0                              ; $0028
@@ -125,7 +125,7 @@ Offset_0x016FF8:
                 rts    
 ;-------------------------------------------------------------------------------  
 Offset_0x016FFA:
-                bsr     Jmp_01_To_SpeedToPos                   ; Offset_0x01710E
+                bsr.w   Jmp_01_To_SpeedToPos                   ; Offset_0x01710E
                 moveq   #$08, D1
                 move.w  Obj_Control_Var_06(A0), D0                       ; $0032
                 subi.w  #$0060, D0
@@ -141,7 +141,7 @@ Offset_0x01701A:
                 rts       
 ;-------------------------------------------------------------------------------  
 Offset_0x01701C:
-                bsr     Jmp_01_To_SpeedToPos                   ; Offset_0x01710E
+                bsr.w   Jmp_01_To_SpeedToPos                   ; Offset_0x01710E
                 moveq   #$08, D1
                 move.w  Obj_Control_Var_06(A0), D0                       ; $0032
                 subi.w  #$0060, D0

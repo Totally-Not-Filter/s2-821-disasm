@@ -16,7 +16,7 @@ Offset_0x020384:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #GHz_Boss_Mappings_02, Obj_Map(A0) ; Offset_0x020430, $0004
                 move.w  #$0580, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_27_To_ModifySpriteAttr_2P          ; Offset_0x02050E
+                bsr.w   Jmp_27_To_ModifySpriteAttr_2P          ; Offset_0x02050E
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
                 move.b  #$00, Obj_Col_Flags(A0)                          ; $0020
@@ -35,9 +35,9 @@ Offset_0x0203CA:
                 move.b  #$07, Obj_Ani_Time(A0)                           ; $001E
                 addq.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 cmpi.b  #$07, Obj_Map_Id(A0)                             ; $001A
-                beq     Jmp_14_To_DeleteObject                 ; Offset_0x020502
+                beq.w   Jmp_14_To_DeleteObject                 ; Offset_0x020502
 Offset_0x0203E4:
-                bra     Jmp_13_To_DisplaySprite                ; Offset_0x0204FC    
+                bra.w   Jmp_13_To_DisplaySprite                ; Offset_0x0204FC    
 ;-------------------------------------------------------------------------------
 GHz_Boss_Mappings:                                             ; Offset_0x0203E8
                 dc.w    Offset_0x0203EC-GHz_Boss_Mappings

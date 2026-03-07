@@ -22,7 +22,7 @@ Offset_0x01B8BA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Mz_Platform_Mappings, Obj_Map(A0) ; Offset_0x01BC64, $0004
                 move.w  #$6000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_11_To_ModifySpriteAttr_2P          ; Offset_0x01BCE8
+                bsr.w   Jmp_11_To_ModifySpriteAttr_2P          ; Offset_0x01BCE8
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 moveq   #$00, D0
@@ -43,7 +43,7 @@ Offset_0x01B906:
                 addq.b  #$04, Obj_Routine(A0)                            ; $0024
                 move.l  #Mini_Gear_Mappings, Obj_Map(A0) ; Offset_0x01BCA0, $0004
                 move.w  #$655F, Obj_Art_VRAM(A0)                         ; $0002
-                bra     Offset_0x01BC5E
+                bra.w   Offset_0x01BC5E
 Offset_0x01B922:
                 move.w  Obj_X(A0), Obj_Control_Var_08(A0)         ; $0008, $0034
                 move.w  Obj_Y(A0), Obj_Control_Var_04(A0)         ; $000C, $0030
@@ -52,7 +52,7 @@ Offset_0x01B922:
                 move.w  D0, Obj_Control_Var_10(A0)                       ; $003C
                 moveq   #$00, D0
                 move.b  Obj_Subtype(A0), D0                              ; $0028
-                bpl     Offset_0x01B9CA
+                bpl.w   Offset_0x01B9CA
                 andi.b  #$0F, D0
                 move.b  D0, Obj_Control_Var_12(A0)                       ; $003E
                 move.b  (A3), Obj_Subtype(A0)                            ; $0028
@@ -60,7 +60,7 @@ Offset_0x01B922:
                 bne.s   Offset_0x01B958
                 move.w  Obj_Control_Var_10(A0), Obj_Control_Var_0E(A0); $003A, $003C
 Offset_0x01B958:
-                bsr     Jmp_08_To_SingleObjectLoad_2           ; Offset_0x01BCE2
+                bsr.w   Jmp_08_To_SingleObjectLoad_2           ; Offset_0x01BCE2
                 bne.s   Offset_0x01B9B8
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 addq.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -103,7 +103,7 @@ Offset_0x01B9D0:
                 move.b  Obj_Height_2(A0), D2                             ; $0016
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_07_To_SolidObject                  ; Offset_0x01BCEE
+                bsr.w   Jmp_07_To_SolidObject                  ; Offset_0x01BCEE
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
@@ -317,7 +317,7 @@ Offset_0x01BC40:
 Offset_0x01BC48:                
                 andi.w  #$0007, D0
                 move.b  Offset_0x01BC56(PC, D0), Obj_Map_Id(A0)          ; $001A
-                bra     Jmp_10_To_MarkObjGone                  ; Offset_0x01BCDC                       
+                bra.w   Jmp_10_To_MarkObjGone                  ; Offset_0x01BCDC                       
 ;-------------------------------------------------------------------------------  
 Offset_0x01BC56:
                 dc.b    $00, $00, $02, $02, $02, $01, $01, $01                                                                

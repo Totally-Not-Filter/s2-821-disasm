@@ -17,7 +17,7 @@ Offset_0x021466:
 Offset_0x02146E:
                 move.l  #Blink_Mappings, Obj_Map(A0)    ; Offset_0x021678, $0004
                 move.w  #$24E1, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_29_To_ModifySpriteAttr_2P          ; Offset_0x0216F0
+                bsr.w   Jmp_29_To_ModifySpriteAttr_2P          ; Offset_0x0216F0
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$14, Obj_Width(A0)                              ; $0019
@@ -31,12 +31,12 @@ Offset_0x02146E:
                 beq.s   Offset_0x0214C0
                 neg.w   Obj_Speed(A0)                                    ; $0010
 Offset_0x0214C0:
-                bsr     Jmp_08_To_SingleObjectLoad             ; Offset_0x0216D2
+                bsr.w   Jmp_08_To_SingleObjectLoad             ; Offset_0x0216D2
                 bne.s   Offset_0x021514
                 move.b  (A0), (A1)
                 move.l  #Blink_Mappings, Obj_Map(A1)    ; Offset_0x021678, $0004
                 move.w  #$04E1, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_29_To_ModifySpriteAttr_2P          ; Offset_0x0216F0
+                bsr.w   Jmp_29_To_ModifySpriteAttr_2P          ; Offset_0x0216F0
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$04, Obj_Priority(A1)                           ; $0018
                 move.b  #$14, Obj_Width(A1)                              ; $0019
@@ -53,7 +53,7 @@ Offset_0x021514:
 Offset_0x021516:
                 move.l  Obj_Control_Var_00(A0), A1                       ; $002C
                 tst.b   (A1)
-                beq     Jmp_17_To_DeleteObject                 ; Offset_0x0216CC
+                beq.w   Jmp_17_To_DeleteObject                 ; Offset_0x0216CC
                 move.b  Obj_Status(A1), Obj_Status(A0)            ; $0022, $0022
                 move.w  Obj_X(A1), Obj_X(A0)                      ; $0008, $0008
                 move.w  Obj_Y(A1), Obj_Y(A0)                      ; $000C, $000C
@@ -65,17 +65,17 @@ Offset_0x021516:
 Offset_0x021546:
                 add.w   D0, Obj_X(A0)                                    ; $0008
                 lea     (Blink_Animate_Data), A1               ; Offset_0x02166A
-                bsr     Jmp_0B_To_AnimateSprite                ; Offset_0x0216DE
-                bra     Jmp_1E_To_MarkObjGone                  ; Offset_0x0216D8 
+                bsr.w   Jmp_0B_To_AnimateSprite                ; Offset_0x0216DE
+                bra.w   Jmp_1E_To_MarkObjGone                  ; Offset_0x0216D8 
 ;-------------------------------------------------------------------------------
 Offset_0x021558:
-                bsr     Jmp_11_To_SpeedToPos                   ; Offset_0x0216FC
+                bsr.w   Jmp_11_To_SpeedToPos                   ; Offset_0x0216FC
                 bsr.w   Offset_0x021564
-                bra     Jmp_1E_To_MarkObjGone                  ; Offset_0x0216D8
+                bra.w   Jmp_1E_To_MarkObjGone                  ; Offset_0x0216D8
 Offset_0x021564:
                 subi.w  #$0001, Obj_Timer(A0)                            ; $002A
                 bne.s   Offset_0x021584
-                bsr     Jmp_08_To_SingleObjectLoad             ; Offset_0x0216D2
+                bsr.w   Jmp_08_To_SingleObjectLoad             ; Offset_0x0216D2
                 bne.s   Offset_0x021584
                 move.b  (A0), (A1)
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -96,18 +96,18 @@ Offset_0x021594:
 ;-------------------------------------------------------------------------------  
 Offset_0x021598:
                 subq.w  #$01, Obj_Timer(A0)                              ; $002A
-                bmi     Offset_0x02162C
-                bsr     Jmp_01_To_PseudoRandomNumber           ; Offset_0x0216E4
+                bmi.w   Offset_0x02162C
+                bsr.w   Jmp_01_To_PseudoRandomNumber           ; Offset_0x0216E4
                 andi.w  #$007F, D0
                 bne.w   Offset_0x02162A
-                bsr     Jmp_08_To_SingleObjectLoad             ; Offset_0x0216D2
+                bsr.w   Jmp_08_To_SingleObjectLoad             ; Offset_0x0216D2
                 bne.s   Offset_0x02162A
                 move.b  (A0), (A1)
                 move.l  #Blink_Mappings, Obj_Map(A1)    ; Offset_0x021678, $0004
                 move.w  #$64E1, Obj_Art_VRAM(A1)                         ; $0002
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
                 addi.b  #$02, Obj_Routine_2(A1)                          ; $0025
-                bsr     Jmp_29_To_ModifySpriteAttr_2P          ; Offset_0x0216F0
+                bsr.w   Jmp_29_To_ModifySpriteAttr_2P          ; Offset_0x0216F0
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$03, Obj_Priority(A1)                           ; $0018
                 move.b  #$04, Obj_Height_2(A1)                           ; $0016
@@ -130,11 +130,11 @@ Offset_0x02162A:
 Offset_0x02162C:
                 move.l  Obj_Control_Var_00(A0), A1                       ; $002C
                 move.w  #$003C, Obj_Timer(A1)                            ; $002A
-                bra     Jmp_17_To_DeleteObject                 ; Offset_0x0216CC    
+                bra.w   Jmp_17_To_DeleteObject                 ; Offset_0x0216CC    
 ;-------------------------------------------------------------------------------  
 Offset_0x02163A:
-                bsr     Jmp_04_To_ObjectFall                   ; Offset_0x0216F6
-                bsr     Jmp_04_To_ObjHitFloor                  ; Offset_0x0216EA
+                bsr.w   Jmp_04_To_ObjectFall                   ; Offset_0x0216F6
+                bsr.w   Jmp_04_To_ObjHitFloor                  ; Offset_0x0216EA
                 tst.w   D1
                 bpl.s   Offset_0x02165C
                 add.w   D1, Obj_Y(A0)                                    ; $000C

@@ -19,7 +19,7 @@ Offset_0x01F032:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Falling_Pillar_Mappings, Obj_Map(A0) ; Offset_0x01F1FE, $0004
                 move.w  #$0000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_23_To_ModifySpriteAttr_2P          ; Offset_0x01F266
+                bsr.w   Jmp_23_To_ModifySpriteAttr_2P          ; Offset_0x01F266
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 moveq   #$00, D0
@@ -59,13 +59,13 @@ Offset_0x01F09A:
                 move.b  Obj_Height_2(A0), D2                             ; $0016
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_14_To_SolidObject                  ; Offset_0x01F272
+                bsr.w   Jmp_14_To_SolidObject                  ; Offset_0x01F272
                 swap    D6
                 move.b  D6, Obj_Control_Var_13(A0)                       ; $003F
-                bsr     Offset_0x01F1BA
+                bsr.w   Offset_0x01F1BA
 Offset_0x01F0D8:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
-                bra     Jmp_06_To_MarkObjGone_2                ; Offset_0x01F278                                           
+                bra.w   Jmp_06_To_MarkObjGone_2                ; Offset_0x01F278                                           
 ;-------------------------------------------------------------------------------
 Offset_0x01F0E0:
                 dc.w    Offset_0x01F0F0-Offset_0x01F0E0
@@ -97,9 +97,9 @@ Offset_0x01F10A:
                 rts  
 ;-------------------------------------------------------------------------------   
 Offset_0x01F11A:
-                bsr     Jmp_0C_To_SpeedToPos                   ; Offset_0x01F27E
+                bsr.w   Jmp_0C_To_SpeedToPos                   ; Offset_0x01F27E
                 addi.w  #$0008, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_01_To_ObjHitFloor                  ; Offset_0x01F260
+                bsr.w   Jmp_01_To_ObjHitFloor                  ; Offset_0x01F260
                 tst.w   D1
                 bpl.w   Offset_0x01F13C
                 addq.w  #$01, D1
@@ -110,9 +110,9 @@ Offset_0x01F13C:
                 rts   
 ;-------------------------------------------------------------------------------   
 Offset_0x01F13E:
-                bsr     Jmp_0C_To_SpeedToPos                   ; Offset_0x01F27E
+                bsr.w   Jmp_0C_To_SpeedToPos                   ; Offset_0x01F27E
                 subi.w  #$0008, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_00_To_Object_HitCeiling            ; Offset_0x01F26C
+                bsr.w   Jmp_00_To_Object_HitCeiling            ; Offset_0x01F26C
                 tst.w   D1
                 bpl.w   Offset_0x01F15E
                 sub.w   D1, Obj_Y(A0)                                    ; $000C
@@ -140,7 +140,7 @@ Offset_0x01F174:
                 moveq   #-$02, D0
 Offset_0x01F188:
                 add.w   D0, Obj_Y(A0)                                    ; $000C
-                bsr     Jmp_00_To_Object_HitCeiling            ; Offset_0x01F26C
+                bsr.w   Jmp_00_To_Object_HitCeiling            ; Offset_0x01F26C
                 tst.w   D1
                 bpl.w   Offset_0x01F19A
                 sub.w   D1, Obj_Y(A0)                                    ; $000C
@@ -152,7 +152,7 @@ Offset_0x01F19C:
                 moveq   #$02, D0
 Offset_0x01F1A4:
                 add.w   D0, Obj_Y(A0)                                    ; $000C
-                bsr     Jmp_01_To_ObjHitFloor                  ; Offset_0x01F260
+                bsr.w   Jmp_01_To_ObjHitFloor                  ; Offset_0x01F260
                 tst.w   D1
                 bpl.w   Offset_0x01F1B8
                 addq.w  #$01, D1

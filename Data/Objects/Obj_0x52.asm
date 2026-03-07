@@ -60,7 +60,7 @@ Offset_0x025914:
 ;-------------------------------------------------------------------------------
 Offset_0x02591E:
                 move.b  #$00, ($FFFFF73F).w
-                bsr     Boss_Move                              ; Offset_0x0245FA
+                bsr.w   Boss_Move                              ; Offset_0x0245FA
                 tst.b   Obj_Control_Var_00(A0)                           ; $002C
                 bne.s   Offset_0x02593E
                 cmpi.w  #$0520, (Boss_Move_Buffer+$04).w             ; $FFFFF754
@@ -77,8 +77,8 @@ Offset_0x02594C:
                 move.b  #$3C, Obj_Control_Var_12(A0)                     ; $003E
 Offset_0x02595C:
                 move.w  (Boss_Move_Buffer+$04).w, Obj_Y(A0)          ; $FFFFF754; $000C
-                bsr     Boss_Hit                               ; Offset_0x02459E
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0   
+                bsr.w   Boss_Hit                               ; Offset_0x02459E
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0   
 ;-------------------------------------------------------------------------------
 Offset_0x02596A:
                 subi.b  #$01, Obj_Control_Var_12(A0)                     ; $003E
@@ -87,7 +87,7 @@ Offset_0x02596A:
                 move.b  #$01, Obj_Ani_Boss_Cnt(A0)                       ; $000F
                 cmpi.b  #$E8, Obj_Control_Var_12(A0)                     ; $003E
                 bne.s   Offset_0x0259CC
-                bsr     Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
+                bsr.w   Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
                 bne.s   Offset_0x0259B6
                 _move.b #$52, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Boss_Routine(A1)                       ; $000A
@@ -97,11 +97,11 @@ Offset_0x02596A:
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C
                 move.b  #$2F, Obj_Control_Var_12(A0)                     ; $003E
 Offset_0x0259B6:
-                bsr     Boss_Hit                               ; Offset_0x02459E
-                bsr     Offset_0x025AE2
+                bsr.w   Boss_Hit                               ; Offset_0x02459E
+                bsr.w   Offset_0x025AE2
                 lea     (HTz_Boss_Animate_Data), A1            ; Offset_0x025E08
-                bsr     Boss_AnimateSprite                     ; Offset_0x026312
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bsr.w   Boss_AnimateSprite                     ; Offset_0x026312
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x0259CC:
                 move.b  Obj_Map_Id(A0), D0                               ; $001A
                 jsr     (CalcSine).l                             ; Offset_0x003282
@@ -120,11 +120,11 @@ Offset_0x0259E6:
                 bne.w   Offset_0x0259CC
                 move.w  #$00E0, (Boss_Move_Buffer+$0A).w             ; $FFFFF75A
                 addq.b  #$02, Obj_Ani_Boss_Routine(A0)                   ; $0026
-                bsr     Offset_0x025AE2
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0 
+                bsr.w   Offset_0x025AE2
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0 
 ;-------------------------------------------------------------------------------
 Offset_0x025A1A:
-                bsr     Boss_Move                              ; Offset_0x0245FA
+                bsr.w   Boss_Move                              ; Offset_0x0245FA
                 tst.b   Obj_Control_Var_00(A0)                           ; $002C
                 bne.s   Offset_0x025A2E
                 cmpi.w  #$0540, (Boss_Move_Buffer+$04).w             ; $FFFFF754
@@ -137,7 +137,7 @@ Offset_0x025A36:
                 tst.b   Obj_Control_Var_0C(A0)                           ; $0038
                 bne.s   Offset_0x025A5C
                 st      Obj_Control_Var_0C(A0)                           ; $0038
-                bsr     Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
+                bsr.w   Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
                 bne.s   Offset_0x025A5C
                 move.b  #$52, (A1)
                 move.b  #$06, Obj_Boss_Routine(A1)                       ; $000A
@@ -179,8 +179,8 @@ Offset_0x025ACE:
                 bclr    #$00, Obj_Flags(A0)                              ; $0001
 Offset_0x025AD4:
                 move.w  (Boss_Move_Buffer+$04).w, Obj_Y(A0)   ; $FFFFF754, $000C
-                bsr     Boss_Hit                               ; Offset_0x02459E
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bsr.w   Boss_Hit                               ; Offset_0x02459E
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x025AE2:
                 move.w  Obj_X(A0), D0                                    ; $0008
                 move.w  Obj_Y(A0), D1                                    ; $000C
@@ -222,8 +222,8 @@ Offset_0x025B54:
                 move.w  HTz_Robotnik_Pos_X(A0), D1                       ; $0010
                 add.w   D1, Obj_X(A0)                                    ; $0008
                 lea     (HTz_Boss_Animate_Data), A1            ; Offset_0x025E08
-                bsr     Jmp_14_To_AnimateSprite                ; Offset_0x025FC8
-                bra     Jmp_25_To_MarkObjGone                  ; Offset_0x025FC2         
+                bsr.w   Jmp_14_To_AnimateSprite                ; Offset_0x025FC8
+                bra.w   Jmp_25_To_MarkObjGone                  ; Offset_0x025FC2         
 ;-------------------------------------------------------------------------------
 Offset_0x025B6A:
                 moveq   #$00, D0
@@ -242,7 +242,7 @@ Offset_0x025B7C:
                 bra.s   Offset_0x025B96 
 ;-------------------------------------------------------------------------------
 Offset_0x025B84:
-                bsr     Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
+                bsr.w   Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
                 bne.s   Offset_0x025C08
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
                 move.w  Obj_Y(A0), Obj_Y(A1)                      ; $000C, $000C    
@@ -279,7 +279,7 @@ Offset_0x025C08:
 ;-------------------------------------------------------------------------------
 Offset_0x025C0A:
                 bsr.w   Offset_0x025C6C
-                bsr     Jmp_05_To_ObjHitFloor                  ; Offset_0x025FCE
+                bsr.w   Jmp_05_To_ObjHitFloor                  ; Offset_0x025FCE
                 tst.w   D1
                 bpl.s   Offset_0x025C5E
                 add.w   D1, Obj_Y(A0)                                    ; $000C
@@ -290,15 +290,15 @@ Offset_0x025C0A:
                 move.w  #$0000, Obj_Speed_Y(A0)                          ; $0012
                 move.l  #Fireball_Mappings, Obj_Map(A0) ; Offset_0x0180D0, $0004
                 move.w  #$839E, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_2E_To_ModifySpriteAttr_2P          ; Offset_0x025FDA
+                bsr.w   Jmp_2E_To_ModifySpriteAttr_2P          ; Offset_0x025FDA
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
                 move.w  #$0009, Obj_Boss_Hit_2(A0)                       ; $0032
                 move.b  #$03, Obj_Control_Var_0A(A0)                     ; $0036
-                bra     Jmp_00_To_Obj_0x20_HTz_Boss_FireBall   ; Offset_0x025FD4
+                bra.w   Jmp_00_To_Obj_0x20_HTz_Boss_FireBall   ; Offset_0x025FD4
 Offset_0x025C5E:
                 lea     (HTz_Boss_Animate_Data), A1            ; Offset_0x025E08
-                bsr     Jmp_14_To_AnimateSprite                ; Offset_0x025FC8
-                bra     Jmp_25_To_MarkObjGone                  ; Offset_0x025FC2
+                bsr.w   Jmp_14_To_AnimateSprite                ; Offset_0x025FC8
+                bra.w   Jmp_25_To_MarkObjGone                  ; Offset_0x025FC2
 Offset_0x025C6C:
                 move.l  Obj_Timer(A0), D2                                ; $002A
                 move.l  Obj_Y(A0), D3                                    ; $000C
@@ -323,15 +323,15 @@ Offset_0x025C9E:
                 cmpi.w  #$001E, (Boss_Move_Buffer+$0C).w             ; $FFFFF75C
                 bgt.s   Offset_0x025CD2
                 move.b  #$10, Obj_Boss_Ani_Map(A0)                       ; $000B
-                bsr     Boss_Defeated                          ; Offset_0x023AEC
+                bsr.w   Boss_Defeated                          ; Offset_0x023AEC
                 move.b  ($FFFFFE0F).w, D0
                 andi.b  #$1F, D0
-                bne     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bne.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
                 bsr.w   Offset_0x025D34
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x025CD2:
-                bsr     Boss_Defeated                          ; Offset_0x023AEC
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bsr.w   Boss_Defeated                          ; Offset_0x023AEC
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x025CDA:
                 move.b  ($FFFFFE0F).w, D0
                 andi.b  #$1F, D0
@@ -339,27 +339,27 @@ Offset_0x025CDA:
                 bsr.w   Offset_0x025D34
 Offset_0x025CEA:
                 cmpi.w  #$FFC4, (Boss_Move_Buffer+$0C).w             ; $FFFFF75C
-                bgt     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bgt.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
                 addq.w  #$02, Obj_Y(A0)                                  ; $000C
                 tst.b   Obj_Control_Var_00(A0)                           ; $002C
                 bne.s   Offset_0x025D0C
                 cmpi.w  #$0540, Obj_Y(A0)                                ; $000C
                 bgt.w   Offset_0x025D1A
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x025D0C:
                 cmpi.w  #$04F0, Obj_Y(A0)                                ; $000C
                 bgt.w   Offset_0x025D1A
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x025D1A:
                 tst.b   (Boss_Defeated_Flag).w                       ; $FFFFF7A7
                 bne.s   Offset_0x025D30
                 move.b  #$01, (Boss_Defeated_Flag).w                 ; $FFFFF7A7
                 move.w  ($FFFFEEC2).w, (Sonic_Level_Limits_Max_X).w  ; $FFFFEECA
-                bra     Jmp_1F_To_DeleteObject                 ; Offset_0x025FB6
+                bra.w   Jmp_1F_To_DeleteObject                 ; Offset_0x025FB6
 Offset_0x025D30:
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 Offset_0x025D34:
-                bsr     Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
+                bsr.w   Jmp_0B_To_SingleObjectLoad             ; Offset_0x025FBC
                 bne.s   Offset_0x025D8E
                 move.b  #$52, (A1)
                 move.b  #$08, Obj_Boss_Routine(A1)                       ; $000A
@@ -384,7 +384,7 @@ Offset_0x025D90:
                 move.b  #$11, Obj_Ani_Time(A0)                           ; $001E
                 addq.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 cmpi.b  #$04, Obj_Map_Id(A0)                             ; $001A
-                beq     Jmp_1F_To_DeleteObject                 ; Offset_0x025FB6
+                beq.w   Jmp_1F_To_DeleteObject                 ; Offset_0x025FB6
 Offset_0x025DAA:
                 move.l  Obj_Timer(A0), D2                                ; $002A
                 move.l  Obj_Y(A0), D3                                    ; $000C
@@ -399,7 +399,7 @@ Offset_0x025DAA:
                 move.l  D2, Obj_Timer(A0)                                ; $002A
                 move.w  Obj_Timer(A0), Obj_X(A0)                  ; $0008, $002A
                 move.l  D3, Obj_Y(A0)                                    ; $000C
-                bra     Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
+                bra.w   Jmp_1A_To_DisplaySprite                ; Offset_0x025FB0
 ;-------------------------------------------------------------------------------
 HTz_Boss_Defeated_Smoke_Mappings:                              ; Offset_0x025DD8
                 dc.w    Offset_0x025DE0-HTz_Boss_Defeated_Smoke_Mappings

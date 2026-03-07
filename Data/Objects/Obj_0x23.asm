@@ -16,12 +16,12 @@ Offset_0x01A656:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Pillar_Mappings, Obj_Map(A0)   ; Offset_0x01A79E, $0004
                 move.w  #$2000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_0D_To_ModifySpriteAttr_2P          ; Offset_0x01AEA4
+                bsr.w   Jmp_0D_To_ModifySpriteAttr_2P          ; Offset_0x01AEA4
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$20, Obj_Height_2(A0)                           ; $0016
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
-                bsr     Jmp_07_To_SingleObjectLoad_2           ; Offset_0x01AE9E
+                bsr.w   Jmp_07_To_SingleObjectLoad_2           ; Offset_0x01AE9E
                 bne.s   Offset_0x01A6DA
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 addq.b  #$02, Obj_Routine(A1)                            ; $0024
@@ -49,8 +49,8 @@ Offset_0x01A6DA:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  (A7)+, D4
-                bsr     Jmp_05_To_SolidObject                  ; Offset_0x01AEAA
-                bra     Jmp_0D_To_MarkObjGone                  ; Offset_0x01AE98
+                bsr.w   Jmp_05_To_SolidObject                  ; Offset_0x01AEAA
+                bra.w   Jmp_0D_To_MarkObjGone                  ; Offset_0x01AE98
 Offset_0x01A700:
                 moveq   #$00, D0
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
@@ -101,9 +101,9 @@ Offset_0x01A768:
                 dc.b    $00, $01, $FF, $01, $00, $FF, $00, $01    
 ;-------------------------------------------------------------------------------
 Offset_0x01A770:
-                bsr     Jmp_08_To_SpeedToPos                   ; Offset_0x01AEB0
+                bsr.w   Jmp_08_To_SpeedToPos                   ; Offset_0x01AEB0
                 addi.w  #$0038, Obj_Speed_Y(A0)                          ; $0012
-                bsr     ObjHitFloor                            ; Offset_0x014204
+                bsr.w   ObjHitFloor                            ; Offset_0x014204
                 tst.w   D1
                 bpl.w   Offset_0x01A79C
                 add.w   D1, Obj_Y(A0)                                    ; $000C

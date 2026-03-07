@@ -18,7 +18,7 @@ Offset_0x02D112:
                 move.w  #$0108, Obj_Sub_Y(A0)                            ; $000A
                 move.l  #Head_Up_Display_Mappings, Obj_Map(A0) ; Offset_0x02D184, $0004
                 move.w  #$06CA, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_33_To_ModifySpriteAttr_2P          ; Offset_0x02DE5C
+                bsr.w   Jmp_33_To_ModifySpriteAttr_2P          ; Offset_0x02DE5C
                 move.b  #$00, Obj_Flags(A0)                              ; $0001
                 move.b  #$00, Obj_Priority(A0)                           ; $0018  
 ;-------------------------------------------------------------------------------

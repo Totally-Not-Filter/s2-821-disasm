@@ -15,7 +15,7 @@ Offset_0x021B26:
 ;------------------------------------------------------------------------------- 
 Offset_0x021B2C:
                 subi.b  #$01, Obj_Subtype(A0)                            ; $0028
-                bpl     Offset_0x021BD2
+                bpl.w   Offset_0x021BD2
                 move.l  #Offset_0x021CA4, Obj_Map(A0)                    ; $0004
                 move.w  #$03C4, Obj_Art_VRAM(A0)                         ; $0002
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
@@ -24,7 +24,7 @@ Offset_0x021B2C:
                 move.b  #$10, Obj_Height_2(A0)                           ; $0016
                 move.b  #$08, Obj_Width_2(A0)                            ; $0017
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bsr     Jmp_09_To_SingleObjectLoad             ; Offset_0x021D98
+                bsr.w   Jmp_09_To_SingleObjectLoad             ; Offset_0x021D98
                 bne.s   Offset_0x021BD2
                 _move.b #$5A, 0(A1)                                 ; $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -49,8 +49,8 @@ Offset_0x021BD2:
 ;------------------------------------------------------------------------------- 
 Offset_0x021BD4:
                 lea     (Offset_0x021C7A), A1
-                bsr     Jmp_0E_To_AnimateSprite                ; Offset_0x021DA4
-                bra     Jmp_20_To_MarkObjGone                  ; Offset_0x021D9E  
+                bsr.w   Jmp_0E_To_AnimateSprite                ; Offset_0x021DA4
+                bra.w   Jmp_20_To_MarkObjGone                  ; Offset_0x021D9E  
 ;------------------------------------------------------------------------------- 
 Offset_0x021BE2:
                 moveq   #$00, D0
@@ -77,8 +77,8 @@ Offset_0x021C12:
                 bmi.s   Offset_0x021C28
 Offset_0x021C1A:
                 lea     (Offset_0x021C7A), A1
-                bsr     Jmp_0E_To_AnimateSprite                ; Offset_0x021DA4
-                bra     Jmp_20_To_MarkObjGone                  ; Offset_0x021D9E
+                bsr.w   Jmp_0E_To_AnimateSprite                ; Offset_0x021DA4
+                bra.w   Jmp_20_To_MarkObjGone                  ; Offset_0x021D9E
 Offset_0x021C28:
                 addq.b  #$02, Obj_Routine_2(A0)                          ; $0025
                 bra.s   Offset_0x021C1A    
@@ -102,8 +102,8 @@ Offset_0x021C52:
                 addi.b  #$01, Obj_Ani_Number(A0)                         ; $001C
 Offset_0x021C6C:
                 lea     (Offset_0x021C7A), A1
-                bsr     Jmp_0E_To_AnimateSprite                ; Offset_0x021DA4
-                bra     Jmp_20_To_MarkObjGone                  ; Offset_0x021D9E           
+                bsr.w   Jmp_0E_To_AnimateSprite                ; Offset_0x021DA4
+                bra.w   Jmp_20_To_MarkObjGone                  ; Offset_0x021D9E           
 ;-------------------------------------------------------------------------------  
 Offset_0x021C7A:
                 dc.w    Offset_0x021C82-Offset_0x021C7A

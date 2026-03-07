@@ -9,14 +9,14 @@
                 jsr     Offset_0x01E69C(PC, D1)
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 beq.s   Offset_0x01E684
-                bra     Jmp_10_To_DisplaySprite                ; Offset_0x01E884
+                bra.w   Jmp_10_To_DisplaySprite                ; Offset_0x01E884
 Offset_0x01E684:
                 move.w  Obj_X(A0), D0                                    ; $0008
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_11_To_DeleteObject                 ; Offset_0x01E88A
-                bra     Jmp_10_To_DisplaySprite                ; Offset_0x01E884
+                bhi.w   Jmp_11_To_DeleteObject                 ; Offset_0x01E88A
+                bra.w   Jmp_10_To_DisplaySprite                ; Offset_0x01E884
 ;-------------------------------------------------------------------------------
 Offset_0x01E69C:
                 dc.w    Offset_0x01E6A4-Offset_0x01E69C
@@ -35,7 +35,7 @@ Offset_0x01E6A4:
                 move.b  Obj_Subtype(A0), D0                              ; $0028
                 andi.w  #$0002, D0
                 move.w  Offset_0x01E6A0(PC, D0), Obj_Control_Var_04(A0)  ; $0030
-                bsr     Jmp_1F_To_ModifySpriteAttr_2P          ; Offset_0x01E896               
+                bsr.w   Jmp_1F_To_ModifySpriteAttr_2P          ; Offset_0x01E896               
 ;-------------------------------------------------------------------------------
 Offset_0x01E6DA:
                 cmpi.b  #$01, Obj_Map_Id(A0)                             ; $001A
@@ -47,7 +47,7 @@ Offset_0x01E6DA:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     Jmp_03_To_SolidObject_2_A1             ; Offset_0x01E89C
+                bsr.w   Jmp_03_To_SolidObject_2_A1             ; Offset_0x01E89C
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x01E70A
                 bsr.s   Offset_0x01E782
@@ -55,7 +55,7 @@ Offset_0x01E70A:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     Jmp_03_To_SolidObject_2_A1             ; Offset_0x01E89C
+                bsr.w   Jmp_03_To_SolidObject_2_A1             ; Offset_0x01E89C
                 btst    #$04, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x01E722
                 bsr.s   Offset_0x01E782
@@ -92,7 +92,7 @@ Offset_0x01E758:
                 move.b  #$03, Obj_Ani_Number(A0)                         ; $001C
 Offset_0x01E776:
                 lea     (Spring_Tube_Animate_Data), A1         ; Offset_0x01E828
-                bra     Jmp_04_To_AnimateSprite                ; Offset_0x01E890
+                bra.w   Jmp_04_To_AnimateSprite                ; Offset_0x01E890
 ;-------------------------------------------------------------------------------
 ; Offset_0x01E780:
                 rts    

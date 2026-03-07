@@ -17,7 +17,7 @@ Offset_0x009058:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Log_Spikes_Mappings, Obj_Map(A0) ; Offset_0x009186, $0004
                 move.w  #$4398, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 move.b  #$08, Obj_Width(A0)                              ; $0019
@@ -36,7 +36,7 @@ Offset_0x009058:
                 bcs.s   Offset_0x00911C
                 moveq   #$00, D6
 Offset_0x0090A6:
-                bsr     SingleObjectLoad_2                     ; Offset_0x00E714
+                bsr.w   SingleObjectLoad_2                     ; Offset_0x00E714
                 bne.s   Offset_0x00911C
                 addq.b  #$01, Obj_Subtype(A0)                            ; $0028
                 move.w  A1, D5
@@ -50,7 +50,7 @@ Offset_0x0090A6:
                 move.w  D3, Obj_X(A1)                                    ; $0008
                 move.l  Obj_Map(A0), Obj_Map(A1)                  ; $0004, $0004
                 move.w  #$4398, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
+                bsr.w   ModifySpriteAttr_2P_A1                 ; Offset_0x00DBDA
                 move.b  #$04, Obj_Flags(A1)                              ; $0001
                 move.b  #$03, Obj_Priority(A1)                           ; $0018
                 move.b  #$08, Obj_Width(A1)                              ; $0019
@@ -75,7 +75,7 @@ Offset_0x00911C:
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
                 bhi.w   Offset_0x009138
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x009138:
                 moveq   #$00, D2
                 lea     Obj_Subtype(A0), A2                              ; $0028
@@ -88,10 +88,10 @@ Offset_0x009144:
                 lsl.w   #$06, D0
                 addi.l  #Obj_Memory_Address, D0                      ; $FFFFB000
                 move.l  D0, A1
-                bsr     DeleteObject_A1                        ; Offset_0x00D316
+                bsr.w   DeleteObject_A1                        ; Offset_0x00D316
                 dbra    D2, Offset_0x009144
 Offset_0x00915A:
-                bra     DeleteObject                           ; Offset_0x00D314
+                bra.w   DeleteObject                           ; Offset_0x00D314
 Offset_0x00915E:
                 move.b  (Object_Frame_Buffer+$0001).w, D0            ; $FFFFFEA1
                 move.b  #$00, Obj_Col_Flags(A0)                          ; $0020
@@ -105,7 +105,7 @@ Offset_0x00917C:
 ;------------------------------------------------------------------------------- 
 Offset_0x00917E:
                 bsr.w   Offset_0x00915E
-                bra     DisplaySprite                          ; Offset_0x00D322   
+                bra.w   DisplaySprite                          ; Offset_0x00D322   
 ;-------------------------------------------------------------------------------
 Log_Spikes_Mappings:                                           ; Offset_0x009186
                 dc.w    Offset_0x009196-Log_Spikes_Mappings

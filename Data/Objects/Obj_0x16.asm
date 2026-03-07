@@ -16,7 +16,7 @@ Offset_0x016C9E:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Teleferics_Mappings, Obj_Map(A0) ; Offset_0x016DB2, $0004
                 move.w  #$43E6, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_02_To_ModifySpriteAttr_2P          ; Offset_0x016EAA
+                bsr.w   Jmp_02_To_ModifySpriteAttr_2P          ; Offset_0x016EAA
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$20, Obj_Width(A0)                              ; $0019
                 move.b  #$00, Obj_Map_Id(A0)                             ; $001A
@@ -35,8 +35,8 @@ Offset_0x016CE4:
                 move.b  Obj_Width(A0), D1                                ; $0019
                 move.w  #$FFD8, D3
                 move.w  (A7)+, D4
-                bsr     Platform_Object                        ; Offset_0x00F82C
-                bra     Jmp_02_To_MarkObjGone                  ; Offset_0x016E9E
+                bsr.w   Platform_Object                        ; Offset_0x00F82C
+                bra.w   Jmp_02_To_MarkObjGone                  ; Offset_0x016E9E
 Offset_0x016D00:
                 moveq   #$00, D0
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
@@ -69,14 +69,14 @@ Offset_0x016D3C:
                 move.w  #$00E4, D0
                 jsr     (Play_Sfx).l                             ; Offset_0x001512
 Offset_0x016D50:
-                bsr     Jmp_00_To_SpeedToPos                   ; Offset_0x016EB0
+                bsr.w   Jmp_00_To_SpeedToPos                   ; Offset_0x016EB0
                 subq.w  #$01, Obj_Control_Var_08(A0)                     ; $0034
                 bne.s   Offset_0x016D94
                 addq.b  #$02, Obj_Routine_2(A0)                          ; $0025
                 move.b  #$02, Obj_Map_Id(A0)                             ; $001A
                 move.w  #$0000, Obj_Speed(A0)                            ; $0010
                 move.w  #$0000, Obj_Speed_Y(A0)                          ; $0012
-                bsr     Jmp_01_To_SingleObjectLoad_2           ; Offset_0x016EA4
+                bsr.w   Jmp_01_To_SingleObjectLoad_2           ; Offset_0x016EA4
                 bne.s   Offset_0x016D94
                 _move.b #$1C, 0(A1)                                 ; $0000
                 move.w  Obj_X(A0), Obj_X(A1)                      ; $0008, $0008
@@ -87,12 +87,12 @@ Offset_0x016D94:
                 rts        
 ;-------------------------------------------------------------------------------  
 Offset_0x016D96:
-                bsr     Jmp_00_To_SpeedToPos                   ; Offset_0x016EB0
+                bsr.w   Jmp_00_To_SpeedToPos                   ; Offset_0x016EB0
                 addi.w  #$0038, Obj_Speed_Y(A0)                          ; $0012
                 move.w  (Sonic_Level_Limits_Max_Y).w, D0             ; $FFFFEECE
                 addi.w  #$00E0, D0
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
-                bcs     Jmp_03_To_DeleteObject                 ; Offset_0x016E98
+                bcs.w   Jmp_03_To_DeleteObject                 ; Offset_0x016E98
                 rts               
 ;-------------------------------------------------------------------------------
 Teleferics_Mappings                                            ; Offset_0x016DB2

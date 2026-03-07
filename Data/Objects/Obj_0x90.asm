@@ -13,14 +13,14 @@ Offset_0x0281F2:
                 dc.w    Offset_0x02822C-Offset_0x0281F2  
 ;-------------------------------------------------------------------------------
 Offset_0x0281F6:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.w  #$4509, Obj_Art_VRAM(A0)                         ; $0002
                 move.w  Obj_Control_Var_00(A0), D0                       ; $002C
                 move.b  Offset_0x028222(PC, D0), Obj_Speed(A0)           ; $0010
                 move.b  Offset_0x028222+$01(PC, D0), Obj_Speed_Y(A0)     ; $0012
                 lsr.w   #$01, D0
                 move.b  Offset_0x02821C(PC, D0), Obj_Map_Id(A0)          ; $001A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------  
 Offset_0x02821C:
                 dc.b    $00, $02, $00, $01, $00, $00      
@@ -31,14 +31,14 @@ Offset_0x028222:
 ;-------------------------------------------------------------------------------
 Offset_0x02822C:
                 tst.b   Obj_Flags(A0)                                    ; $0001
-                bpl     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
-                bsr     Jmp_0E_To_ObjectFall                   ; Offset_0x02A7BE
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bpl.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bsr.w   Jmp_0E_To_ObjectFall                   ; Offset_0x02A7BE
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x02823C:
                 moveq   #$00, D1
                 moveq   #$04, D6
 Offset_0x028240:
-                bsr     Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
+                bsr.w   Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
                 bne.s   Offset_0x02824E
                 bsr.w   Offset_0x028250
                 dbra    D6, Offset_0x028240
@@ -57,7 +57,7 @@ Offset_0x028274:
                 moveq   #$00, D1
                 moveq   #$03, D6
 Offset_0x028278:
-                bsr     Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
+                bsr.w   Jmp_10_To_SingleObjectLoad             ; Offset_0x02A79A
                 bne.s   Offset_0x028286
                 bsr.w   Offset_0x028288
                 dbra    D6, Offset_0x028278

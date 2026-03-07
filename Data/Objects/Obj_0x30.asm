@@ -39,7 +39,7 @@ Offset_0x01875E:
                 beq.s   Offset_0x018770
                 bclr    #$07, $02(A2, D0)
 Offset_0x018770:
-                bra     Jmp_07_To_DeleteObject                 ; Offset_0x018900    
+                bra.w   Jmp_07_To_DeleteObject                 ; Offset_0x018900    
 ;-------------------------------------------------------------------------------
 Offset_0x018774:
                 move.w  Obj_Control_Var_06(A0), D0                       ; $0032
@@ -50,7 +50,7 @@ Offset_0x018774:
                 move.w  Offset_0x018798(PC, D0), D1
                 jsr     Offset_0x018798(PC, D1)
                 tst.b   ($FFFFEEBC).w
-                beq     Jmp_01_To_MarkObjGone_3                ; Offset_0x01890C
+                beq.w   Jmp_01_To_MarkObjGone_3                ; Offset_0x01890C
                 rts       
 ;-------------------------------------------------------------------------------
 Offset_0x018798:
@@ -65,23 +65,23 @@ Offset_0x0187A2:
                 move.w  #$0080, D2
                 move.w  #$0081, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_00_To_SolidObject_2                ; Offset_0x018918
-                bra     Offset_0x018912    
+                bsr.w   Jmp_00_To_SolidObject_2                ; Offset_0x018918
+                bra.w   Offset_0x018912    
 ;-------------------------------------------------------------------------------
 Offset_0x0187BA:
                 move.w  #$00CB, D1
                 move.w  #$0078, D2
                 move.w  #$0079, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_00_To_SolidObject_2                ; Offset_0x018918
-                bsr     Offset_0x018912
+                bsr.w   Jmp_00_To_SolidObject_2                ; Offset_0x018918
+                bsr.w   Offset_0x018912
 Offset_0x0187D2:
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x0187E8
                 move.l  A0, -(A7)
                 move.l  A0, A1
                 lea     (Player_One).w, A0                           ; $FFFFB000
-                bsr     Offset_0x018906
+                bsr.w   Offset_0x018906
                 move.l  (A7)+, A0
 Offset_0x0187E8:
                 btst    #$04, Obj_Status(A0)                             ; $0022
@@ -89,7 +89,7 @@ Offset_0x0187E8:
                 move.l  A0, -(A7)
                 move.l  A0, A1
                 lea     (Player_Two).w, A0                           ; $FFFFB040
-                bsr     Offset_0x018906
+                bsr.w   Offset_0x018906
                 move.l  (A7)+, A0
 Offset_0x0187FE:
                 rts    
@@ -99,8 +99,8 @@ Offset_0x018800:
                 move.w  #$0078, D2
                 move.w  #$0079, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_00_To_SolidObject_2                ; Offset_0x018918
-                bsr     Offset_0x018912
+                bsr.w   Jmp_00_To_SolidObject_2                ; Offset_0x018918
+                bsr.w   Offset_0x018912
                 bra.s   Offset_0x0187D2  
 ;-------------------------------------------------------------------------------
 Offset_0x01881A:
@@ -108,8 +108,8 @@ Offset_0x01881A:
                 move.w  #$002E, D2
                 move.w  Obj_X(A0), D4                                    ; $0008
                 lea     (Offset_0x018834), A2
-                bsr     Jmp_00_To_SolidObject_3                ; Offset_0x01891E
-                bra     Offset_0x018912          
+                bsr.w   Jmp_00_To_SolidObject_3                ; Offset_0x01891E
+                bra.w   Offset_0x018912          
 ;------------------------------------------------------------------------------- 
 Offset_0x018834:
                 dc.b    $30, $30, $30, $30, $30, $30, $30, $30

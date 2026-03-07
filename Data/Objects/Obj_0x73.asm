@@ -17,7 +17,7 @@ Offset_0x01DAC4:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Rotating_Rings_Mappings, Obj_Map(A0) ; Offset_0x01DC78, $0004
                 move.w  #$26BC, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_1A_To_ModifySpriteAttr_2P          ; Offset_0x01DC96
+                bsr.w   Jmp_1A_To_ModifySpriteAttr_2P          ; Offset_0x01DC96
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$08, Obj_Width(A0)                              ; $0019
@@ -48,7 +48,7 @@ Offset_0x01DAC4:
                 subq.w  #$01, D1
                 bcs.s   Offset_0x01DBA4
 Offset_0x01DB4A:
-                bsr     Jmp_06_To_SingleObjectLoad             ; Offset_0x01DC8A
+                bsr.w   Jmp_06_To_SingleObjectLoad             ; Offset_0x01DC8A
                 bne.s   Offset_0x01DBA4
                 addq.b  #$01, Obj_Player_Flip_Flag(A0)                   ; $0029
                 move.w  A1, D5
@@ -82,7 +82,7 @@ Offset_0x01DBB2:
                 move.w  D2, D3
                 addq.w  #$01, D3
                 move.w  (A7)+, D4
-                bsr     Jmp_0E_To_SolidObject                  ; Offset_0x01DC9C
+                bsr.w   Jmp_0E_To_SolidObject                  ; Offset_0x01DC9C
                 bra.w   Offset_0x01DC22
 Offset_0x01DBD0:
                 move.w  Obj_Control_Var_12(A0), D0                       ; $003E

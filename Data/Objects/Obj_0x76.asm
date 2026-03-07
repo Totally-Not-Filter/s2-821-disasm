@@ -20,7 +20,7 @@ Offset_0x01DEEA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Platform_Spikes_Mappings, Obj_Map(A0) ; Offset_0x01E016, $0004
                 move.w  #$0000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_1C_To_ModifySpriteAttr_2P          ; Offset_0x01E052
+                bsr.w   Jmp_1C_To_ModifySpriteAttr_2P          ; Offset_0x01E052
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 moveq   #$00, D0
@@ -51,7 +51,7 @@ Offset_0x01DF3A:
                 move.b  Obj_Height_2(A0), D2                             ; $0016
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_10_To_SolidObject                  ; Offset_0x01E058
+                bsr.w   Jmp_10_To_SolidObject                  ; Offset_0x01E058
                 swap    D6
                 andi.w  #$0003, D6
                 beq.s   Offset_0x01DF9E
@@ -59,17 +59,17 @@ Offset_0x01DF3A:
                 andi.b  #$01, D0
                 beq.s   Offset_0x01DF8A
                 lea     (Player_One).w, A1                           ; $FFFFB000
-                bsr     Jmp_00_To_Hurt_Player_A1               ; Offset_0x01E04C
+                bsr.w   Jmp_00_To_Hurt_Player_A1               ; Offset_0x01E04C
                 bclr    #$05, Obj_Status(A0)                             ; $0022
 Offset_0x01DF8A:
                 andi.b  #$02, D6
                 beq.s   Offset_0x01DF9E
                 lea     (Player_Two).w, A1                           ; $FFFFB040
-                bsr     Jmp_00_To_Hurt_Player_A1               ; Offset_0x01E04C
+                bsr.w   Jmp_00_To_Hurt_Player_A1               ; Offset_0x01E04C
                 bclr    #$06, Obj_Status(A0)                             ; $0022
 Offset_0x01DF9E:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
-                bra     Jmp_04_To_MarkObjGone_2                ; Offset_0x01E05E                                         
+                bra.w   Jmp_04_To_MarkObjGone_2                ; Offset_0x01E05E                                         
 ;-------------------------------------------------------------------------------
 Offset_0x01DFA6:
                 dc.w    Offset_0x01DFAA-Offset_0x01DFA6

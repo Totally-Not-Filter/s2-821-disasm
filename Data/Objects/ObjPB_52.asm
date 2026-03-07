@@ -56,47 +56,47 @@ Offset_0x01FF38:
                 move.w  Obj_Control_Var_10(A0), Obj_Control_Var_0E(A0) ; $003A, $003C
 Offset_0x01FF5A:
                 lea     (Piranha_Animate_Data), A1             ; Offset_0x02009A
-                bsr     Jmp_07_To_AnimateSprite                ; Offset_0x0200EA
-                bsr     Jmp_0E_To_SpeedToPos                   ; Offset_0x0200F0
+                bsr.w   Jmp_07_To_AnimateSprite                ; Offset_0x0200EA
+                bsr.w   Jmp_0E_To_SpeedToPos                   ; Offset_0x0200F0
                 tst.w   Obj_Control_Var_0E(A0)                           ; $003A
-                bgt     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bgt.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
                 cmpi.w  #$FFFF, Obj_Control_Var_0E(A0)                   ; $003A
-                beq     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                beq.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
                 move.l  #$FFFB8000, Obj_Control_Var_0A(A0)               ; $0036
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$FFFF, Obj_Control_Var_0E(A0)                   ; $003A
                 move.b  #$02, Obj_Ani_Number(A0)                         ; $001C
                 move.w  #$0001, Obj_Control_Var_12(A0)                   ; $003E
-                bra     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bra.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
 ;-------------------------------------------------------------------------------
 Offset_0x01FF9C:
                 move.w  #$0390, (Water_Level).w                      ; $FFFFF646
                 lea     (Piranha_Animate_Data), A1             ; Offset_0x02009A
-                bsr     Jmp_07_To_AnimateSprite                ; Offset_0x0200EA
+                bsr.w   Jmp_07_To_AnimateSprite                ; Offset_0x0200EA
                 move.w  Obj_Control_Var_12(A0), D0                       ; $003E
                 sub.w   D0, Obj_Control_Var_04(A0)                       ; $0030
-                bsr     Offset_0x02004C
+                bsr.w   Offset_0x02004C
                 tst.l   Obj_Control_Var_0A(A0)                           ; $0036
                 bpl.s   Offset_0x01FFF4
                 move.w  Obj_Y(A0), D0                                    ; $000C
                 cmp.w   (Water_Level).w, D0                          ; $FFFFF646
-                bgt     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bgt.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
                 move.b  #$03, Obj_Ani_Number(A0)                         ; $001C
                 bclr    #$06, Obj_Status(A0)                             ; $0022
                 tst.b   Obj_Timer(A0)                                    ; $002A
-                bne     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bne.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
                 move.w  Obj_Speed(A0), D0                                ; $0010
                 asl.w   #$01, D0
                 move.w  D0, Obj_Speed(A0)                                ; $0010
                 addq.w  #$01, Obj_Control_Var_12(A0)                     ; $003E
                 st      Obj_Timer(A0)                                    ; $002A
-                bra     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bra.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
 Offset_0x01FFF4:
                 move.w  Obj_Y(A0), D0                                    ; $000C
                 cmp.w   (Water_Level).w, D0                          ; $FFFFF646
                 bgt.s   Offset_0x020008
                 move.b  #$01, Obj_Ani_Number(A0)                         ; $001C
-                bra     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bra.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
 Offset_0x020008:
                 move.b  #$00, Obj_Ani_Number(A0)                         ; $001C
                 bset    #$06, Obj_Status(A0)                             ; $0022
@@ -108,15 +108,15 @@ Offset_0x020008:
 Offset_0x020022:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
                 cmp.w   Obj_Y(A0), D0                                    ; $000C
-                bgt     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bgt.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
                 subq.b  #$02, Obj_Routine(A0)                            ; $0024
                 tst.b   Obj_Timer(A0)                                    ; $002A
-                beq     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                beq.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
                 move.w  Obj_Speed(A0), D0                                ; $0010
                 asr.w   #$01, D0
                 move.w  D0, Obj_Speed(A0)                                ; $0010
                 sf      Obj_Timer(A0)                                    ; $002A
-                bra     Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
+                bra.w   Jmp_1A_To_MarkObjGone                  ; Offset_0x0200E4
 Offset_0x02004C:
                 move.l  Obj_X(A0), D2                                    ; $0008
                 move.l  Obj_Y(A0), D3                                    ; $000C

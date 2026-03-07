@@ -13,10 +13,10 @@ Offset_0x02A316:
                 dc.w    Offset_0x02A31E-Offset_0x02A316     
 ;-------------------------------------------------------------------------------
 Offset_0x02A31A:
-                bra     Object_Settings                        ; Offset_0x027EA4   
+                bra.w   Object_Settings                        ; Offset_0x027EA4   
 ;-------------------------------------------------------------------------------
 Offset_0x02A31E:
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0           
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0           
 ;===============================================================================
 ; Objeto 0xA9 - Inimigo Grabber na Chemical Plant
 ; <<<-          Objeto vinculado ao 0xA7

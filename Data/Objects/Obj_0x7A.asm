@@ -27,7 +27,7 @@ Offset_0x01E4A8:
                 move.l  #DHz_Swing_Platforms_Mappings, Obj_Map(A0) ; Offset_0x008FF0, $0004
                 move.w  #$0000, Obj_Art_VRAM(A0)                         ; $0002
 Offset_0x01E4D0:
-                bsr     Jmp_1E_To_ModifySpriteAttr_2P          ; Offset_0x01E660
+                bsr.w   Jmp_1E_To_ModifySpriteAttr_2P          ; Offset_0x01E660
                 moveq   #$00, D1
                 move.b  Obj_Subtype(A0), D1                              ; $0028
                 lea     Offset_0x01E490(PC, D1), A2
@@ -36,7 +36,7 @@ Offset_0x01E4D0:
                 bra.s   Offset_0x01E502      
 ;-------------------------------------------------------------------------------
 Offset_0x01E4E4:
-                bsr     Jmp_0E_To_SingleObjectLoad_2           ; Offset_0x01E65A
+                bsr.w   Jmp_0E_To_SingleObjectLoad_2           ; Offset_0x01E65A
                 bne.s   Offset_0x01E526
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -77,7 +77,7 @@ Offset_0x01E56A:
                 bsr.s   Offset_0x01E5D0
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 beq.s   Offset_0x01E576
-                bra     Jmp_0F_To_DisplaySprite                ; Offset_0x01E654
+                bra.w   Jmp_0F_To_DisplaySprite                ; Offset_0x01E654
 Offset_0x01E576:
                 move.w  Obj_Control_Var_06(A0), D0                       ; $0032
                 andi.w  #$FF80, D0

@@ -24,7 +24,7 @@ Offset_0x01CB26:
                 move.l  #CPz_Block_Mappings, Obj_Map(A0) ; Offset_0x01CDA2, $0004
                 move.w  #$6418, Obj_Art_VRAM(A0)                         ; $0002
 Offset_0x01CB4E:
-                bsr     Jmp_16_To_ModifySpriteAttr_2P          ; Offset_0x01CDB0
+                bsr.w   Jmp_16_To_ModifySpriteAttr_2P          ; Offset_0x01CDB0
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$03, Obj_Priority(A0)                           ; $0018
                 moveq   #$00, D0
@@ -67,10 +67,10 @@ Offset_0x01CBA8:
                 move.b  Obj_Height_2(A0), D2                             ; $0016
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_0B_To_SolidObject                  ; Offset_0x01CDB6
+                bsr.w   Jmp_0B_To_SolidObject                  ; Offset_0x01CDB6
 Offset_0x01CBE0:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
-                bra     Jmp_03_To_MarkObjGone_2                ; Offset_0x01CDBC                                     
+                bra.w   Jmp_03_To_MarkObjGone_2                ; Offset_0x01CDBC                                     
 ;------------------------------------------------------------------------------- 
 Offset_0x01CBE8:
                 dc.w    Offset_0x01CC00-Offset_0x01CBE8
@@ -167,7 +167,7 @@ Offset_0x01CCAA:
                 beq.s   Offset_0x01CCE0
                 move.b  #$01, Obj_Control_Var_0C(A0)                     ; $0038
 Offset_0x01CCC0:
-                bsr     Jmp_0A_To_SpeedToPos                   ; Offset_0x01CDC2
+                bsr.w   Jmp_0A_To_SpeedToPos                   ; Offset_0x01CDC2
                 moveq   #$08, D1
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
                 addi.w  #$0070, D0

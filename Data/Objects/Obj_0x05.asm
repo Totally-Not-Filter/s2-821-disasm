@@ -16,7 +16,7 @@ Offset_0x012454:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Miles_Mappings, Obj_Map(A0)    ; Offset_0x0739E2, $0004
                 move.w  #$07B0, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$02, Obj_Priority(A0)                           ; $0018
                 move.b  #$18, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Flags(A0)                              ; $0001   
@@ -38,8 +38,8 @@ Offset_0x0124A4:
                 move.b  Offset_0x0124CA(PC, D0), Obj_Ani_Number(A0)      ; $001C
 Offset_0x0124B4:
                 lea     (Offset_0x0124EC), A1
-                bsr     Miles_Animate_A1                       ; Offset_0x012016
-                bsr     Load_Miles_Tail_Dynamic_PLC            ; Offset_0x0123C6
+                bsr.w   Miles_Animate_A1                       ; Offset_0x012016
+                bsr.w   Load_Miles_Tail_Dynamic_PLC            ; Offset_0x0123C6
                 jsr     (DisplaySprite)                        ; Offset_0x00D322
                 rts              
 ;-------------------------------------------------------------------------------

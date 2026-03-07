@@ -18,20 +18,20 @@ Offset_0x022646:
 Offset_0x022650:
                 move.l  #Motobug_Mappings, Obj_Map(A0)  ; Offset_0x022888, $0004
                 move.w  #$0402, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_2A_To_ModifySpriteAttr_2P          ; Offset_0x0228DA
+                bsr.w   Jmp_2A_To_ModifySpriteAttr_2P          ; Offset_0x0228DA
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$0A, Obj_Col_Flags(A0)                          ; $0020
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$10, Obj_Height_2(A0)                           ; $0016
                 move.b  #$0E, Obj_Width_2(A0)                            ; $0017
-                bsr     Jmp_12_To_SingleObjectLoad_2           ; Offset_0x0228C2
+                bsr.w   Jmp_12_To_SingleObjectLoad_2           ; Offset_0x0228C2
                 bne.s   Offset_0x0226D8
                 _move.b #$59, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Routine(A1)                            ; $0024
                 move.l  #Motobug_Mappings, Obj_Map(A1)  ; Offset_0x022888, $0004
                 move.w  #$2402, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_05_To_ModifySpriteAttr_2P_A1       ; Offset_0x0228CE
+                bsr.w   Jmp_05_To_ModifySpriteAttr_2P_A1       ; Offset_0x0228CE
                 move.b  #$03, Obj_Priority(A1)                           ; $0018
                 move.b  #$10, Obj_Width(A1)                              ; $0019
                 move.b  Obj_Status(A0), Obj_Status(A1)            ; $0022, $0022
@@ -52,7 +52,7 @@ Offset_0x0226EA:
 ;-------------------------------------------------------------------------------
 Offset_0x0226F0:
                 bsr.w   Offset_0x022738
-                bsr     Jmp_14_To_SpeedToPos                   ; Offset_0x0228E6
+                bsr.w   Jmp_14_To_SpeedToPos                   ; Offset_0x0228E6
                 jsr     (ObjHitFloor)                          ; Offset_0x014204
                 cmpi.w  #$FFF8, D1
                 blt.s   Offset_0x02271C
@@ -60,15 +60,15 @@ Offset_0x0226F0:
                 bge.s   Offset_0x02271C
                 add.w   D1, Obj_Y(A0)                                    ; $000C
                 lea     (Motobug_Animate_Data), A1             ; Offset_0x02287C
-                bsr     Jmp_10_To_AnimateSprite                ; Offset_0x0228C8
-                bra     Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4
+                bsr.w   Jmp_10_To_AnimateSprite                ; Offset_0x0228C8
+                bra.w   Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4
 Offset_0x02271C:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$0014, Obj_Control_Var_04(A0)                   ; $0030
                 st      Obj_Control_Var_08(A0)                           ; $0034
                 lea     (Motobug_Animate_Data), A1             ; Offset_0x02287C
-                bsr     Jmp_10_To_AnimateSprite                ; Offset_0x0228C8
-                bra     Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4
+                bsr.w   Jmp_10_To_AnimateSprite                ; Offset_0x0228C8
+                bra.w   Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4
 Offset_0x022738:
                 tst.b   Obj_Control_Var_09(A0)                           ; $0035
                 bne.s   Offset_0x02277A
@@ -95,13 +95,13 @@ Offset_0x022768:
 Offset_0x02277A:
                 rts
 Offset_0x02277C:
-                bsr     Jmp_12_To_SingleObjectLoad_2           ; Offset_0x0228C2
+                bsr.w   Jmp_12_To_SingleObjectLoad_2           ; Offset_0x0228C2
                 bne.s   Offset_0x0227D8
                 _move.b #$59, 0(A1)                                 ; $0000
                 move.b  #$08, Obj_Routine(A1)                            ; $0024
                 move.l  #Buzzer_Mappings, Obj_Map(A1)   ; Offset_0x0241EA, $0004
                 move.w  #$03E6, Obj_Art_VRAM(A1)                         ; $0002
-                bsr     Jmp_05_To_ModifySpriteAttr_2P_A1       ; Offset_0x0228CE
+                bsr.w   Jmp_05_To_ModifySpriteAttr_2P_A1       ; Offset_0x0228CE
                 move.b  #$04, Obj_Priority(A1)                           ; $0018
                 move.b  #$10, Obj_Width(A1)                              ; $0019
                 move.b  Obj_Status(A0), Obj_Status(A1)            ; $0022, $0022
@@ -118,9 +118,9 @@ Offset_0x0227D8:
 Offset_0x0227DA:
                 move.l  Obj_Timer(A0), A1                                ; $002A
                 cmpi.b  #$59, (A1)
-                bne     Jmp_1B_To_DeleteObject                 ; Offset_0x0228BC
+                bne.w   Jmp_1B_To_DeleteObject                 ; Offset_0x0228BC
                 tst.b   Obj_Control_Var_08(A1)                           ; $0034
-                bne     Jmp_1B_To_DeleteObject                 ; Offset_0x0228BC
+                bne.w   Jmp_1B_To_DeleteObject                 ; Offset_0x0228BC
                 move.w  Obj_X(A1), Obj_X(A0)                      ; $0008, $0008
                 move.w  Obj_Y(A1), Obj_Y(A0)                      ; $000C, $000C
                 addq.w  #$07, Obj_Y(A0)                                  ; $000C
@@ -131,14 +131,14 @@ Offset_0x0227DA:
 Offset_0x02280A:
                 add.w   D0, Obj_X(A0)                                    ; $0008
                 lea     (Buzzer_AnimateData), A1               ; Offset_0x0241CE
-                bsr     Jmp_10_To_AnimateSprite                ; Offset_0x0228C8
-                bra     Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4       
+                bsr.w   Jmp_10_To_AnimateSprite                ; Offset_0x0228C8
+                bra.w   Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4       
 ;-------------------------------------------------------------------------------
 Offset_0x02281C:
                 subi.w  #$0001, Obj_Control_Var_04(A0)                   ; $0030
-                bpl     Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4
+                bpl.w   Jmp_00_To_MarkObjGone_4                ; Offset_0x0228D4
                 neg.w   Obj_Speed(A0)                                    ; $0010
-                bsr     Jmp_08_To_ObjectFall                   ; Offset_0x0228E0
+                bsr.w   Jmp_08_To_ObjectFall                   ; Offset_0x0228E0
                 move.w  Obj_Speed(A0), D0                                ; $0010
                 asr.w   #$02, D0
                 move.w  D0, Obj_Speed(A0)                                ; $0010

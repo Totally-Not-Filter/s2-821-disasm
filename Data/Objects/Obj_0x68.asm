@@ -17,11 +17,11 @@ Offset_0x01C348:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Block_Harpon_Mappings, Obj_Map(A0) ; Offset_0x01C4F0, $0004
                 move.w  #$6414, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_13_To_ModifySpriteAttr_2P          ; Offset_0x01C610
+                bsr.w   Jmp_13_To_ModifySpriteAttr_2P          ; Offset_0x01C610
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
-                bsr     Jmp_09_To_SingleObjectLoad_2           ; Offset_0x01C60A
+                bsr.w   Jmp_09_To_SingleObjectLoad_2           ; Offset_0x01C60A
                 bne.s   Offset_0x01C3E4
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 addq.b  #$04, Obj_Routine(A1)                            ; $0024
@@ -54,8 +54,8 @@ Offset_0x01C3EA:
                 move.w  #$0010, D2
                 move.w  #$0011, D3
                 move.w  Obj_X(A0), D4                                    ; $0008
-                bsr     Jmp_08_To_SolidObject                  ; Offset_0x01C616
-                bra     Jmp_11_To_MarkObjGone                  ; Offset_0x01C604 
+                bsr.w   Jmp_08_To_SolidObject                  ; Offset_0x01C616
+                bra.w   Jmp_11_To_MarkObjGone                  ; Offset_0x01C604 
 ;-------------------------------------------------------------------------------
 Offset_0x01C402:
                 bsr.w   Offset_0x01C46A
@@ -65,7 +65,7 @@ Offset_0x01C402:
                 move.w  Offset_0x01C41E(PC, D0), D1
                 jsr     Offset_0x01C41E(PC, D1)
                 move.w  Obj_Control_Var_04(A0), D0                       ; $0030
-                bra     Jmp_01_To_MarkObjGone_2                ; Offset_0x01C61C            
+                bra.w   Jmp_01_To_MarkObjGone_2                ; Offset_0x01C61C            
 ;-------------------------------------------------------------------------------   
 Offset_0x01C41E:
                 dc.w    Offset_0x01C426-Offset_0x01C41E

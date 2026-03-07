@@ -17,7 +17,7 @@ Offset_0x0159E0:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Water_Surface_Mappings, Obj_Map(A0) ; Offset_0x015AFE, $0004
                 move.w  #$8400, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
+                bsr.w   Jmp_00_To_ModifySpriteAttr_2P          ; Offset_0x01639C
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$80, Obj_Width(A0)                              ; $0019
                 move.w  Obj_X(A0), Obj_Control_Var_04(A0)         ; $0008, $0030
@@ -25,7 +25,7 @@ Offset_0x0159E0:
                 bne.s   Offset_0x015A20
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #NGHz_Water_Surface_Mappings, Obj_Map(A0) ; Offset_0x015BEE, $0004
-                bra     Offset_0x015AB2     
+                bra.w   Offset_0x015AB2     
 ;-------------------------------------------------------------------------------
 Offset_0x015A20:
                 move.w  (Water_Level).w, D1                          ; $FFFFF646
@@ -49,7 +49,7 @@ Offset_0x015A52:
                 move.b  $00(A1, D1), Obj_Map_Id(A0)                      ; $001A
                 addq.b  #$01, Obj_Ani_Frame(A0)                          ; $001B
                 andi.b  #$3F, Obj_Ani_Frame(A0)                          ; $001B
-                bra     Jmp_02_To_DisplaySprite                ; Offset_0x016390  
+                bra.w   Jmp_02_To_DisplaySprite                ; Offset_0x016390  
 ;-------------------------------------------------------------------------------
 Water_Surface_Data:                                            ; Offset_0x015A72
                 dc.b    $00, $01, $00, $01, $00, $01, $00, $01
@@ -83,7 +83,7 @@ Offset_0x015AE4:
                 addq.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 andi.b  #$01, Obj_Map_Id(A0)                             ; $001A
 Offset_0x015AFA:
-                bra     Jmp_02_To_DisplaySprite                ; Offset_0x016390  
+                bra.w   Jmp_02_To_DisplaySprite                ; Offset_0x016390  
 ;-------------------------------------------------------------------------------
 Water_Surface_Mappings:                                        ; Offset_0x015AFE
                 dc.w    Offset_0x015B0A-Water_Surface_Mappings

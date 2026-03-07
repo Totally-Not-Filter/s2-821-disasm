@@ -9,14 +9,14 @@
                 jsr     Offset_0x00E774(PC, D1)
                 tst.w   (Two_Player_Flag).w                          ; $FFFFFFD8
                 beq.s   Offset_0x00E75C
-                bra     DisplaySprite                          ; Offset_0x00D322
+                bra.w   DisplaySprite                          ; Offset_0x00D322
 Offset_0x00E75C:
                 move.w  Obj_X(A0), D0                                    ; $0008
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     DeleteObject                           ; Offset_0x00D314
-                bra     DisplaySprite                          ; Offset_0x00D322  
+                bhi.w   DeleteObject                           ; Offset_0x00D314
+                bra.w   DisplaySprite                          ; Offset_0x00D322  
 ;-------------------------------------------------------------------------------
 Offset_0x00E774:
                 dc.w    Offset_0x00E780-Offset_0x00E774
@@ -83,7 +83,7 @@ Offset_0x00E82C:
                 bset    #$05, Obj_Art_VRAM(A0)                           ; $0002
                 move.l  #Springs_Mappings_01, Obj_Map(A0) ; Offset_0x00EF12, $0004
 Offset_0x00E84E:
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 rts       
 ;-------------------------------------------------------------------------------  
 Offset_0x00E854:
@@ -97,7 +97,7 @@ Offset_0x00E858:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     SolidObject_2_A1                       ; Offset_0x00F3B4
+                bsr.w   SolidObject_2_A1                       ; Offset_0x00F3B4
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x00E880
                 bsr.s   Offset_0x00E8A4
@@ -105,13 +105,13 @@ Offset_0x00E880:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     SolidObject_2_A1                       ; Offset_0x00F3B4
+                bsr.w   SolidObject_2_A1                       ; Offset_0x00F3B4
                 btst    #$04, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x00E898
                 bsr.s   Offset_0x00E8A4
 Offset_0x00E898:
                 lea     (Springs_Animate_Data), A1             ; Offset_0x00EEC2
-                bra     AnimateSprite                          ; Offset_0x00D372 
+                bra.w   AnimateSprite                          ; Offset_0x00D372 
 ;-------------------------------------------------------------------------------
 ; Offset_0x00E8A2:
                 rts 
@@ -166,7 +166,7 @@ Offset_0x00E94A:
                 lea     (Obj_Memory_Address).w, A1                   ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     SolidObject_2_A1                       ; Offset_0x00F3B4
+                bsr.w   SolidObject_2_A1                       ; Offset_0x00F3B4
                 btst    #$05, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x00E98A
                 move.b  Obj_Status(A0), D1                               ; $0022
@@ -182,7 +182,7 @@ Offset_0x00E98A:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     SolidObject_2_A1                       ; Offset_0x00F3B4
+                bsr.w   SolidObject_2_A1                       ; Offset_0x00F3B4
                 btst    #$06, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x00E9BA
                 move.b  Obj_Status(A0), D1                               ; $0022
@@ -195,9 +195,9 @@ Offset_0x00E9B2:
                 bne.s   Offset_0x00E9BA
                 bsr.s   Offset_0x00E9CA
 Offset_0x00E9BA:
-                bsr     Offset_0x00EAA2
+                bsr.w   Offset_0x00EAA2
                 lea     (Springs_Animate_Data), A1             ; Offset_0x00EEC2
-                bra     AnimateSprite                          ; Offset_0x00D372
+                bra.w   AnimateSprite                          ; Offset_0x00D372
 ;-------------------------------------------------------------------------------
 ; Offset_0x00E9C8:
                 rts   
@@ -257,7 +257,7 @@ Offset_0x00EA86:
                 jmp     (Play_Sfx).l                             ; Offset_0x001512
 Offset_0x00EAA2:
                 cmpi.b  #$03, Obj_Ani_Number(A0)                         ; $001C
-                beq     Offset_0x00EB5A
+                beq.w   Offset_0x00EB5A
                 move.w  Obj_X(A0), D0                                    ; $0008
                 move.w  D0, D1
                 addi.w  #$0028, D1
@@ -291,7 +291,7 @@ Offset_0x00EAEC:
                 cmp.w   D3, D4
                 bcc.w   Offset_0x00EB18
                 move.w  D0, -(A7)
-                bsr     Offset_0x00E9CA
+                bsr.w   Offset_0x00E9CA
                 move.w  (A7)+, D0
 Offset_0x00EB18:
                 lea     (Player_Two).w, A1                           ; $FFFFB040
@@ -314,7 +314,7 @@ Offset_0x00EB32:
                 bcs.w   Offset_0x00EB5A
                 cmp.w   D3, D4
                 bcc.w   Offset_0x00EB5A
-                bsr     Offset_0x00E9CA
+                bsr.w   Offset_0x00E9CA
 Offset_0x00EB5A:
                 rts
 ;-------------------------------------------------------------------------------                
@@ -326,7 +326,7 @@ Offset_0x00EB5C:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     SolidObject_2_A1                       ; Offset_0x00F3B4
+                bsr.w   SolidObject_2_A1                       ; Offset_0x00F3B4
                 cmpi.w  #$FFFE, D4
                 bne.s   Offset_0x00EB82
                 bsr.s   Offset_0x00EBA4
@@ -334,13 +334,13 @@ Offset_0x00EB82:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     SolidObject_2_A1                       ; Offset_0x00F3B4
+                bsr.w   SolidObject_2_A1                       ; Offset_0x00F3B4
                 cmpi.w  #$FFFE, D4
                 bne.s   Offset_0x00EB98
                 bsr.s   Offset_0x00EBA4
 Offset_0x00EB98:
                 lea     (Springs_Animate_Data), A1             ; Offset_0x00EEC2
-                bra     AnimateSprite                          ; Offset_0x00D372      
+                bra.w   AnimateSprite                          ; Offset_0x00D372      
 ;-------------------------------------------------------------------------------
 ; Offset_0x00EBA2:
                 rts    
@@ -395,7 +395,7 @@ Offset_0x00EC48:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     SolidObject_3_A1                       ; Offset_0x00F406
+                bsr.w   SolidObject_3_A1                       ; Offset_0x00F406
                 btst    #$03, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x00EC70
                 bsr.s   Offset_0x00EC94
@@ -403,13 +403,13 @@ Offset_0x00EC70:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     SolidObject_3_A1                       ; Offset_0x00F406
+                bsr.w   SolidObject_3_A1                       ; Offset_0x00F406
                 btst    #$04, Obj_Status(A0)                             ; $0022
                 beq.s   Offset_0x00EC88
                 bsr.s   Offset_0x00EC94
 Offset_0x00EC88:
                 lea     (Springs_Animate_Data), A1             ; Offset_0x00EEC2
-                bra     AnimateSprite                          ; Offset_0x00D372    
+                bra.w   AnimateSprite                          ; Offset_0x00D372    
 ;-------------------------------------------------------------------------------
 ; Offset_0x00EC92:
                 rts                      
@@ -484,7 +484,7 @@ Offset_0x00ED7E:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     SolidObject_3_A1                       ; Offset_0x00F406
+                bsr.w   SolidObject_3_A1                       ; Offset_0x00F406
                 cmpi.w  #$FFFE, D4
                 bne.s   Offset_0x00EDA4
                 bsr.s   Offset_0x00EDC6
@@ -492,13 +492,13 @@ Offset_0x00EDA4:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     SolidObject_3_A1                       ; Offset_0x00F406
+                bsr.w   SolidObject_3_A1                       ; Offset_0x00F406
                 cmpi.w  #$FFFE, D4
                 bne.s   Offset_0x00EDBA
                 bsr.s   Offset_0x00EDC6
 Offset_0x00EDBA:
                 lea     (Springs_Animate_Data), A1             ; Offset_0x00EEC2
-                bra     AnimateSprite                          ; Offset_0x00D372   
+                bra.w   AnimateSprite                          ; Offset_0x00D372   
 ;-------------------------------------------------------------------------------
 ; Offset_0x00EDC4:
                 rts             

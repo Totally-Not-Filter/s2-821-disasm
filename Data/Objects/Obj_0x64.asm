@@ -32,7 +32,7 @@ Offset_0x01B6EE:
 Offset_0x01B71E:
                 move.l  #Pistons_Mappings, Obj_Map(A0)  ; Offset_0x01B810, $0004
                 move.w  #$2000, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_10_To_ModifySpriteAttr_2P          ; Offset_0x01B888
+                bsr.w   Jmp_10_To_ModifySpriteAttr_2P          ; Offset_0x01B888
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.w  Obj_X(A0), Obj_Control_Var_08(A0)         ; $0008, $0034
@@ -59,7 +59,7 @@ Offset_0x01B756:
                 move.b  Obj_Control_Var_02(A0), D2                       ; $002E
                 move.w  D2, D3
                 addq.w  #$01, D3
-                bsr     Jmp_06_To_SolidObject                  ; Offset_0x01B88E
+                bsr.w   Jmp_06_To_SolidObject                  ; Offset_0x01B88E
 Offset_0x01B78A:
                 move.w  Obj_Control_Var_08(A0), D0                       ; $0034
                 andi.w  #$FF80, D0

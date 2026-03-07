@@ -20,7 +20,7 @@ Offset_0x014DEA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Layer_Switch_Mappings, Obj_Map(A0) ; Offset_0x0150E8, $0004
                 move.w  #$26BC, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$10, Obj_Width(A0)                              ; $0019
                 move.b  #$05, Obj_Priority(A0)                           ; $0018
@@ -33,7 +33,7 @@ Offset_0x014DEA:
                 andi.w  #$0003, D0
                 add.w   D0, D0
                 move.w  Layer_Switch_Conf(PC, D0), Obj_Control_Var_06(A0) ; Offset_0x014E38 ,$0032
-                bra     Offset_0x014F74 
+                bra.w   Offset_0x014F74 
 ;-------------------------------------------------------------------------------    
 Layer_Switch_Conf:                                             ; Offset_0x014E38
                 dc.w    $0020, $0040, $0080, $0100 
@@ -46,7 +46,7 @@ Offset_0x014E40:
 ;-------------------------------------------------------------------------------
 Offset_0x014E50:
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
-                bne     Offset_0x014F72
+                bne.w   Offset_0x014F72
                 move.b  #$00, Obj_Control_Var_08(A0)                     ; $0034
                 move.w  Obj_Control_Var_04(A0), D5                       ; $0030
                 move.w  Obj_X(A0), D0                                    ; $0008
@@ -62,7 +62,7 @@ Offset_0x014E50:
                 moveq   #$07, D6
 Offset_0x014E82:
                 move.l  (A2)+, D4
-                beq     Offset_0x014F62
+                beq.w   Offset_0x014F62
                 move.l  D4, A1
                 move.w  Obj_X(A1), D4                                    ; $0008
                 cmp.w   D0, D4
@@ -75,15 +75,15 @@ Offset_0x014E82:
                 cmp.w   D3, D4
                 bcc.w   Offset_0x014EB2
                 ori.w   #$8000, D5
-                bra     Offset_0x014F62
+                bra.w   Offset_0x014F62
 Offset_0x014EB2:
                 tst.w   D5
-                bpl     Offset_0x014F62
+                bpl.w   Offset_0x014F62
                 swap    D0
                 move.b  Obj_Subtype(A0), D0                              ; $0028
                 bpl.s   Offset_0x014ECA
                 btst    #$01, Obj_Status(A1)                             ; $0022
-                bne     Offset_0x014F5C
+                bne.w   Offset_0x014F5C
 Offset_0x014ECA:
                 move.w  Obj_X(A1), D4                                    ; $0008
                 cmp.w   Obj_X(A0), D4                                    ; $0008
@@ -130,13 +130,13 @@ Offset_0x014F62:
                 dbra    D6, Offset_0x014E82
                 swap    D5
                 move.b  D5, Obj_Control_Var_04(A0)                       ; $0030
-                bsr     Offset_0x0150B8
+                bsr.w   Offset_0x0150B8
 Offset_0x014F72:
                 rts
 ;-------------------------------------------------------------------------------                
 Offset_0x014F74:
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
-                bne     Offset_0x015096
+                bne.w   Offset_0x015096
                 move.b  #$00, Obj_Control_Var_08(A0)                     ; $0034
                 move.w  Obj_Control_Var_04(A0), D5                       ; $0030
                 move.w  Obj_X(A0), D0                                    ; $0008
@@ -152,7 +152,7 @@ Offset_0x014F74:
                 moveq   #$07, D6
 Offset_0x014FA6:
                 move.l  (A2)+, D4
-                beq     Offset_0x015086
+                beq.w   Offset_0x015086
                 move.l  D4, A1
                 move.w  Obj_X(A1), D4                                    ; $0008
                 cmp.w   D0, D4
@@ -165,15 +165,15 @@ Offset_0x014FA6:
                 cmp.w   D3, D4
                 bcc.w   Offset_0x014FD6
                 ori.w   #$8000, D5
-                bra     Offset_0x015086
+                bra.w   Offset_0x015086
 Offset_0x014FD6:
                 tst.w   D5
-                bpl     Offset_0x015086
+                bpl.w   Offset_0x015086
                 swap    D0
                 move.b  Obj_Subtype(A0), D0                              ; $0028
                 bpl.s   Offset_0x014FEE
                 btst    #$01, Obj_Status(A1)                             ; $0022
-                bne     Offset_0x015080
+                bne.w   Offset_0x015080
 Offset_0x014FEE:
                 move.w  Obj_Y(A1), D4                                    ; $000C
                 cmp.w   Obj_Y(A0), D4                                    ; $000C

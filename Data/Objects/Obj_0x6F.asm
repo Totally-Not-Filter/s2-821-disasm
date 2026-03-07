@@ -16,7 +16,7 @@ Offset_0x01D366:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Parallelogram_Elevator_Mappings, Obj_Map(A0) ; Offset_0x01D61A, $0004
                 move.w  #$653F, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_19_To_ModifySpriteAttr_2P          ; Offset_0x01D6A0
+                bsr.w   Jmp_19_To_ModifySpriteAttr_2P          ; Offset_0x01D6A0
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
                 move.b  #$80, Obj_Width(A0)                              ; $0019
@@ -30,7 +30,7 @@ Offset_0x01D366:
                 move.w  $00(A1, D0), D0
                 lea     $00(A1, D0), A1
                 move.l  A1, Obj_Control_Var_10(A0)                       ; $003C
-                bsr     Offset_0x01D460
+                bsr.w   Offset_0x01D460
                 bset    #$07, Obj_Status(A0)                             ; $0022
                 andi.b  #$0F, Obj_Subtype(A0)                            ; $0028    
 ;-------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ Offset_0x01D3CC:
                 moveq   #$00, D1
                 move.b  Obj_Width(A0), D1                                ; $0019
                 lea     (Parallelogram_Elevator_Solid_Data), A2 ;  Offset_0x01D51A
-                bsr     Offset_0x01D6A6
+                bsr.w   Offset_0x01D6A6
                 move.w  Obj_X(A0), D0                                    ; $0008
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0

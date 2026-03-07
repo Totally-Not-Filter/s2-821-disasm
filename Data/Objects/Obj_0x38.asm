@@ -19,7 +19,7 @@ Offset_0x012B02:
                 move.b  #$01, Obj_Priority(A0)                           ; $0018
                 move.b  #$18, Obj_Width(A0)                              ; $0019
                 move.w  #$04BE, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 lea     (Obj_Memory_Address).w, A2                   ; $FFFFB000
                 tst.w   Obj_Art_VRAM(A2)                                 ; $0002
                 beq.s   Offset_0x012B3A

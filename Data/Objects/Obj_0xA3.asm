@@ -18,14 +18,14 @@ Offset_0x029C42:
                 dc.w    Offset_0x029D60-Offset_0x029C42    
 ;-------------------------------------------------------------------------------  
 Offset_0x029C50:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.w  #$0040, Obj_Timer(A0)                            ; $002A
                 rts     
 ;-------------------------------------------------------------------------------
 Offset_0x029C5C:
                 subq.w  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x029C66
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029C66:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$FF00, Obj_Speed(A0)                            ; $0010
@@ -33,13 +33,13 @@ Offset_0x029C66:
                 move.w  #$0002, Obj_Control_Var_02(A0)                   ; $002E
                 clr.w   Obj_Timer(A0)                                    ; $002A
                 move.w  #$0080, Obj_Control_Var_04(A0)                   ; $0030
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
 ;-------------------------------------------------------------------------------
 Offset_0x029C8A:
                 subq.w  #$01, Obj_Control_Var_04(A0)                     ; $0030
                 bmi.s   Offset_0x029CF2
                 move.w  Obj_Timer(A0), D0                                ; $002A
-                bmi     Jmp_23_To_DeleteObject                 ; Offset_0x02A794
+                bmi.w   Jmp_23_To_DeleteObject                 ; Offset_0x02A794
                 bclr    #$00, Obj_Flags(A0)                              ; $0001
                 bclr    #$00, Obj_Status(A0)                             ; $0022
                 tst.w   Obj_Speed(A0)                                    ; $0010
@@ -66,13 +66,13 @@ Offset_0x029CDA:
 Offset_0x029CE2:
                 move.w  Obj_Control_Var_02(A0), D0                       ; $002E
                 add.w   D0, Obj_Speed(A0)                                ; $0010
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029CF2:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.w  #$0080, Obj_Control_Var_04(A0)                   ; $0030
                 ori.b   #$80, Obj_Col_Flags(A0)                          ; $0020
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
 ;-------------------------------------------------------------------------------
 Offset_0x029D06:
                 dc.w    $0100, $01A0, $0208, $0285, $0300, $0340, $0390, $0440  
@@ -84,29 +84,29 @@ Offset_0x029D16:
 ;-------------------------------------------------------------------------------
 Offset_0x029D28:
                 lea     (Flasher_Animate_Data), A1             ; Offset_0x029D80
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;-------------------------------------------------------------------------------
 Offset_0x029D36:
                 subq.w  #$01, Obj_Control_Var_04(A0)                     ; $0030
                 bmi.s   Offset_0x029D4A
                 lea     (Flasher_Animate_Data_01), A1          ; Offset_0x029DA4
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029D4A:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0      
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0      
 ;-------------------------------------------------------------------------------
 Offset_0x029D52:
                 lea     (Flasher_Animate_Data_02), A1          ; Offset_0x029DAA
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
 ;-------------------------------------------------------------------------------
 Offset_0x029D60:
                 move.b  #$04, Obj_Routine(A0)                            ; $0024
                 move.w  #$0080, Obj_Control_Var_04(A0)                   ; $0030
                 andi.b  #$7F, Obj_Col_Flags(A0)                          ; $0020
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
 ;------------------------------------------------------------------------------- 
 Offset_0x029D76:
                 dc.l    Flasher_Mappings                       ; Offset_0x029DB4

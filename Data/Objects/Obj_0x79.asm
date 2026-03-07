@@ -18,7 +18,7 @@ Offset_0x0144DA:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Lamp_Post_Mappings, Obj_Map(A0) ; Offset_0x0146FA, $0004
                 move.w  #$047C, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     ModifySpriteAttr_2P                    ; Offset_0x00DBBE
+                bsr.w   ModifySpriteAttr_2P                    ; Offset_0x00DBBE
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$08, Obj_Width(A0)                              ; $0019
                 move.b  #$05, Obj_Priority(A0)                           ; $0018

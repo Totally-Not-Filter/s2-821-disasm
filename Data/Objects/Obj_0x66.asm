@@ -16,7 +16,7 @@ Offset_0x01BD06:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.l  #Springs_Wall_Mappings, Obj_Map(A0) ; Offset_0x01BEBC, $0004
                 move.w  #$8680, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_12_To_ModifySpriteAttr_2P          ; Offset_0x01BEF0
+                bsr.w   Jmp_12_To_ModifySpriteAttr_2P          ; Offset_0x01BEF0
                 ori.b   #$04, Obj_Flags(A0)                              ; $0001
                 move.b  #$08, Obj_Width(A0)                              ; $0019
                 move.b  #$04, Obj_Priority(A0)                           ; $0018
@@ -38,7 +38,7 @@ Offset_0x01BD4A:
                 lea     (Player_One).w, A1                           ; $FFFFB000
                 moveq   #$03, D6
                 movem.l D1-D4, -(A7)
-                bsr     Jmp_02_To_SolidObject_2_A1             ; Offset_0x01BEF6
+                bsr.w   Jmp_02_To_SolidObject_2_A1             ; Offset_0x01BEF6
                 cmpi.b  #$01, D4
                 bne.s   Offset_0x01BD92
                 btst    #$01, Obj_Status(A1)                             ; $0022
@@ -56,7 +56,7 @@ Offset_0x01BD92:
                 movem.l (A7)+, D1-D4
                 lea     (Player_Two).w, A1                           ; $FFFFB040
                 moveq   #$04, D6
-                bsr     Jmp_02_To_SolidObject_2_A1             ; Offset_0x01BEF6
+                bsr.w   Jmp_02_To_SolidObject_2_A1             ; Offset_0x01BEF6
                 cmpi.b  #$01, D4
                 bne.s   Offset_0x01BDC8
                 btst    #$01, Obj_Status(A1)                             ; $0022
@@ -75,10 +75,10 @@ Offset_0x01BDC8:
                 andi.w  #$FF80, D0
                 sub.w   ($FFFFF7DA).w, D0
                 cmpi.w  #$0280, D0
-                bhi     Jmp_0E_To_DeleteObject                 ; Offset_0x01BEEA
+                bhi.w   Jmp_0E_To_DeleteObject                 ; Offset_0x01BEEA
                 tst.w   (Debug_Mode_Flag_Index).w                    ; $FFFFFE08
                 beq.s   Offset_0x01BDE6
-                bsr     Jmp_0A_To_DisplaySprite                ; Offset_0x01BEE4
+                bsr.w   Jmp_0A_To_DisplaySprite                ; Offset_0x01BEE4
 Offset_0x01BDE6:
                 rts
 Offset_0x01BDE8:
