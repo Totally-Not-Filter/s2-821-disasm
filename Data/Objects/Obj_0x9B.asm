@@ -13,13 +13,13 @@ Offset_0x028FF2:
                 dc.w    Offset_0x028FFA-Offset_0x028FF2       
 ;-------------------------------------------------------------------------------
 Offset_0x028FF6:
-                bra     Object_Settings                        ; Offset_0x027EA4 
+                bra.w   Object_Settings                        ; Offset_0x027EA4 
 ;-------------------------------------------------------------------------------
 Offset_0x028FFA:
                 move.w  Obj_Timer(A0), A1                                ; $002A
                 lea     Offset_0x02900A(PC), A2
                 bsr.w   Offset_0x02900E
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0 
 ;------------------------------------------------------------------------------- 
 Offset_0x02900A:
                 dc.w    $0004, $FFE8                                          
@@ -36,7 +36,7 @@ Return_to_sub_routine: ; Usado por vários objetos              ; Offset_0x029026
                 rts                                                              
 ;-------------------------------------------------------------------------------  
 Load_Turtloid_Sub_Obj_0x9B:                                    ; Offset_0x029028
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x02905E
                 _move.b #$9B, 0(A1)                                 ; $0000
                 move.b  #$02, Obj_Map_Id(A1)                             ; $001A

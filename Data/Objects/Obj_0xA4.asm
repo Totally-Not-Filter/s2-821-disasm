@@ -14,10 +14,10 @@ Offset_0x029EA2:
                 dc.w    Offset_0x029EFE-Offset_0x029EA2       
 ;-------------------------------------------------------------------------------
 Offset_0x029EA8:
-                bra     Object_Settings                        ; Offset_0x027EA4    
+                bra.w   Object_Settings                        ; Offset_0x027EA4    
 ;-------------------------------------------------------------------------------
 Offset_0x029EAC:
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 tst.w   D2
                 bpl.s   Offset_0x029EB6
                 neg.w   D2
@@ -40,7 +40,7 @@ Offset_0x029ED2:
                 move.w  Offset_0x029EEC(PC, D1), Obj_Speed_Y(A0)         ; $0012
                 bsr.w   Offset_0x029EF0
 Offset_0x029EE8:
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
 ;-------------------------------------------------------------------------------
 Offset_0x029EEC:
                 dc.w    $FFC0, $0040                                           
@@ -53,21 +53,21 @@ Offset_0x029EF0:
 Offset_0x029EFE:
                 subq.b  #$01, Obj_Timer(A0)                              ; $002A
                 bmi.s   Offset_0x029F16
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Asteron_Animate_Data), A1             ; Offset_0x029FAA
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x029F16:
                 _move.b #$27, 0(A0)                                 ; $0000
                 move.b  #$02, Obj_Routine(A0)                            ; $0024
                 bsr.w   Enemy_Weapon                           ; Offset_0x029F2A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 ;-------------------------------------------------------------------------------  
 Enemy_Weapon:                                                  ; Offset_0x029F2A
                 moveq   #$00, D1
                 moveq   #$04, D6
 Loop_Load_Weapon:                                              ; Offset_0x029F2E
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x029F80
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$30, Obj_Subtype(A1)                            ; $0028

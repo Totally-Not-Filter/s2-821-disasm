@@ -46,7 +46,7 @@ Offset_0x015CF4:
                 bcc.s   Offset_0x015D26
                 move.b  #$01, Obj_Map_Id(A0)                             ; $001A
                 add.b   D3, Obj_Map_Id(A0)                               ; $001A
-                bra     Jmp_02_To_DisplaySprite                ; Offset_0x016390
+                bra.w   Jmp_02_To_DisplaySprite                ; Offset_0x016390
 Offset_0x015D26:
                 move.w  (Player_Two_Position_X).w, D0                ; $FFFFB048
                 cmp.w   D1, D0

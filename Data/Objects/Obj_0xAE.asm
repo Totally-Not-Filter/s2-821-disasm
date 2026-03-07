@@ -17,33 +17,33 @@ Offset_0x02A4DE:
                 dc.w    Offset_0x02A562-Offset_0x02A4DE     
 ;-------------------------------------------------------------------------------
 Offset_0x02A4EA:
-                bra     Object_Settings                        ; Offset_0x027EA4   
+                bra.w   Object_Settings                        ; Offset_0x027EA4   
 ;-------------------------------------------------------------------------------
 Offset_0x02A4EE:
                 move.b  Obj_Routine(A0), D2                              ; $0024
                 lea     (Clucker_Animate_Data), A1             ; Offset_0x02A5F2
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
                 cmp.b   Obj_Routine(A0), D2                              ; $0024
                 bne.s   Offset_0x02A506
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x02A506:
                 lea     Obj_Map_Id(A0), A1                               ; $001A
                 clr.l   (A1)
                 clr.w   Obj_Map(A1)                                      ; $0004
                 move.b  #$08, (A1)
                 move.b  #$06, Obj_Col_Flags(A0)                          ; $0020
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0   
 ;-------------------------------------------------------------------------------
 Offset_0x02A51E:
                 lea     (Clucker_Animate_Data_01), A1          ; Offset_0x02A5FE
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------
 Offset_0x02A52C:
                 tst.b   Obj_Control_Var_00(A0)                           ; $002C
                 beq.s   Offset_0x02A53A
                 subq.b  #$01, Obj_Control_Var_00(A0)                     ; $002C
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x02A53A:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 lea     Obj_Map_Id(A0), A1                               ; $001A
@@ -51,20 +51,20 @@ Offset_0x02A53A:
                 clr.w   Obj_Map(A1)                                      ; $0004
                 move.b  #$0B, (A1)
                 bsr.w   Load_Clucker_Weapon                    ; Offset_0x02A5A0
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------
 Offset_0x02A554:
                 lea     (Clucker_Animate_Data_02), A1          ; Offset_0x02A60A
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0  
 ;-------------------------------------------------------------------------------
 Offset_0x02A562:
                 move.b  #$06, Obj_Routine(A0)                            ; $0024
                 move.b  #$20, Obj_Control_Var_00(A0)                     ; $002C
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x02A572:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x02A59E
                 _move.b #$AE, 0(A1)                                 ; $0000
                 move.b  #$42, Obj_Subtype(A1)                            ; $0028
@@ -76,7 +76,7 @@ Offset_0x02A59E:
                 rts
 ;-------------------------------------------------------------------------------
 Load_Clucker_Weapon:                                           ; Offset_0x02A5A0
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x02A5DC
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$0D, Obj_Map_Id(A1)                             ; $001A

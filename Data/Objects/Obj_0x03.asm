@@ -8,7 +8,7 @@
                 move.w  Offset_0x014DE4(PC, D0), D1
                 jsr     Offset_0x014DE4(PC, D1)
                 tst.w   (Debug_Mode_Active_Flag).w                   ; $FFFFFFFA
-                beq     MarkObjGone_3                          ; Offset_0x00D26C
+                beq.w   MarkObjGone_3                          ; Offset_0x00D26C
                 jmp     (MarkObjGone)                          ; Offset_0x00D200
 ;-------------------------------------------------------------------------------  
 Offset_0x014DE4:

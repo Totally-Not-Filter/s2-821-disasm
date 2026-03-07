@@ -35,7 +35,7 @@ Offset_0x02AF24:
 Offset_0x02AF34:
                 move.l  #Egg_Prison_Mappings, Obj_Map(A0) ; Offset_0x02B138, $0004
                 move.w  #$049D, Obj_Art_VRAM(A0)                         ; $0002
-                bsr     Jmp_31_To_ModifySpriteAttr_2P          ; Offset_0x02B1E4
+                bsr.w   Jmp_31_To_ModifySpriteAttr_2P          ; Offset_0x02B1E4
                 move.b  #$04, Obj_Flags(A0)                              ; $0001
                 move.w  Obj_Y(A0), Obj_Control_Var_04(A0)         ; $000C, $0030
                 moveq   #$00, D0

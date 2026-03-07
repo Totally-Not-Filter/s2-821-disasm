@@ -14,7 +14,7 @@ Offset_0x02A0AE:
                 dc.w    Offset_0x02A118-Offset_0x02A0AE   
 ;-------------------------------------------------------------------------------
 Offset_0x02A0B4:
-                bsr     Object_Settings                        ; Offset_0x027EA4
+                bsr.w   Object_Settings                        ; Offset_0x027EA4
                 move.w  #$FFC0, Obj_Speed_Y(A0)                          ; $0012
                 move.w  #$0080, Obj_Timer(A0)                            ; $002A
                 rts  
@@ -25,7 +25,7 @@ Offset_0x02A0C6:
                 subq.b  #$01, Obj_Player_Status(A0)                      ; $002B
                 bra.w   Offset_0x02A0E2
 Offset_0x02A0D4:
-                bsr     Object_Check_Player_Position           ; Offset_0x027F1C
+                bsr.w   Object_Check_Player_Position           ; Offset_0x027F1C
                 addi.w  #$0060, D2
                 cmpi.w  #$00C0, D2
                 bcs.s   Offset_0x02A104
@@ -35,15 +35,15 @@ Offset_0x02A0E2:
                 move.w  #$0080, Obj_Timer(A0)                            ; $002A
                 neg.w   Obj_Speed_Y(A0)                                  ; $0012
 Offset_0x02A0F2:
-                bsr     Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
+                bsr.w   Jmp_19_To_SpeedToPos                   ; Offset_0x02A7C4
                 lea     (Vertical_Spiny_Animate_Data), A1      ; Offset_0x02A1D8
-                bsr     Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bsr.w   Jmp_17_To_AnimateSprite                ; Offset_0x02A7AC
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x02A104:
                 addq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$28, Obj_Player_Status(A0)                      ; $002B
                 move.b  #$05, Obj_Map_Id(A0)                             ; $001A
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0    
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0    
 ;-------------------------------------------------------------------------------
 Offset_0x02A118:
                 subq.b  #$01, Obj_Player_Status(A0)                      ; $002B
@@ -52,14 +52,14 @@ Offset_0x02A118:
                 bne.s   Offset_0x02A12A
                 bsr.w   Load_Spiny_Vertical_Shot_Obj           ; Offset_0x02A188
 Offset_0x02A12A:
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 Offset_0x02A12E:
                 subq.b  #$02, Obj_Routine(A0)                            ; $0024
                 move.b  #$40, Obj_Player_Status(A0)                      ; $002B
-                bra     Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
+                bra.w   Jmp_26_To_MarkObjGone                  ; Offset_0x02A7A0
 ;-------------------------------------------------------------------------------                
 Load_Spiny_Horizontal_Shot_Obj:                                ; Offset_0x02A13C
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x02A186
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Map_Id(A1)                             ; $001A
@@ -81,7 +81,7 @@ Offset_0x02A186:
                 rts
 ;-------------------------------------------------------------------------------                
 Load_Spiny_Vertical_Shot_Obj:                                  ; Offset_0x02A188
-                bsr     Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
+                bsr.w   Jmp_14_To_SingleObjectLoad_2           ; Offset_0x02A7A6
                 bne.s   Offset_0x02A1C6
                 _move.b #$98, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Map_Id(A1)                             ; $001A

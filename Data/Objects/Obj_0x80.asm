@@ -74,7 +74,7 @@ Offset_0x01EAF4:
                 addq.w  #$01, A2
                 move.w  ($FFFFF606).w, D0
                 bsr.s   Offset_0x01EB12
-                bra     Jmp_16_To_MarkObjGone                  ; Offset_0x01ED80
+                bra.w   Jmp_16_To_MarkObjGone                  ; Offset_0x01ED80
 Offset_0x01EB12:
                 tst.b   (A2)
                 beq.s   Offset_0x01EB8A
