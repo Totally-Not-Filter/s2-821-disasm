@@ -32,7 +32,7 @@ Offset_0x023FB2:
                 move.w  Obj_Y(A1), Obj_Y(A0)                      ; $000C, $000C
                 move.b  Obj_Status(A1), Obj_Status(A0)            ; $0022, $0022
                 move.b  Obj_Flags(A1), Obj_Flags(A0)              ; $0001, $0001
-                lea     (Buzzer_AnimateData), A1               ; Offset_0x0241CE
+                lea     (Buzzer_AnimateData).l, A1               ; Offset_0x0241CE
                 bsr.w   Jmp_12_To_AnimateSprite                ; Offset_0x024274
                 bra.w   Jmp_01_To_MarkObjGone_4                ; Offset_0x024280   
 ;-------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ Offset_0x024084:
                 move.b  Obj_Routine_2(A0), D0                            ; $0025
                 move.w  Offset_0x0240A0(PC, D0), D1
                 jsr     Offset_0x0240A0(PC, D1)
-                lea     (Buzzer_AnimateData), A1               ; Offset_0x0241CE
+                lea     (Buzzer_AnimateData).l, A1               ; Offset_0x0241CE
                 bsr.w   Jmp_12_To_AnimateSprite                ; Offset_0x024274
                 bra.w   Jmp_01_To_MarkObjGone_4                ; Offset_0x024280          
 ;-------------------------------------------------------------------------------
@@ -145,7 +145,7 @@ Offset_0x024148:
                 subq.b  #$02, Obj_Routine_2(A0)                          ; $0025
                 rts
 Offset_0x02414E:
-                jsr     (SingleObjectLoad_2)                   ; Offset_0x00E714
+                jsr     (SingleObjectLoad_2).l                   ; Offset_0x00E714
                 bne.s   Offset_0x0241C8
                 _move.b #$4B, 0(A1)                                 ; $0000
                 move.b  #$06, Obj_Routine(A1)                            ; $0024

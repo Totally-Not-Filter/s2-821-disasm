@@ -82,6 +82,12 @@ PaddingOptimization = 0|AllOptimizations
 	include	"macros.asm"
 
 ; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+; Expressing SMPS bytecode in a portable and human-readable form
+FixMusicAndSFXDataBugs = FixBugs
+SonicDriverVer = 2 ; Tell SMPS2ASM that we are targetting Sonic 2's sound driver
+	include "sound/_smps2asm_inc.asm"
+
+; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ; start of ROM
 
 		dc.l	StackPointer			; Initial stack pointer value
@@ -27150,15 +27156,15 @@ Previous_Build_NGHz_Rng_Act2:				   ; Offset_0x0E9740
 ;===============================================================================
 PBDACSamples_Start:
 Previous_Build_DAC_Sample_01_Overwrite:				   ; Offset_0x0E978C
-		binclude	"data\sounds\PB_DAC01.bin"
+		binclude	"sound\PB_DAC01.bin"
 Previous_Build_DAC_Sample_02:				   ; Offset_0x0E99B7
-		binclude	"data\sounds\DAC_02.bin"
+		binclude	"sound\DAC_02.bin"
 Previous_Build_DAC_Sample_06: ; Sonic 2 Beta		   ; Offset_0x0EA56C
-		binclude	"data\sounds\PB_DAC06.bin"
+		binclude	"sound\PB_DAC06.bin"
 Previous_Build_DAC_Sample_03: ; Sonic 2 Beta		   ; Offset_0x0EAA6B
-		binclude	"data\sounds\PB_DAC03.bin"
+		binclude	"sound\PB_DAC03.bin"
 Previous_Build_DAC_Sample_04: ; Sonic 2 Beta		   ; Offset_0x0EACD3
-		binclude	"data\sounds\PB_DAC04.bin"
+		binclude	"sound\PB_DAC04.bin"
 PBDACSamples_End:
 ;-------------------------------------------------------------------------------
 		cnop	$00000000, $000EC000, $00000000
@@ -27329,25 +27335,25 @@ Snd_Driver_End:
 ; ---------------------------------------------------------------------------
 DACSamples_Start:
 DAC_Sample01:						   ; Offset_0x0ED000
-		binclude	"data\sounds\DAC_00.bin"
+		binclude	"sound\DAC_00.bin"
 DAC_Sample01_End:
 DAC_Sample02:						   ; Offset_0x0ED294
-		binclude	"data\sounds\DAC_01.bin"
+		binclude	"sound\DAC_01.bin"
 DAC_Sample02_End:
 DAC_Sample03:						   ; Offset_0x0ED9B7
-		binclude	"data\sounds\DAC_02.bin"
+		binclude	"sound\DAC_02.bin"
 DAC_Sample03_End:
 DAC_Sample04:						   ; Offset_0x0EE56C
-		binclude	"data\sounds\DAC_03.bin"
+		binclude	"sound\DAC_03.bin"
 DAC_Sample04_End:
 DAC_Sample05:						   ; Offset_0x0EED7A
-		binclude	"data\sounds\DAC_04.bin"
+		binclude	"sound\DAC_04.bin"
 DAC_Sample05_End:
 DAC_Sample06:						   ; Offset_0x0EF2F0
-		binclude	"data\sounds\DAC_05.bin"
+		binclude	"sound\DAC_05.bin"
 DAC_Sample06_End:
 DAC_Sample07:						   ; Offset_0x0EFA3C
-		binclude	"data\sounds\DAC_06.bin"
+		binclude	"sound\DAC_06.bin"
 DAC_Sample07_End:
 DACSamples_End:
 
@@ -27379,22 +27385,22 @@ MusicPoint1:	startBank
 		music_ptr	Mus_HPZ_Dup		; $9E
 
 Mus_Invinc:						   ; Offset_0x0F0012
-		binclude	"data\sounds\invcb_97.snd"
+		include	"sound\music\97 - Invincible.asm"
 Mus_ExtraLife:							   ; Offset_0x0F023D
-		binclude	"data\sounds\1up_98.snd"
+		include	"sound\music\98 - Extra Life.asm"
 Mus_Title:							   ; Offset_0x0F032A
-		binclude	"data\sounds\tscr_99.snd"
+		binclude	"sound\TScr_99.snd"
 Mus_ActClear:						   ; Offset_0x0F04FF
-		binclude	"data\sounds\lres_9A.snd"
+		include	"sound\music\9A - End of Act.asm"
 Mus_GameOver:					   ; Offset_0x0F0654
-		binclude	"data\sounds\tgovr_9B.snd"
+		include	"sound\music\9B - Game Over.asm"
 Mus_Continue:						   ; Offset_0x0F07A3
-		binclude	"data\sounds\cont_9c.snd"
+		include	"sound\music\9C - Continue.asm"
 Mus_Emerald:							   ; Offset_0x0F0900
-		binclude	"data\sounds\emrld_9d.snd"
+		include	"sound\music\9D - Got Emerald.asm"
 Mus_HPZ:					   ; Offset_0x0F09CE
 Mus_HPZ_Dup:
-		binclude	"data\sounds\hpz_90.snd"
+		include	"sound\music\90 - HPZ.asm"
 
 	finishBank
 ; ----------------------------------------------------------------------------------
@@ -27407,7 +27413,7 @@ Mus_HPZ_Dup:
 ; 8-bit unsigned raw audio at 16Khz
 ; -------------------------------------------------------------------------------
 Sega_Snd:							   ; Offset_0x0F1E8C
-		binclude	"data\sounds\sega.snd"
+		binclude	"sound\sega.snd"
 Sega_Snd_End:
 
 	if Sega_Snd_End - Sega_Snd > $8000
@@ -27444,47 +27450,47 @@ MusicPoint2:	startBank
 		music_ptr	Mus_HTZ		; $86
 
 Mus_OOZ:						   ; Offset_0x0F802A
-		binclude	"data\sounds\ooz_88.snd"
+		include	"sound\music\88 - CNZ 2P.asm"
 Mus_GHZ:							   ; Offset_0x0F85AC
-		binclude	"data\sounds\ghz_82.snd"
+		include	"sound\music\82 - EHZ.asm"
 Mus_MTZ:							   ; Offset_0x0F8D1E
-		binclude	"data\sounds\mz_85.snd"
+		include	"sound\music\85 - MTZ.asm"
 Mus_CNZ:							   ; Offset_0x0F9299
-		binclude	"data\sounds\cnz_89.snd"
+		include	"sound\music\89 - CNZ.asm"
 Mus_DHZ:							   ; Offset_0x0F99B6
-		binclude	"data\sounds\dhz_8b.snd"
+		include	"sound\music\8B - MCZ.asm"
 Mus_DHZ2P:					   ; Offset_0x0FA056
-		binclude	"data\sounds\hpz_83.snd"
+		binclude	"sound\hpz_83.snd"
 Mus_NGHZ:						   ; Offset_0x0FA54F
-		binclude	"data\sounds\nghz_87.snd"
+		include	"sound\music\87 - ARZ.asm"
 Mus_DEZ:							   ; Offset_0x0FACDC
-		binclude	"data\sounds\dez_8a.snd"
+		include	"sound\music\8A - DEZ.asm"
 Mus_SpecStg:						   ; Offset_0x0FB1C3
-		binclude	"data\sounds\ss_92.snd"
+		include	"sound\music\92 - Special Stage.asm"
 Mus_LevelSel:					   ; Offset_0x0FB7CA
-		binclude	"data\sounds\menu_91.snd"
+		include	"sound\music\91 - Options.asm"
 Mus_Ending:							   ; Offset_0x0FB945
-		binclude	"data\sounds\endsq_95.snd"
+		include	"sound\music\95 - Ending.asm"
 Mus_FinalBoss:							   ; Offset_0x0FBF3E
-		binclude	"data\sounds\dezfb_94.snd"
+		include	"sound\music\94 - Final Boss.asm"
 Mus_CPZ:						   ; Offset_0x0FC276
-		binclude	"data\sounds\cpz_8e.snd"
+		include	"sound\music\8E - CPZ.asm"
 Mus_Boss:							   ; Offset_0x0FC8C1
-		binclude	"data\sounds\boss_93.snd"
+		include	"sound\music\93 - Boss.asm"
 Mus_SCZ:							   ; Offset_0x0FCB93
-		binclude	"data\sounds\scz_8d.snd"
+		include	"sound\music\8D - SCZ.asm"
 Mus_OOZ2:						   ; Offset_0x0FCF96
-		binclude	"data\sounds\ooz_84.snd"
+		include	"sound\music\84 - OOZ.asm"
 Mus_SFZ:							   ; Offset_0x0FD41A
-		binclude	"data\sounds\sfz_8f.snd"
+		include	"sound\music\8F - WFZ.asm"
 Mus_GHZ2P:				   ; Offset_0x0FD847
-		binclude	"data\sounds\ghzvs_8c.snd"
+		include	"sound\music\8C - EHZ 2P.asm"
 Mus_2PResults:					   ; Offset_0x0FDD60
-		binclude	"data\sounds\vsres_81.snd"
+		include	"sound\music\81 - 2 Player Menu.asm"
 Mus_SuperSonic:							   ; Offset_0x0FE1C3
-		binclude	"data\sounds\super_96.snd"
+		include	"sound\music\96 - Super Sonic.asm"
 Mus_HTZ:						   ; Offset_0x0FE4B6
-		binclude	"data\sounds\htz_86.snd"
+		include	"sound\music\86 - HTZ.asm"
 
 		cnop	0,$FEE00
 ;-------------------------------------------------------------------------------
@@ -27639,153 +27645,153 @@ SoundIndex:						   ; Offset_0x0FEE00
 		dc.w	(((Sfx_E8_Ptr>>$08)|(Sfx_E8_Ptr<<$08))&$FFFF)
 		dc.w	(((Sfx_E9_Ptr>>$08)|(Sfx_E9_Ptr<<$08))&$FFFF)
 Sfx_A0:								   ; Offset_0x0FEE94
-		binclude	"data\sounds\sfx_A0.snd"
+		binclude	"sound\sfx_A0.snd"
 Sfx_A1:								   ; Offset_0x0FEEAA
-		binclude	"data\sounds\sfx_A1.snd"
+		binclude	"sound\sfx_A1.snd"
 Sfx_A2:								   ; Offset_0x0FEED4
-		binclude	"data\sounds\sfx_A2.snd"
+		binclude	"sound\sfx_A2.snd"
 Sfx_A3:								   ; Offset_0x0FEEF3
-		binclude	"data\sounds\sfx_A3.snd"
+		binclude	"sound\sfx_A3.snd"
 Sfx_A4:								   ; Offset_0x0FEF25
-		binclude	"data\sounds\sfx_A4.snd"
+		binclude	"sound\sfx_A4.snd"
 Sfx_A5:								   ; Offset_0x0FEF5A
-		binclude	"data\sounds\sfx_A5.snd"
+		binclude	"sound\sfx_A5.snd"
 Sfx_A6:								   ; Offset_0x0FEF86
-		binclude	"data\sounds\sfx_A6.snd"
+		binclude	"sound\sfx_A6.snd"
 Sfx_A7:								   ; Offset_0x0FEFB5
-		binclude	"data\sounds\sfx_A7.snd"
+		binclude	"sound\sfx_A7.snd"
 Sfx_A8:								   ; Offset_0x0FEFE4
-		binclude	"data\sounds\sfx_A8.snd"
+		binclude	"sound\sfx_A8.snd"
 Sfx_A9:								   ; Offset_0x0FEFFE
-		binclude	"data\sounds\sfx_A9.snd"
+		binclude	"sound\sfx_A9.snd"
 Sfx_AA:								   ; Offset_0x0FF010
-		binclude	"data\sounds\sfx_AA.snd"
+		binclude	"sound\sfx_AA.snd"
 Sfx_AB:								   ; Offset_0x0FF051
-		binclude	"data\sounds\sfx_AB.snd"
+		binclude	"sound\sfx_AB.snd"
 Sfx_AC:								   ; Offset_0x0FF070
-		binclude	"data\sounds\sfx_AC.snd"
+		binclude	"sound\sfx_AC.snd"
 Sfx_AD:								   ; Offset_0x0FF0A4
-		binclude	"data\sounds\sfx_AD.snd"
+		binclude	"sound\sfx_AD.snd"
 Sfx_AE:								   ; Offset_0x0FF0DA
-		binclude	"data\sounds\sfx_AE.snd"
+		binclude	"sound\sfx_AE.snd"
 Sfx_AF:								   ; Offset_0x0FF124
-		binclude	"data\sounds\sfx_AF.snd"
+		binclude	"sound\sfx_AF.snd"
 Sfx_B0:								   ; Offset_0x0FF151
-		binclude	"data\sounds\sfx_B0.snd"
+		binclude	"sound\sfx_B0.snd"
 Sfx_B1:								   ; Offset_0x0FF182
-		binclude	"data\sounds\sfx_B1.snd"
+		binclude	"sound\sfx_B1.snd"
 Sfx_B2:								   ; Offset_0x0FF1AE
-		binclude	"data\sounds\sfx_B2.snd"
+		binclude	"sound\sfx_B2.snd"
 Sfx_B3:								   ; Offset_0x0FF1FD
-		binclude	"data\sounds\sfx_B3.snd"
+		binclude	"sound\sfx_B3.snd"
 Sfx_B4:								   ; Offset_0x0FF22E
-		binclude	"data\sounds\sfx_B4.snd"
+		binclude	"sound\sfx_B4.snd"
 Sfx_B5:								   ; Offset_0x0FF289
-		binclude	"data\sounds\sfx_B5.snd"
+		binclude	"sound\sfx_B5.snd"
 Sfx_B6:								   ; Offset_0x0FF29E
-		binclude	"data\sounds\sfx_B6.snd"
+		binclude	"sound\sfx_B6.snd"
 Sfx_B7:								   ; Offset_0x0FF2BB
-		binclude	"data\sounds\sfx_B7.snd"
+		binclude	"sound\sfx_B7.snd"
 Sfx_B8:								   ; Offset_0x0FF2F6
-		binclude	"data\sounds\sfx_B8.snd"
+		binclude	"sound\sfx_B8.snd"
 Sfx_B9:								   ; Offset_0x0FF313
-		binclude	"data\sounds\sfx_B9.snd"
+		binclude	"sound\sfx_B9.snd"
 Sfx_BA:								   ; Offset_0x0FF35D
-		binclude	"data\sounds\sfx_BA.snd"
+		binclude	"sound\sfx_BA.snd"
 Sfx_BB:								   ; Offset_0x0FF385
-		binclude	"data\sounds\sfx_BB.snd"
+		binclude	"sound\sfx_BB.snd"
 Sfx_BC:								   ; Offset_0x0FF3B0
-		binclude	"data\sounds\sfx_BC.snd"
+		binclude	"sound\sfx_BC.snd"
 Sfx_BD:								   ; Offset_0x0FF3F1
-		binclude	"data\sounds\sfx_BD.snd"
+		binclude	"sound\sfx_BD.snd"
 Sfx_BE:								   ; Offset_0x0FF444
-		binclude	"data\sounds\sfx_BE.snd"
+		binclude	"sound\sfx_BE.snd"
 Sfx_BF:								   ; Offset_0x0FF47E
-		binclude	"data\sounds\sfx_BF.snd"
+		binclude	"sound\sfx_BF.snd"
 Sfx_C0:								   ; Offset_0x0FF4F0
-		binclude	"data\sounds\sfx_C0.snd"
+		binclude	"sound\sfx_C0.snd"
 Sfx_C1:								   ; Offset_0x0FF51E
-		binclude	"data\sounds\sfx_C1.snd"
+		binclude	"sound\sfx_C1.snd"
 Sfx_C2:								   ; Offset_0x0FF558
-		binclude	"data\sounds\sfx_C2.snd"
+		binclude	"sound\sfx_C2.snd"
 Sfx_C3:								   ; Offset_0x0FF569
-		binclude	"data\sounds\sfx_C3.snd"
+		binclude	"sound\sfx_C3.snd"
 Sfx_C4:								   ; Offset_0x0FF5E3
-		binclude	"data\sounds\sfx_C4.snd"
+		binclude	"sound\sfx_C4.snd"
 Sfx_C5:								   ; Offset_0x0FF60B
-		binclude	"data\sounds\sfx_C5.snd"
+		binclude	"sound\sfx_C5.snd"
 Sfx_C6:								   ; Offset_0x0FF672
-		binclude	"data\sounds\sfx_C6.snd"
+		binclude	"sound\sfx_C6.snd"
 Sfx_C7:								   ; Offset_0x0FF69A
-		binclude	"data\sounds\sfx_C7.snd"
+		binclude	"sound\sfx_C7.snd"
 Sfx_C8:								   ; Offset_0x0FF6C8
-		binclude	"data\sounds\sfx_C8.snd"
+		binclude	"sound\sfx_C8.snd"
 Sfx_C9:								   ; Offset_0x0FF6D9
-		binclude	"data\sounds\sfx_C9.snd"
+		binclude	"sound\sfx_C9.snd"
 Sfx_CA:								   ; Offset_0x0FF706
-		binclude	"data\sounds\sfx_CA.snd"
+		binclude	"sound\sfx_CA.snd"
 Sfx_CB:								   ; Offset_0x0FF733
-		binclude	"data\sounds\sfx_CB.snd"
+		binclude	"sound\sfx_CB.snd"
 Sfx_CC:								   ; Offset_0x0FF766
-		binclude	"data\sounds\sfx_CC.snd"
+		binclude	"sound\sfx_CC.snd"
 Sfx_CD:								   ; Offset_0x0FF7A0
-		binclude	"data\sounds\sfx_CD.snd"
+		binclude	"sound\sfx_CD.snd"
 Sfx_CE:								   ; Offset_0x0FF7AD
-		binclude	"data\sounds\sfx_CE.snd"
+		binclude	"sound\sfx_CE.snd"
 Sfx_CF:								   ; Offset_0x0FF7C2
-		binclude	"data\sounds\sfx_CF.snd"
+		binclude	"sound\sfx_CF.snd"
 Sfx_D0:								   ; Offset_0x0FF7F9
-		binclude	"data\sounds\sfx_D0.snd"
+		binclude	"sound\sfx_D0.snd"
 Sfx_D1:								   ; Offset_0x0FF82C
-		binclude	"data\sounds\sfx_D1.snd"
+		binclude	"sound\sfx_D1.snd"
 Sfx_D2:								   ; Offset_0x0FF865
-		binclude	"data\sounds\sfx_D2.snd"
+		binclude	"sound\sfx_D2.snd"
 Sfx_D3:								   ; Offset_0x0FF8A2
-		binclude	"data\sounds\sfx_D3.snd"
+		binclude	"sound\sfx_D3.snd"
 Sfx_D4:								   ; Offset_0x0FF8E1
-		binclude	"data\sounds\sfx_D4.snd"
+		binclude	"sound\sfx_D4.snd"
 Sfx_D5:								   ; Offset_0x0FF909
-		binclude	"data\sounds\sfx_D5.snd"
+		binclude	"sound\sfx_D5.snd"
 Sfx_D6:								   ; Offset_0x0FF933
-		binclude	"data\sounds\sfx_D6.snd"
+		binclude	"sound\sfx_D6.snd"
 Sfx_D7:								   ; Offset_0x0FF978
-		binclude	"data\sounds\sfx_D7.snd"
+		binclude	"sound\sfx_D7.snd"
 Sfx_D8:								   ; Offset_0x0FF9A0
-		binclude	"data\sounds\sfx_D8.snd"
+		binclude	"sound\sfx_D8.snd"
 Sfx_D9:								   ; Offset_0x0FF9CA
-		binclude	"data\sounds\sfx_D9.snd"
+		binclude	"sound\sfx_D9.snd"
 Sfx_DA:								   ; Offset_0x0FF9F7
-		binclude	"data\sounds\sfx_DA.snd"
+		binclude	"sound\sfx_DA.snd"
 Sfx_DB:								   ; Offset_0x0FFA24
-		binclude	"data\sounds\sfx_DB.snd"
+		binclude	"sound\sfx_DB.snd"
 Sfx_DC:								   ; Offset_0x0FFA58
-		binclude	"data\sounds\sfx_DC.snd"
+		binclude	"sound\sfx_DC.snd"
 Sfx_DD:								   ; Offset_0x0FFA9F
-		binclude	"data\sounds\sfx_DD.snd"
+		binclude	"sound\sfx_DD.snd"
 Sfx_DE:								   ; Offset_0x0FFAC7
-		binclude	"data\sounds\sfx_DE.snd"
+		binclude	"sound\sfx_DE.snd"
 Sfx_DF:								   ; Offset_0x0FFB01
-		binclude	"data\sounds\sfx_DF.snd"
+		binclude	"sound\sfx_DF.snd"
 Sfx_E0:								   ; Offset_0x0FFB9D
-		binclude	"data\sounds\sfx_E0.snd"
+		binclude	"sound\sfx_E0.snd"
 Sfx_E1:								   ; Offset_0x0FFBD8
-		binclude	"data\sounds\sfx_E1.snd"
+		binclude	"sound\sfx_E1.snd"
 Sfx_E2:								   ; Offset_0x0FFC3F
-		binclude	"data\sounds\sfx_E2.snd"
+		binclude	"sound\sfx_E2.snd"
 Sfx_E3:								   ; Offset_0x0FFC76
-		binclude	"data\sounds\sfx_E3.snd"
+		binclude	"sound\sfx_E3.snd"
 Sfx_E4:								   ; Offset_0x0FFCA5
-		binclude	"data\sounds\sfx_E4.snd"
+		binclude	"sound\sfx_E4.snd"
 Sfx_E5:								   ; Offset_0x0FFCCD
-		binclude	"data\sounds\sfx_E5.snd"
+		binclude	"sound\sfx_E5.snd"
 Sfx_E6:								   ; Offset_0x0FFCEE
-		binclude	"data\sounds\sfx_E6.snd"
+		binclude	"sound\sfx_E6.snd"
 Sfx_E7:								   ; Offset_0x0FFD28
-		binclude	"data\sounds\sfx_E7.snd"
+		binclude	"sound\sfx_E7.snd"
 Sfx_E8:								   ; Offset_0x0FFD84
-		binclude	"data\sounds\sfx_E8.snd"
+		binclude	"sound\sfx_E8.snd"
 Sfx_E9:								   ; Offset_0x0FFDAE
-		binclude	"data\sounds\sfx_E9.snd"
+		binclude	"sound\sfx_E9.snd"
 
 	finishBank
 

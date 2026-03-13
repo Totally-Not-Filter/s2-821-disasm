@@ -7,7 +7,7 @@
                 move.b  Obj_Routine(A0), D0                              ; $0024
                 move.w  Offset_0x00F0C8(PC, D0), D1
                 jsr     Offset_0x00F0C8(PC, D1)
-                lea     (End_Panel_Animate_Data), A1           ; Offset_0x00F288
+                lea     (End_Panel_Animate_Data).l, A1           ; Offset_0x00F288
                 bsr.w   AnimateSprite                          ; Offset_0x00D372
                 move.w  Obj_X(A0), D0                                    ; $0008
                 andi.w  #$FF80, D0

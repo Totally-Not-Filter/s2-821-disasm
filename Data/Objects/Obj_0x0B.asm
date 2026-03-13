@@ -52,8 +52,8 @@ Offset_0x01523A:
 Offset_0x015252:
                 bchg    #00, Obj_Ani_Number(A0)                          ; $001C
 Offset_0x015258:
-                lea     (Open_Close_Platform_Animate_Data), A1 ; Offset_0x01529A
-                jsr     (AnimateSprite)                        ; Offset_0x00D372
+                lea     (Open_Close_Platform_Animate_Data).l, A1 ; Offset_0x01529A
+                jsr     (AnimateSprite).l                        ; Offset_0x00D372
 Offset_0x015264:
                 tst.b   Obj_Map_Id(A0)                                   ; $001A
                 bne.s   Offset_0x01527E

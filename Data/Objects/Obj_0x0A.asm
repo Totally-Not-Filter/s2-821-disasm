@@ -42,8 +42,8 @@ Offset_0x0125B4:
                 move.w  #$FF78, Obj_Speed_Y(A0)                          ; $0012  
 ;-------------------------------------------------------------------------------
 Offset_0x0125C4:
-                lea     (Bubbles_Animate_Data), A1             ; Offset_0x012A5E
-                jsr     (AnimateSprite)                        ; Offset_0x00D372  
+                lea     (Bubbles_Animate_Data).l, A1             ; Offset_0x012A5E
+                jsr     (AnimateSprite).l                        ; Offset_0x00D372  
 ;-------------------------------------------------------------------------------
 Offset_0x0125D0:
                 move.w  (Water_Level).w, D0                          ; $FFFFF646
@@ -64,18 +64,18 @@ Offset_0x012600:
                 move.b  Obj_Angle(A0), D0                                ; $0026
                 addq.b  #$01, Obj_Angle(A0)                              ; $0026
                 andi.w  #$007F, D0
-                lea     (Offset_0x0126EC), A1
+                lea     (Offset_0x0126EC).l, A1
                 move.b  $00(A1, D0), D0
                 ext.w   D0
                 add.w   Obj_Control_Var_04(A0), D0                       ; $0030
                 move.w  D0, Obj_X(A0)                                    ; $0008
                 bsr.s   Offset_0x0126A0
-                jsr     (SpeedToPos)                           ; Offset_0x00D1DA
+                jsr     (SpeedToPos).l                           ; Offset_0x00D1DA
                 tst.b   Obj_Flags(A0)                                    ; $0001
                 bpl.s   Offset_0x012634
-                jmp     (DisplaySprite)                        ; Offset_0x00D322
+                jmp     (DisplaySprite).l                        ; Offset_0x00D322
 Offset_0x012634:
-                jmp     (DeleteObject)                         ; Offset_0x00D314 
+                jmp     (DeleteObject).l                         ; Offset_0x00D314 
 ;-------------------------------------------------------------------------------
 Offset_0x01263A:
                 move.l  Obj_Control_Var_10(A0), A2                       ; $003C
@@ -84,12 +84,12 @@ Offset_0x01263A:
 ;-------------------------------------------------------------------------------
 Offset_0x012646:
                 bsr.s   Offset_0x0126A0
-                lea     (Bubbles_Animate_Data), A1             ; Offset_0x012A5E
-                jsr     (AnimateSprite)                        ; Offset_0x00D372
-                jmp     (DisplaySprite)                        ; Offset_0x00D322    
+                lea     (Bubbles_Animate_Data).l, A1             ; Offset_0x012A5E
+                jsr     (AnimateSprite).l                        ; Offset_0x00D372
+                jmp     (DisplaySprite).l                        ; Offset_0x00D322    
 ;-------------------------------------------------------------------------------
 Offset_0x01265A:
-                jmp     (DeleteObject)                         ; Offset_0x00D314   
+                jmp     (DeleteObject).l                         ; Offset_0x00D314   
 ;-------------------------------------------------------------------------------
 Offset_0x012660:
                 move.l  Obj_Control_Var_10(A0), A2                       ; $003C
@@ -101,14 +101,14 @@ Offset_0x012660:
                 addq.b  #$07, Obj_Ani_Number(A0)                         ; $001C
                 bra.s   Offset_0x012646
 Offset_0x01267E:
-                lea     (Bubbles_Animate_Data), A1             ; Offset_0x012A5E
-                jsr     (AnimateSprite)                        ; Offset_0x00D372
+                lea     (Bubbles_Animate_Data).l, A1             ; Offset_0x012A5E
+                jsr     (AnimateSprite).l                        ; Offset_0x00D372
                 bsr.w   Load_Oxygen_Numbers_Dynamic_PLC        ; Offset_0x0127EC
                 tst.b   Obj_Flags(A0)                                    ; $0001
                 bpl.s   Offset_0x01269A
-                jmp     (DisplaySprite)                        ; Offset_0x00D322
+                jmp     (DisplaySprite).l                        ; Offset_0x00D322
 Offset_0x01269A:
-                jmp     (DeleteObject)                         ; Offset_0x00D314
+                jmp     (DeleteObject).l                         ; Offset_0x00D314
 Offset_0x0126A0:
                 tst.w   Obj_Control_Var_0C(A0)                           ; $0038
                 beq.s   Offset_0x0126EA
@@ -274,7 +274,7 @@ Offset_0x012956:
                 jsr     (PseudoRandomNumber).l                   ; Offset_0x00325C
                 andi.w  #$000F, D0
                 move.w  D0, Obj_Control_Var_0E(A0)                       ; $003A
-                jsr     (SingleObjectLoad)                     ; Offset_0x00E6FE
+                jsr     (SingleObjectLoad).l                     ; Offset_0x00E6FE
                 bne.w   Offset_0x012A2E
                 _move.b 0(A0), 0(A1)                    ; $0000, $0000
                 move.w  Obj_X(A2), Obj_X(A1)                      ; $0008, $0008

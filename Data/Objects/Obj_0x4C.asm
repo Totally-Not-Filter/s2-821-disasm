@@ -32,7 +32,7 @@ Offset_0x01FA6A:
                 move.w  Offset_0x01FA8A(PC, D0), D1
                 jsr     Offset_0x01FA8A(PC, D1)
                 bsr.w   Offset_0x01FA90
-                lea     (Batbot_Animate_Data), A1              ; Offset_0x01FC82
+                lea     (Batbot_Animate_Data).l, A1              ; Offset_0x01FC82
                 bsr.w   Jmp_06_To_AnimateSprite                ; Offset_0x01FE92
                 bra.w   Jmp_19_To_MarkObjGone                  ; Offset_0x01FE8C   
 ;-------------------------------------------------------------------------------  
@@ -69,7 +69,7 @@ Offset_0x01FAD8:
                 bsr.w   Offset_0x01FB78
                 bsr.w   Offset_0x01FAF8
                 bsr.w   Jmp_0D_To_SpeedToPos                   ; Offset_0x01FE98
-                lea     (Batbot_Animate_Data), A1              ; Offset_0x01FC82
+                lea     (Batbot_Animate_Data).l, A1              ; Offset_0x01FC82
                 bsr.w   Jmp_06_To_AnimateSprite                ; Offset_0x01FE92
                 bra.w   Jmp_19_To_MarkObjGone                  ; Offset_0x01FE8C     
 ;-------------------------------------------------------------------------------
