@@ -27156,15 +27156,15 @@ Previous_Build_NGHz_Rng_Act2:				   ; Offset_0x0E9740
 ;===============================================================================
 PBDACSamples_Start:
 Previous_Build_DAC_Sample_01_Overwrite:				   ; Offset_0x0E978C
-		binclude	"sound\PB_DAC01.bin"
+		binclude	"sound\DAC\PB_DAC01.bin"
 Previous_Build_DAC_Sample_02:				   ; Offset_0x0E99B7
-		binclude	"sound\DAC_02.bin"
+		binclude	"sound\DAC\DAC_02.bin"
 Previous_Build_DAC_Sample_06: ; Sonic 2 Beta		   ; Offset_0x0EA56C
-		binclude	"sound\PB_DAC06.bin"
+		binclude	"sound\DAC\PB_DAC06.bin"
 Previous_Build_DAC_Sample_03: ; Sonic 2 Beta		   ; Offset_0x0EAA6B
-		binclude	"sound\PB_DAC03.bin"
+		binclude	"sound\DAC\PB_DAC03.bin"
 Previous_Build_DAC_Sample_04: ; Sonic 2 Beta		   ; Offset_0x0EACD3
-		binclude	"sound\PB_DAC04.bin"
+		binclude	"sound\DAC\PB_DAC04.bin"
 PBDACSamples_End:
 ;-------------------------------------------------------------------------------
 		cnop	$00000000, $000EC000, $00000000
@@ -27335,25 +27335,25 @@ Snd_Driver_End:
 ; ---------------------------------------------------------------------------
 DACSamples_Start:
 DAC_Sample01:						   ; Offset_0x0ED000
-		binclude	"sound\DAC_00.bin"
+		binclude	"sound\DAC\DAC_00.bin"
 DAC_Sample01_End:
 DAC_Sample02:						   ; Offset_0x0ED294
-		binclude	"sound\DAC_01.bin"
+		binclude	"sound\DAC\DAC_01.bin"
 DAC_Sample02_End:
 DAC_Sample03:						   ; Offset_0x0ED9B7
-		binclude	"sound\DAC_02.bin"
+		binclude	"sound\DAC\DAC_02.bin"
 DAC_Sample03_End:
 DAC_Sample04:						   ; Offset_0x0EE56C
-		binclude	"sound\DAC_03.bin"
+		binclude	"sound\DAC\DAC_03.bin"
 DAC_Sample04_End:
 DAC_Sample05:						   ; Offset_0x0EED7A
-		binclude	"sound\DAC_04.bin"
+		binclude	"sound\DAC\DAC_04.bin"
 DAC_Sample05_End:
 DAC_Sample06:						   ; Offset_0x0EF2F0
-		binclude	"sound\DAC_05.bin"
+		binclude	"sound\DAC\DAC_05.bin"
 DAC_Sample06_End:
 DAC_Sample07:						   ; Offset_0x0EFA3C
-		binclude	"sound\DAC_06.bin"
+		binclude	"sound\DAC\DAC_06.bin"
 DAC_Sample07_End:
 DACSamples_End:
 
@@ -27680,7 +27680,7 @@ Sfx_D5:								   ; Offset_0x0FF909
 Sfx_D6:								   ; Offset_0x0FF933
 		binclude	"sound\SFX\sfx_D6.snd"
 Sfx_D7:								   ; Offset_0x0FF978
-		binclude	"sound\SFX\sfx_D7.snd"
+		include	"sound\SFX\D7 - Platform Knock.asm"
 Sfx_D8:								   ; Offset_0x0FF9A0
 		binclude	"sound\SFX\sfx_D8.snd"
 Sfx_D9:								   ; Offset_0x0FF9CA
